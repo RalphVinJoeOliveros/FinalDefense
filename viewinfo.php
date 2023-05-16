@@ -624,7 +624,7 @@ padding: 18px;
 			<div class="card-header">Feedbacks for the trainee:</div>
 			<div class="card-body text-secondary">
 
-				<p style='font-size: 18px; color: black;' class="card-text"><?php echo $row['recommend'] ?></p>
+				<p style='font-size: 18px; color: black;' class="card-text"><?php echo $row['feedback'] ?></p>
 			</div>
 			
 			</div>
