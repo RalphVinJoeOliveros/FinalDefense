@@ -121,7 +121,7 @@ body {
 			<a class="highlight1" href="studentslist.php" class="nav-item nav-link" style= "margin-left: 20px; margin-right: 20px;">List of Students</a> &nbsp;&nbsp;&nbsp;
 			<a class="highlight2" href="approve-student.php" class="nav-item nav-link" style= "margin-left: 20px; margin-right: 20px;">Approve Student</a> &nbsp;&nbsp;&nbsp;
 			<a class="highlight3" href="manage_blocks.php" class="nav-item nav-link" style= "margin-left: 20px; margin-right: 20px;">List of Blocks</a> &nbsp;&nbsp;&nbsp;
-			<a class="highlight4" href="manage_departments.php" class="nav-item nav-link" style= "margin-left: 20px; margin-right: 20px;">List of Departments</a> &nbsp;&nbsp;&nbsp;
+			<a class="highlight4" href="manage_departments.php" class="nav-item nav-link" style= "margin-left: 20px; margin-right: 20px;">List of Industries</a> &nbsp;&nbsp;&nbsp;
 		</div>
 
 		<div class="navbar-nav ml-auto">

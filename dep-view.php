@@ -3,13 +3,13 @@ session_start();
 if(isset($_SESSION['lrn'])) {
     echo "<script>window.location='student-landing-page.php'; </script>";
     die();
-    } elseif(isset($_SESSION['email'])) {
-        echo "<script>window.location='studentslist.php'; </script>";
-        die();
-    } elseif (!isset($_SESSION['department'])) {
+  } elseif(isset($_SESSION['email'])) {
+      echo "<script>window.location='studentslist.php'; </script>";
+      die();
+  } elseif (!isset($_SESSION['department'])) {
     echo "<script>window.location='index.php'; </script>";
     die();
-    }
+  }
 include('capstone_database.php');
 include('navigation_bar_department.php');
 ?>
@@ -20,27 +20,10 @@ include('navigation_bar_department.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
     <title>View</title>
 <style>
-body{
-	margin: 0px;
-	padding: 0px;
-	height: 100vh;
-	font-family: system-ui;
-
-}
-.table2 table{
-    width: 85%;
-    height: 30px;
-    border-collapse: collapse;
-}
-.table2 table th{
-    padding: 10px; height: 20px; color: black; background: lightgray;
-}
-.table2 table td{
-    height: 90px; padding: 10px;
-
-}
+ 
 h1{
     font-size: 2.5em;
     color: #000;
@@ -51,18 +34,6 @@ header{
     height:70px;
     width: 100%;
     background: #205E61;
-}
-.dtrtable table{
-    border-collapse: collapse; width: 85%;
-}
-.dtrtable table td{
-    width: 400px; 
-    padding: 20px; 
-    line-height: 1; 
-    text-align: center; 
-    font-size: 18px; 
-    background-color: #f2f2f2; 
-    border: 1px solid #ddd;
 }
 .credits{
     color: black;
@@ -154,46 +125,10 @@ header{
 h6{
 	margin-bottom: -10px;
 }
-.table2 table{
-    width: 1200px;
-    height: 30px;
-    border-collapse: collapse;
-    margin-left: -40px;
-}
-.table2 table th{
-    padding: 10px;
-    height: 20px;
-    color: black;
-    background: lightgray;
-}
-.table2 table td{
-    height: 90px;
-    padding: 10px;
-    width: 0;
-}
+
 h1{
     font-size: 2.5em;
     color: #000;
-}
-header{
-    position: sticky;
-    top: 0;
-    height:70px;
-    width: 100%;
-    background: #205E61;
-}
-.weeklyreport table{
-    border-collapse: collapse;
-    width: 1200px;
-}
-.weeklyreport table td{
-    width: 400px;
-    padding: 20px;
-    line-height: 1;
-    text-align: center;  
-    font-size: 18px;
-    background-color: #f2f2f2;
-    border: 1px solid #ddd;
 }
 .highlight1{
         color: #25B8B4;
@@ -201,14 +136,9 @@ header{
     }
     h5{
         font-size: 17px;
-        margin-top: 10px;
+        margin-bottom: 0;
     }
-    td{
-        font-size: 13px;
-    }
-.table2 tr:nth-child(odd) {
-    background-color: #f2f2f2;
-    }
+
     p{
     margin-left: 20px;
  }
@@ -224,11 +154,7 @@ header{
     border: 1px solid #ccc;
     margin: 3px;
 }
-.inf td{
- border: 1px solid #ccc;
-font-size: 18px;
-padding: 18px;
-}
+
 .inf{
     width: 800px;
 }
@@ -236,35 +162,6 @@ padding: 18px;
     margin: 3px;
     height: 200px;
     width: 250px;
-}
-.dataTables_wrapper .dt-buttons {
-    text-align: center !important;
-    margin-top: 5px;
-}
-.dataTables_wrapper .dt-buttons button {
-background-color: #ccc;
-border: none;
-color: #000;
-padding: 5px 10px;
-margin-right: 5px;
-border-radius: 3px;
-font-size: 14px;
-margin-bottom: 7px;
-}
-
-.dataTables_wrapper .dt-buttons button:hover {
-background-color: #aaa;
-color: #fff;
-cursor: pointer;
-}
-#table thead th:nth-child(1),
-#table tbody td:nth-child(1),
-#table thead th:nth-child(2),
-#table tbody td:nth-child(2) {
-position: sticky;
-left: 0;
-background-color: white;
-z-index: 1;
 }
     .nav-link:hover {
         color: blue;
@@ -284,9 +181,9 @@ z-index: 1;
     <p class="p2">Intern Student</p>
 </div>
 <br>
-<div class="container">
-<div class="row">
-	<div class="col">
+<div>
+<div>
+<div>
         <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <a style='font-size: 18px;' class="nav-link active" id="home-tab" data-toggle="tab"  data-bs-target="#home" href="#home" role="tab" aria-controls="home" aria-selected="true">Profile Info</a>
@@ -371,7 +268,7 @@ z-index: 1;
                             <p class="p-4"><?php echo $row['marital_status'] ?></p>
 
                             <h6>RELIGION:</h6>
-                            <p class="p-4"><?php echo $row['religion'] ?></p>
+                            <p class="p-4"><?php echo stripslashes($row['religion']) ?></p>
 
                             <h6>HEIGHT:</h6>
                             <p class="p-4"><?php echo $row['height'] . " cm" ?></p>
@@ -381,7 +278,7 @@ z-index: 1;
             </div>
             <div class="tab-pane fade" id="dtr" role="tabpanel" aria-labelledby="dtr-tab">
                 <br><h1 align = "center">OJT DAILY TIME RECORD</h1><br>
-                <table align = "center" style='border-collapse: collapse; width: 100%;'> 
+                <table align = "center" style='border-collapse: collapse; width: 1300px;'> 
                     <?php
                     function dtr(){
                         function hrsRemaining($lrn){
@@ -403,7 +300,7 @@ z-index: 1;
                                 if($remaining <= 0){
                                     return "<p style='color: green;'>Completed</p>";
                                 }else{
-                                    return "<p>" . $remaining . " Hours</p>";
+                                    return "" . $remaining . " Hours";
                                 }
                         }
                     
@@ -415,12 +312,12 @@ z-index: 1;
 
                             while($students = mysqli_fetch_array($query)){
                                 echo "<tr>"; 
-                                echo "<td style=' width: 400px; padding: 10px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; padding: 20px; line-height: 2; text-align: center;'><strong>Block:</strong><br>" . $students['block'] . " </td>";
-                                echo "<td style=' width: 400px; padding: 10px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; padding: 20px; line-height: 2; text-align: center;'><strong>Start Date:</strong><br>" . date_format(date_create($students['startdate']), "F d, Y") . " </td>";                          
+                                echo "<td style=' width: 400px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; line-height: 2; text-align: center;'><strong>Block:</strong><br>" . $students['block'] . " </td>";
+                                echo "<td style=' width: 400px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; line-height: 2; text-align: center;'><strong>Start Date:</strong><br>" . date_format(date_create($students['startdate']), "F d, Y") . " </td>";                          
                                 echo "</tr>";
                                 echo "<tr>";
-                                echo "<td style=' width: 400px; padding: 10px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; padding: 20px; line-height: 2; text-align: center;'><strong>No. of Hours Required:</strong><br>" . $students['hrs'] . " </td>";
-                                echo "<td style=' width: 400px; padding: 10px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; padding: 20px; line-height: 2; text-align: center;'><strong>No. of Hours Remaining:</strong><br>" . hrsRemaining($lrn) . " </td>";
+                                echo "<td style=' width: 400px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; line-height: 2; text-align: center;'><strong>No. of Hours Required:</strong><br>" . $students['hrs'] . " </td>";
+                                echo "<td style=' width: 400px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; line-height: 2; text-align: center;'><strong>No. of Hours Remaining:</strong><br>" . hrsRemaining($lrn) . " </td>";
                                 echo "</tr>";
 
                             }
@@ -430,15 +327,15 @@ z-index: 1;
                 ?>
                 </table>
                 <br><br>
-                <table align = "center" style='width: 100%; height: 30px; border-collapse: collapse;' id="dtrprint">
+                <table align=center class="table table-striped" id="dtrprint" style="width: 1300px;">
                 <thead>
-                    <tr>
-                        <th  style=' padding: 10px; height: 20px; color: black; background: lightgray;'>DATE</th>
-                        <th style='padding: 10px; height: 20px; color: black; background: lightgray;'>TIME IN</th>
-                        <th style='padding: 10px; height: 20px; color: black; background: lightgray;'>TIME OUT</th>
-                        <th style='padding: 10px; height: 20px; color: black; background: lightgray;'>TOTAL HOURS</th>
-                        <th style='padding: 10px; height: 20px; color: black; background: lightgray;'>REMARKS</th>
-                        <th style='padding: 10px; height: 20px; color: black; background: lightgray; width: 130px;'>OPERATIONS</th>
+                    <tr style='background-color: lightgray;'>
+                        <th>DATE</th>
+                        <th>TIME IN</th>
+                        <th>TIME OUT</th>
+                        <th>TOTAL HOURS</th>
+                        <th>REMARKS</th>
+                        <th>OPERATIONS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -464,12 +361,12 @@ z-index: 1;
                             $query = mysqli_query($mysqli, $mysequel);
                                 while($dtr = mysqli_fetch_array($query)){
                                     echo "<tr>";
-                                    echo "<td><p style='margin-left: 10px;'>" . nl2br(date_format(date_create($dtr['date_']), 'F d, Y' . " " . 'l')) . "</p></td>";
-                                    echo "<td style='height: 90px; padding: 10px;'>" . date_format(date_create($dtr['time_in']), 'h:i A') . "</td>";
-                                    echo "<td style='height: 90px; padding: 10px;'>" . date_format(date_create($dtr['time_out']), 'h:i A') . "</td>";
-                                    echo "<td style='height: 90px; padding: 10px;'>" . $dtr['numofhrs'] . " hrs" . "</td>";
-                                    echo "<td style='height: 90px; padding: 10px;'>" . $dtr['remarks'] . "</td>";
-                                    echo "<td align='center' style='height: 90px; padding: 10px;'>";
+                                    echo "<td>" . nl2br(date_format(date_create($dtr['date_']), 'F d, Y' . " " . 'l')) . "</td>";
+                                    echo "<td>" . date_format(date_create($dtr['time_in']), 'h:i A') . "</td>";
+                                    echo "<td>" . date_format(date_create($dtr['time_out']), 'h:i A') . "</td>";
+                                    echo "<td>" . $dtr['numofhrs'] . " hrs" . "</td>";
+                                    echo "<td>" . $dtr['remarks'] . "</td>";
+                                    echo "<td align='center'>";
                                     echo "<button type='button' class='btn btn-sm btn-primary edit-btn' data-toggle='modal' data-target='#editModal' data-id='" . $dtr['id'] . "'>Edit</button</a>";
                                     echo "</td>";
                                     echo "</tr>";
@@ -479,15 +376,15 @@ z-index: 1;
                     ?>
                 </tbody>
                 </table>
-                <br>
+                <br><br>
             </div>
         <div class="tab-pane fade" id="week" role="tabpanel" aria-labelledby="week-tab">
             <br><h1 align=center>On-the-Job Trainee Weekly Report Form</h1>
-            <div class="table2">
-            <table align = "center"  id="weekly"><br>
+            <div class="table3">
+            <table align=center style="width: 1300px;" class="table table-striped" id="weekly"><br>
                 <thead>
-                <tr align="left">
-                    <th>
+                <tr align="left" style='background-color: lightgray;'>
+                    <th style='width: 100px;'>
                     <h5>Week #:</h5>    
                     </th>
                     <th>
@@ -496,17 +393,17 @@ z-index: 1;
                     <th>
                     <h5>Hours:</h5>    
                     </th>
-                    <th>
+                    <th style='width: 250px;'>
                     <h5>Description of Tasks:</h5>    
                     </th>
                     <th>
-                    <h5>Progress:</h5>    
+                    <center><h5>Progress:</h5> </center>   
                     </th>
                     <th>
-                    <h5>Remarks:</h5>    
+                    <center><h5>Remarks:</h5> </center>    
                     </th>
                     <th>
-                    <h5 style='width:30px;'>Operation:</h5>    
+                    <center><h5>Operation:</h5>  </center>  
                     </th>
                 </tr>
                 </thead>
@@ -525,11 +422,11 @@ z-index: 1;
                             echo "<td>" . date_format(date_create($weeklyreport['date_']), 'F d, Y'. " " . 'l') . "</td>";
                             echo "<td>" . $weeklyreport['hrs'] . " hrs</td>";  
                             echo "<td>" . $weeklyreport['descript_of_task'] . "</td>";
-                            echo "<td>" . $weeklyreport['Progress'] . "</td>";
-                            echo "<td>" . $weeklyreport['remarks'] . "</td>";
+                            echo "<td><center>" . $weeklyreport['Progress'] . "</center></td>";
+                            echo "<td><center>" . $weeklyreport['remarks'] . "</center></td>";
                             echo "<td>";
-                            echo "<button type='button' class='btn btn-sm btn-primary weekly-btn' data-toggle='modal' data-target='#weeklyModal' data-id='" . $weeklyreport['id'] . "'>Edit</button</a>";
-                            echo "</td>";
+                            echo "<center><button type='button' class='btn btn-sm btn-primary weekly-btn' data-toggle='modal' data-target='#weeklyModal' data-id='" . $weeklyreport['id'] . "'>Edit</button</a>";
+                            echo "<center></td>";
                             echo "</tr>";
                         }
                     }
@@ -547,22 +444,22 @@ z-index: 1;
                 $row = mysqli_fetch_array($result);
             ?>
             <br><h1 align=center>TRAINEE'S PERFORMANCE EVALUATION</h1><br>
-            <br>
-            <div class="container">            
+        
+           
             <div class="text-left p-3">
                 <h4 style='margin-left: 50px;'>Total Percentage: <?php echo $row['total'] . "%"; ?></h4>
             </div>
 
             <form action="" method="POST">
-                <div style='display: flex; padding: 10px;'>
-                    <div class="card mb-3" style="max-width: 18rem; margin-left: 30px;">
+                <div style='display: flex;'>
+                    <div class="card mb-3" style="margin-left: 40px;">
                         <div class="card-body" style='height: 160px;'>
                             <h5 style='font-size: 14px;' class="card-title">Job Knowledge <i>(15%)</i></h5>
                             <p style='font-size: 12px; margin-top: -4px;' class="card-text">(skill level, knowledge & understanding of all phases of the job)</p>
                         </div>
                     <div class="card-header"><center><b><input class="form-control" style='width: 150px;' type="number" name="jobKnowledge" min='0' max='15' value="<?php echo $row['jobKnowledge'];?>" required></b></center></div>
                 </div>
-                <div class="card mb-3" style="max-width: 18rem;">
+                <div class="card mb-3">
                     <div class="card-body" style='height: 160px;'>
                         <h5 style='font-size: 14px;' class="card-title">Quality of Work <i>(15%)</i></h5>
                         <p style='font-size: 12px; margin-top: -4px;' class="card-text">(accuracy, completeness & follow through of work)</p>
@@ -571,7 +468,7 @@ z-index: 1;
                         <center><b><input class="form-control" style='width: 150px;' type="number" name="qualityOfWork" min='0' max='15' value="<?php echo $row['qualityOfWork'];?>" required></b></center>
                     </div>
                 </div>
-                <div class="card mb-3" style="max-width: 18rem;">
+                <div class="card mb-3">
                     <div class="card-body" style='height: 160px;'>
                         <h5 style='font-size: 14px;' class="card-title">Quantity of Work <i>(15%)</i></h5>
                         <p style='font-size: 12px; margin-top: -4px;' class="card-text">(volume of work accomplished, able to complete work on time)</p>
@@ -579,7 +476,7 @@ z-index: 1;
                     <div class="card-header"><center><b><input class="form-control" style='width: 150px;' type="number" name="quantityOfWork" min='0' max='15' value="<?php echo $row['quantityOfWork'];?>" required></b></center>
                     </div>
                 </div>
-                <div class="card mb-3" style="max-width: 18rem;">
+                <div class="card mb-3"  >
                     <div class="card-body" style='height: 160px;'>
                         <h5 style='font-size: 14px;' class="card-title">Dependability <i>(10%)</i></h5>
                         <p style='font-size: 12px; margin-top: -4px;' class="card-text">(complete required task with minimum supervision)</p>
@@ -588,7 +485,7 @@ z-index: 1;
                         <center><b><input class="form-control" style='width: 150px;' type="number" name="dependability" min='0' max='10' value="<?php echo $row['dependability'];?>" required></b></center>
                     </div>
                 </div>
-                <div class="card mb-3" style="max-width: 18rem;">
+                <div class="card mb-3"  >
                     <div class="card-body" style='height: 160px;'>
                         <h5 style='font-size: 14px;' class="card-title">Initiative <i>(10%)</i></h5>
                         <p style='font-size: 12px; margin-top: -4px;' class="card-text">(resourcefulness, creativity to formulate & propose innovative solutions)</p>
@@ -598,8 +495,8 @@ z-index: 1;
                     </div>
                 </div>
             </div>
-            <div style='display: flex; padding: 10px;'>
-                <div class="card mb-3" style="max-width: 18rem; margin-left: 30px;">
+            <div style='display: flex;'>
+                <div class="card mb-3" style="  margin-left: 40px;">
                     <div class="card-body" style='height: 160px;'>
                         <h5 style='font-size: 14px;' class="card-title">Conduct <i>(10%)</i></h5>
                         <p style='font-size: 12px; margin-top: -4px;' class="card-text">(observes courtesy, politeness)</p>
@@ -607,7 +504,7 @@ z-index: 1;
                     <div class="card-header">
                         <center><b><input class="form-control" style='width: 150px;' type="number" name="conduct" min='0' max='10' value="<?php echo $row['conduct'];?>" required></b></center></div>
                     </div>
-                    <div class="card mb-3" style="max-width: 18rem;">
+                    <div class="card mb-3"  >
                         <div class="card-body" style='height: 160px;'>
                             <h5 style='font-size: 14px;' class="card-title">Decision-Making <i>(10%)</i></h5>
                             <p style='font-size: 12px; margin-top: -4px;' class="card-text">(Sound decision, ability to identify and evaluate pertinent factors)</p>
@@ -616,7 +513,7 @@ z-index: 1;
                         <center><b><input class="form-control" style='width: 150px;' type="number" name="decisionMaking" min='0' max='10' value="<?php echo $row['decisionMaking'];?>" required></b></center>
                     </div>
                 </div>
-                <div class="card mb-3" style="max-width: 18rem;">
+                <div class="card mb-3"  >
                     <div class="card-body" style='height: 160px;'>
                         <h5 style='font-size: 14px;' class="card-title">Interpersonal Skills <i>(5%)</i></h5>
                         <p style='font-size: 12px; margin-top: -4px;' class="card-text">(Working relationship with other employees and other trainees)</p>
@@ -624,7 +521,7 @@ z-index: 1;
                 <div class="card-header">
                     <center><b><input class="form-control" style='width: 150px;' type="number" name="interpersonalSkills" min='0' max='5' value="<?php echo $row['interpersonalSkills'];?>" required></b></center></div>
                 </div>
-                <div class="card mb-3" style="max-width: 18rem;">
+                <div class="card mb-3"  >
                     <div class="card-body" style='height: 160px;'>
                         <h5 style='font-size: 14px;' class="card-title">Attendance <i>(5%)</i></h5>
                         <p style='font-size: 12px; margin-top: -4px;' class="card-text">(Regular and punctuality in office attendance & proper observation of breaktime period)</p>
@@ -632,7 +529,7 @@ z-index: 1;
                     <div class="card-header">
                         <center><b><input class="form-control" style='width: 150px;' type="number" name="attendance" min='0' max='5' value="<?php echo $row['attendance'];?>" required></b></center></div>
                     </div>
-                    <div class="card mb-3" style="max-width: 18rem;">
+                    <div class="card mb-3"  >
                         <div class="card-body" style='height: 160px;'>
                             <h5 style='font-size: 13px;' class="card-title">Personal Appearance <i>(5%)</i></h5>
                             <p style='font-size: 12px; margin-top: -4px;' class="card-text">(adheres to company dress code; has a personal bearing)</p>
@@ -644,20 +541,20 @@ z-index: 1;
             </div>
             <br><br>
             <div class="display: flex; padding: 10px;">
-                <div class="card border-secondary mb-3" style="width: 400px; height: 250px; margin-left: 790px; margin-top: -40px;">
+                <div class="card border mb-3" style="width: 400px; height: 250px; margin-left: 915px; margin-top: -40px;">
                     <div class="card-header"><h5> Evaluated by:</h5></div>
                         <div class="card-body text-secondary">
                             <h5 style='margin-top: -10px;' class="card-title">Supervisor: </h5><p style='font-size: 20px; color: black;' class="card-text"><input class="form-control" type="text" name="supervisor" value="<?php echo $row['supervisor']; ?>"></p>
                             <h5 class="card-title">Designation: </h5><p style='font-size: 20px; color: black;' class="card-text"><input class="form-control" type="text" name="designation" value="<?php echo $row['designation']; ?>"></p>
                         </div>
                     </div>
-                    <div class="card border-secondary mb-3" style="width: 420px; height: 250px; margin-left: -110px; margin-top: -265px;">
+                    <div class="card border mb-3" style="width: 420px; height: 250px; margin-left: 40px; margin-top: -265px;">
                         <div class="card-header">Feedbacks for the trainee:</div>
                             <div class="card-body text-secondary">
                                  <p style='font-size: 18px; color: black;' class="card-text"><textarea class="form-control" style='margin-left: -36px; height: 180px; width: 410px; margin-top: -10px;' name="feedback" id=""><?php echo $row['feedback']; ?></textarea></p>
                             </div>
                         </div>
-                        <div class="card border-secondary mb-3" style="width: 420px; height: 250px; margin-left:  340px; margin-top: -265px;">
+                        <div class="card border mb-3" style="width: 420px; height: 250px; margin-left:  478px; margin-top: -265px;">
                             <div class="card-header">Recommendation for the trainee's growth:</div>
                                 <div class="card-body text-secondary">
                                     <p style='font-size: 18px; color: black;' class="card-text"><textarea class="form-control" style='margin-left: -36px; height: 180px; width: 410px; margin-top: -10px;' name="recommend" id=""><?php echo $row['recommend']; ?></textarea></p>
@@ -668,7 +565,6 @@ z-index: 1;
                             <br><center><input type="submit" value="Update" name="updateeval" class="btn btn-primary"></center>
                     <br></form>
                 </div>
-            </div>
             </div>
 </body>
 </html>
@@ -805,42 +701,5 @@ if(isset($_POST['updateeval'])){
     }
 }
     ?>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>  
 
-    <script type="text/javascript">
-    $(document).ready(function() {
-    $('#weekly').DataTable({
-        dom: 'B',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ],
-        columnDefs: [
-            {
-                targets: '_all',
-                orderable: false
-            }
-        ],
-        order: [[0, 'asc']]
-    });
-    $('#dtrprint').DataTable({
-        dom: 'B',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ],
-        columnDefs: [
-            {
-                targets: '_all',
-                orderable: false
-            }
-        ],
-        order: [[0, 'asc']]
-    });
-});
-    </script>
+
