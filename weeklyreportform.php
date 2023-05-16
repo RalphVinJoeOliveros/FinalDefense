@@ -180,14 +180,14 @@ z-index: 1;
                 </td>
                 <td>
                 </td>  
-                <td align="center">
+                <td align=left>&nbsp;&nbsp;&nbsp;&nbsp;
                 <?php
                     $sequel = "SELECT * FROM students WHERE lrn = $_SESSION[lrn]";
                     $result = mysqli_query($mysqli, $sequel);
                     $row = mysqli_fetch_array($result);
 
                     if ($row['department'] == "") {
-                        echo "<button type=\"button\" class=\"btn btn-success\" onClick=\"alert('Your coordinator has not yet assigned you to a department.')\">Add</button>";
+                        echo "<button  type=\"button\" class=\"btn btn-success\" onClick=\"alert('Your coordinator has not yet assigned you to a department.')\">Add</button>";
                     } else {
                         echo '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal">Add</button>';
                     }

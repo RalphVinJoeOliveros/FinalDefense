@@ -1,4 +1,4 @@
-<?php
+    <?php
 session_start();
 if(isset($_SESSION['lrn'])) {
     echo "<script>window.location='student-landing-page.php'; </script>";

@@ -117,7 +117,7 @@ body {
                     <img src="uploads/<?php echo $row['picture'] ?>" alt="Upload Photo">
                     <input type="file" id="upload-pic" name="picture" accept="2x2/*" onchange="loadPreview(event)">
                 </div>
-                <span class="font-weight-bold"><?php echo $row['department']; ?></span><span class="text-black-50"><?php echo "ID No.: " . $row['ID'] ?></span><span> </span></div>
+                <span class="font-weight-bold"><?php echo $row['department']; ?></span><span class="text-black-50"><?php echo "Username: " . $row['username'] ?></span><span> </span></div>
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">

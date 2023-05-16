@@ -123,8 +123,9 @@ include "managedepartment_modal.php";
                                 <img src="uploads/silhouette.png" alt="Upload Photo">
                                 <input type="file" id="upload-pic" name="picture" accept="2x2/*" onchange="loadPreview(event)">
                             </div>
+                            <br>
                             <label for="register_name">Industry Name</label>
-                            <input type="text" class="form-control text-uppercase" placeholder="Please Type the department name" id="register_block" name="register_name" aria-describedby="register_block" required>
+                            <input type="text" class="form-control text-uppercase" placeholder="Please Type name of industry" id="register_block" name="register_name" aria-describedby="register_block" required>
                             <label for="username">Username</label>
                             <input type="text" class="form-control" placeholder="Please Type Username" id="register_block" name="username" pattern="[a-z]+\d{0,2}\.[a-z]+\d{0,2}" aria-describedby="register_block" title="Please enter a valid username (e.g. john12.smith34, john.smith, john.smith12)" required>
                             <label for="password">Password</label>

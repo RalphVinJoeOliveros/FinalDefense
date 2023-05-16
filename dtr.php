@@ -130,7 +130,7 @@ z-index: 1;
         <th>TIME IN</th>
         <th>TIME OUT</th>
         <th>TOTAL HOURS</th>
-        <th>Remarks</th>
+        <th>REMARKS</th>
     </tr> 
     </thead>
     <tbody>
@@ -140,7 +140,7 @@ z-index: 1;
     </tbody>
     <tfoot>
     <tr style="background-color: white;">
-        <td align="left">
+        <td>
         <div>
         <?php
             $lrn = $_SESSION['lrn'];

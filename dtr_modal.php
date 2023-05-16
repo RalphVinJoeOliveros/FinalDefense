@@ -301,7 +301,7 @@ if(isset($_POST['punchOut'])){
   $numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
 
   if ($numofhrs <= 0) {
-    echo "<script>alert('Time in cannot be lesser than or equal to time out!')</script>";
+    echo "<script>alert('Your working hours must be longer than one hour.')</script>";
 } elseif($numofhrs > 15){
     echo "<script>alert('Number of hours cannot be greater than 15!')</script>";
 } else {

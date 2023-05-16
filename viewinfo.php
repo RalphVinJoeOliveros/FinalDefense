@@ -19,12 +19,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 <style>
-body{
-	margin: 0px;
-	padding: 0px;
-	height: 100vh;
-	font-family: system-ui;
-}
 .clearfix{
 	clear: both;
 }
@@ -34,7 +28,6 @@ body{
 	margin: 20px auto;
 
 }
-
 .top-section{
 	background-color:#151b29;
 	text-align: center;
@@ -121,18 +114,17 @@ header{
 }
 .dtrtable table{
     border-collapse: collapse;
-    width: 85%;
+    width: 1100px;
 }
 .dtrtable table td{
-    width: 400px;
-    padding: 20px;
+
     line-height: 2;
     text-align: center;  
     font-size: 18px;
     background-color: #f2f2f2;
     border: 1px solid #ddd;
 }
-.table2 tr:nth-child(odd){
+.table2 tr:nth-child(even){
         background-color: #f2f2f2;
 }
 .table2 table{
@@ -172,9 +164,6 @@ header{
     font-size: 18px;
     background-color: #f2f2f2;
     border: 1px solid #ddd;
-}
-.table2 tr:nth-child(odd) {
-	background-color: #f2f2f2;
 }
 a:hover{
 text-decoration: none;
@@ -217,7 +206,7 @@ padding: 18px;
 			<div class="col">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item" role="presentation">
-					<a style='font-size: 18px;' class="nav-link active" id="Resume-tab" data-toggle="tab" href="#Resume" role="tab" aria-controls="Resume" aria-selected="true">Resume</a>
+					<a style='font-size: 18px;' class="nav-link active" id="Resume-tab" data-toggle="tab" href="#Resume" role="tab" aria-controls="Resume" aria-selected="true">Profile</a>
 				</li>
 				<li class="nav-item" role="presentation">
 					<a style='font-size: 18px;' class="nav-link" id="DTR-tab" data-toggle="tab" href="#DTR" role="tab" aria-controls="DTR" aria-selected="false">DTR Report</a>
@@ -307,7 +296,7 @@ padding: 18px;
 				<div class="tab-pane fade" id="DTR" role="tabpanel" aria-labelledby="DTR-tab">
 					<br><h1 align = "center">OJT DAILY TIME RECORD</h1><br>
 						<div class="dtrtable" align=center>
-							<table> 
+							<table > 
 								<?php
 									function dtr(){
 									if(isset($_POST['userid'])){         
@@ -340,7 +329,7 @@ padding: 18px;
 											}
 												while($students = mysqli_fetch_array($query)){
 													echo "<tr>"; 
-													echo "<td><strong>BLOCK:</strong><br>" . $students['block'] . " </td>";       
+													echo "<td><strong>BLOCK:</strong><br><p>" . $students['block'] . "</p></td>";       
 													echo "<td> <strong>INDUSTRY:</strong><br><p>";
 														if($students['department'] == ""){
 														echo "N/A";
@@ -612,15 +601,15 @@ padding: 18px;
 
 			<br><br>
 			<div class="display: flex; padding: 10px;">
-			<div class="card card1 border-secondary mb-3" style="width: 340px; height: 250px; margin-left: 785px; margin-top: -40px;">
+			<div class="card card1 border mb-3" style="width: 340px; height: 250px; margin-left: 785px; margin-top: -40px;">
 			<div class="card-header"><h5> Evaluated by:</h5></div>
 			<div class="card-body text-secondary">
-				<h5 style='margin-top: -10px;' class="card-title">Supervisor: </h5><p style='font-size: 20px; color: black;' class="card-text"><?php echo $row['supervisor'] ?></p><br>
+				<h5 style='margin-top: -10px;' class="card-title">Supervisor: </h5><p style='font-size: 20px; color: black;' class="card-text"><?php echo $row['supervisor'] ?></p>
 				<h5 class="card-title">Designation: </h5><p style='font-size: 20px; color: black;' class="card-text"><?php echo $row['designation'] ?></p>
 			</div>
 			</div>
 
-			<div class="card card1 border-secondary mb-3" style="width: 370px; height: 250px; margin-left:  10px; margin-top: -265px;">
+			<div class="card card1 border mb-3" style="width: 370px; height: 250px; margin-left:  10px; margin-top: -265px;">
 			<div class="card-header">Feedbacks for the trainee:</div>
 			<div class="card-body text-secondary">
 
@@ -628,7 +617,7 @@ padding: 18px;
 			</div>
 			
 			</div>
-			<div class="card card1 border-secondary mb-3" style="width: 370px; height: 250px; margin-left:  395px; margin-top: -265px;">
+			<div class="card card1 border mb-3" style="width: 370px; height: 250px; margin-left:  395px; margin-top: -265px;">
 			<div class="card-header">Recommendation for the trainee's growth:</div>
 			<div class="card-body text-secondary">
 

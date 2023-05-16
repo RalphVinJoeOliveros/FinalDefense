@@ -69,6 +69,6 @@ $row = mysqli_fetch_assoc($result);
 </table>
 <br>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
     <input type="submit" name="update" class="btn btn-primary" value="Update">
 </div>

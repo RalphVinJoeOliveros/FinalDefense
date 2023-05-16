@@ -27,9 +27,24 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.6.2/css/select.dataTables.min.css"/>
     <title>Students List</title>
     <style>
-        .dataTables_wrapper .dt-buttons {
-            text-align: center;
-            margin-top:5px;
+.dataTables_wrapper .dt-buttons {
+            text-align: center !important;
+            margin-top: 5px;
+        }
+        .dataTables_wrapper .dt-buttons button {
+        background-color: #ccc;
+        border: none;
+        color: #000;
+        padding: 5px 10px;
+        margin-right: 5px;
+        border-radius: 3px;
+        font-size: 14px;
+        }
+
+        .dataTables_wrapper .dt-buttons button:hover {
+        background-color: #aaa;
+        color: #fff;
+        cursor: pointer;
         }
         #table thead th:nth-child(1),
         #table tbody td:nth-child(1),

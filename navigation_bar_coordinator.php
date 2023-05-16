@@ -134,7 +134,7 @@ body {
 
 				?>
 				<a style="color: black;" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="uploads/<?php echo $row['picture']; ?>" class="avatar" alt="Avatar"><?php echo $row['first_name'] . " " . $row['last_name']; ?></a>
-				<div class="dropdown-menu dropdown-menu-right">
+				<div class="dropdown-menu dropdown-menu-right" style='margin-top: 7px;'>
 					<a href="coor-settings.php" class="dropdown-item"><i class="fa fa-user-o"></i> Profile Settings</a></a>
 					<div class="dropdown-divider"></div>
 					<a href="coordinator-logout.php" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a></a>

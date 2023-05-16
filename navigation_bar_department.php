@@ -141,7 +141,7 @@ body {
 					$row = mysqli_fetch_assoc($result);
 				?>
 				<a style="color: black;" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="uploads/<?php echo $row['picture'] ?>" class="avatar" alt="Avatar"><?php echo $row['department'] ?><b class="caret"></b></a>
-				<div class="dropdown-menu dropdown-menu-right" >
+				<div class="dropdown-menu dropdown-menu-right" style='margin-top: 7px;'>
 					<a href="dep-profilesettings.php" class="dropdown-item"><i class="fa fa-user-o"></i> Profile Settings</a></a>
 
 					<div class="dropdown-divider"></div>

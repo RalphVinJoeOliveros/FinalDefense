@@ -137,7 +137,7 @@ body {
 				}
 				picture(); 
 				?>
-				<div class="dropdown-menu dropdown-menu-right">
+				<div class="dropdown-menu dropdown-menu-right" style='margin-top: 7px;'>
 					<a href="profileinfo.php" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></a>
 					<div class="dropdown-divider"></div>
 					<a href="settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></a>

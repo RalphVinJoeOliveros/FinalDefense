@@ -59,7 +59,7 @@ label{
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Record</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -130,7 +130,7 @@ label{
         <center><input type="date" name="date_" class="form-control" required></center><br>
         <label for="hrs">Hours:</label><br>
         <center><input type="number" name="hrs" class="form-control"></center><br>
-        <label for="descript_of_task" >Description of Tasks:</label>
+        <label for="descript_of_task" >Description of Task:</label>
         <center><textarea style='width: 450px;' type="text" name="descript_of_task" rows="4" cols="35" class="form-control" required></textarea></center><br>
         <label for="Progress">Progress:</label>   
           <div>
@@ -154,7 +154,7 @@ label{
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update Weekly Report</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
