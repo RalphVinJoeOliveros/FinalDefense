@@ -192,33 +192,6 @@ label{
     });
 </script>
 <?php
-  if(isset($_POST['submit'])){
-      $id = $_POST['id'];
-      $time_in = $_POST['time_in'];
-      $time_out = $_POST['time_out'];
-
-      function numofhrs($time_in, $time_out){
-          $time_in = strtotime($time_in);
-          $time_out = strtotime($time_out);
-          $num_of_hrs = $time_out - $time_in;
-          $qoutient = $num_of_hrs / 3600;
-          return $qoutient;
-      }
-
-      $numofhrs = numofhrs($time_in, $time_out);
-
-      if($time_in >= $time_out){
-        echo "<script>alert('Time in cannot be greater than or equal to time out!')</script>";
-        echo "<script>window.location='dtr.php'</script>";
-        die;
-    } else {
-      $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
-      $query = mysqli_query($mysqli, $sql);
-
-      echo "<script>alert('Successfully Updated!')</script>";
-      echo "<script>window.location='dtr.php'</script>"; 
-    }
-  }
   if(isset($_POST['delete'])){
     $id = $_POST['id'];
 
@@ -264,7 +237,7 @@ label{
       }
 
     $numofhrs = numofhrs($time_in, $time_out);
-      if ($numofhrs < 0) {
+      if ($numofhrs <= 0) {
         echo "<script>alert('Time in cannot be lesser than or equal to time out!')</script>";
     } elseif($numofhrs > 15){
         echo "<script>alert('Number of hours cannot be greater than 15!')</script>";
@@ -327,7 +300,7 @@ if(isset($_POST['punchOut'])){
 
   $numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
 
-  if ($numofhrs < 0) {
+  if ($numofhrs <= 0) {
     echo "<script>alert('Time in cannot be lesser than or equal to time out!')</script>";
 } elseif($numofhrs > 15){
     echo "<script>alert('Number of hours cannot be greater than 15!')</script>";
