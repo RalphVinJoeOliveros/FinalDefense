@@ -174,7 +174,7 @@
     <script>
 $(document).ready(function() {
     $('#table tfoot th').each(function(i) {
-        if (i < 5) {
+        if (i < 7) {
             var title = $(this).text();
             $(this).html('<input type="text" placeholder="Search ' + title + '" />');
         }

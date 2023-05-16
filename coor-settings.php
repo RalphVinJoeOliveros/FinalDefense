@@ -117,7 +117,7 @@ body {
                     <img src="uploads/<?php echo $row['picture'] ?>" alt="Upload Photo">
                     <input type="file" id="upload-pic" name="picture" accept="2x2/*" onchange="loadPreview(event)">
                 </div>
-                <span class="font-weight-bold"><?php echo $row['first_name'] . " " . $row['last_name'] ?></span><span class="text-black-50"><?php echo $row['email'] ?></span><span> </span></div>
+                <span class="font-weight-bold"><?php echo $row['first_name'] . " " . $row['last_name'] ?></span><span class="text-black-50"><?php echo "Username: " . $row['username']; ?></span><span> </span></div>
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
@@ -125,6 +125,10 @@ body {
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">Username</label>
+                        <input type="text" class="form-control" placeholder="enter username" value="<?php echo $row['username'] ?>" name="username">
+                    </div>
                     <div class="col-md-6">
                         <label class="labels">First Name</label>
                         <input type="text" class="form-control" placeholder="first name" value="<?php echo $row['first_name'] ?>" name="fname">
@@ -187,6 +191,7 @@ body {
         $allowedTypes = array('jpg', 'png', 'jpeg');
         $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
 
+        $username = strtolower(trim($_POST['username']));
         $fname = ucwords(trim($_POST['fname']));
         $lname = ucwords(trim($_POST['lname']));
         $email = strtolower(trim($_POST['email']));
@@ -202,8 +207,8 @@ body {
         $row = mysqli_fetch_array($result);
 
         if(empty($currentpass) AND empty($newpass) AND empty($confirmpass)){
-            $stmt = mysqli_prepare($mysqli, "UPDATE coordinator SET first_name = ?, last_name = ?, email = ?, cpnum = ?, address = ?, fb_name = ? WHERE email = ?");
-            mysqli_stmt_bind_param($stmt, "sssssss", $fname, $lname, $email, $cpnum, $address, $fb, $email);
+            $stmt = mysqli_prepare($mysqli, "UPDATE coordinator SET username = ?, first_name = ?, last_name = ?, email = ?, cpnum = ?, address = ?, fb_name = ? WHERE email = ?");
+            mysqli_stmt_bind_param($stmt, "ssssssss", $usename, $fname, $lname, $email, $cpnum, $address, $fb, $email);
             $result = mysqli_stmt_execute($stmt);
                 
             if($result){             
@@ -257,9 +262,9 @@ body {
                                 echo "<script>window.location='coor-settings.php'</script>";
                             } else{
                                 $hash = password_hash($newpass, PASSWORD_DEFAULT);
-                                $sequel = "UPDATE coordinator SET first_name = ?, last_name = ?, email = ?, cpnum = ?, `address` = ?, fb_name = ?, `pass` = ? WHERE email = ?";
+                                $sequel = "UPDATE coordinator SET username = ?, first_name = ?, last_name = ?, email = ?, cpnum = ?, `address` = ?, fb_name = ?, `pass` = ? WHERE email = ?";
                                 $stmt = mysqli_prepare($mysqli, $sequel);
-                                mysqli_stmt_bind_param($stmt, 'ssssssss', $fname, $lname, $email, $cpnum, $address, $fb, $hash, $email);
+                                mysqli_stmt_bind_param($stmt, 'sssssssss', $username, $fname, $lname, $email, $cpnum, $address, $fb, $hash, $email);
                                 $result = mysqli_stmt_execute($stmt);
                     
                                 if($result){             

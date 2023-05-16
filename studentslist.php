@@ -88,7 +88,7 @@
                             <th>Schedule of OJT</th>
                             <th>Remarks</th>
                             <th>Info</th>
-                            <th>Edit</th>
+                            <th>Assign</th>
                         </tr>
                         </thead>
                     <tbody>
@@ -143,7 +143,7 @@
                                 echo "<button type='button' class='btn btn-sm btn-success prof-btn' data-toggle='modal' data-target='#profileModal' data-id='" . $students['lrn'] . "'>view</button</a>";
                                 echo "</td>";
                                 echo "<td align='center'>";
-                                echo "<button type='button' class='btn btn-sm btn-primary edit-btn' data-toggle='modal' data-target='#editModal' data-id='" . $students['lrn'] . "'>Edit</button</a>";
+                                echo "<button type='button' class='btn btn-sm btn-primary edit-btn' data-toggle='modal' data-target='#editModal' data-id='" . $students['lrn'] . "'>Assign</button</a>";
                                 echo "</td>";
                                 echo "</tr>";
                             }

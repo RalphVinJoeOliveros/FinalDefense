@@ -49,12 +49,19 @@ include "blocks_modal.php";
                         $sql = "SELECT * FROM student_block";
                         $query = mysqli_query($mysqli, $sql);
                         while($result = mysqli_fetch_array($query)) {
+                            $sequel = "SELECT * FROM students WHERE `block` = '" . $result['student_block'] . "'";
+                            $query2 = mysqli_query($mysqli, $sequel);
+                            $count = mysqli_num_rows($query2);
                             echo "<tr>";
                             echo "<td>";
                             echo strtoupper($result['student_block']);
                             echo "</td>";
                             echo "<td>";
-                            echo "<a href='' class='del-btn' data-toggle='modal' data-target='#delModal' data-id='" . $result['student_block'] . "'>Delete</a>";
+                            if($count == 0) {
+                                echo "<a href='' class='del-btn' data-toggle='modal' data-target='#delModal' data-id='" . $result['student_block'] . "'>Delete</a>";
+                            } else {
+                                echo "<a href='' class='del-btn'  onclick=\"alert('You are not eligible to delete this block because there are currently $count student(s) associated with it.')\">Delete</a>";
+                            }
                             echo "</td>";
                             echo "</tr>";
                         }

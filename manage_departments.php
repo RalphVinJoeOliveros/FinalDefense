@@ -89,6 +89,9 @@ include "managedepartment_modal.php";
                         $sql = "SELECT * FROM departments";
                         $query = mysqli_query($mysqli, $sql);
                         while($result = mysqli_fetch_array($query)) {
+                            $sequel = "SELECT * FROM students WHERE department = '" . $result['ID'] . "'";
+                            $query2 = mysqli_query($mysqli, $sequel);
+                            $count = mysqli_num_rows($query2);
                             echo "<tr>";
                             echo "<td>";
                             echo $result['username'];
@@ -103,7 +106,11 @@ include "managedepartment_modal.php";
                             echo "<a href='' class='pass-btn' data-toggle='modal' data-target='#passModal' data-id='" . $result['ID'] . "'>Change</a>";
                             echo "</td>";
                             echo "<td>";
-                            echo "<a href='' class='del-btn' data-toggle='modal' data-target='#delModal' data-id='" . $result['ID'] . "'>Delete</a>";
+                            if($count == 0) {
+                                echo "<a href='' class='del-btn' data-toggle='modal' data-target='#delModal' data-id='" . $result['ID'] . "'>Delete</a>";
+                            } else {
+                                echo "<a href='' class='delete-btn' onclick=\"alert('Unfortunately, you do not have the permission to delete this industry due to the fact that there are currently $count student/s assigned to it.')\">Delete</a>";
+                            }
                             echo "</td>";
                             echo "</tr>";
                         }
