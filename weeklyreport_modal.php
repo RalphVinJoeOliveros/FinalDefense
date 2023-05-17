@@ -113,17 +113,23 @@ label{
             $id = id();
             $lrn = $_SESSION['lrn'];
 
-            $sql = "INSERT INTO weeklyreport (lrn, id, weeknum, date_, hrs, descript_of_task, Progress) VALUES ('$lrn', '$id', '$weeknum', '$date_', '$hrs', '$descript_of_task', '$Progress')";
-            $query = mysqli_query($mysqli, $sql);
+            $sqlreference = "SELECT * FROM students WHERE lrn = '$lrn'";
+            $queryreference = mysqli_query($mysqli, $sqlreference);
+            $rowreference = mysqli_fetch_array($queryreference);
+            $referenceDate = nl2br(date_format(date_create($rowreference['startdate']), 'F d, Y' . " " . 'l'));
                 
-            if($query){
-                echo "<script>alert('Successfully added!')</script>";
-                echo "<script>window.location='weeklyreportform.php'</script>";
-            }else{
-                echo "<script>alert('Failed to add!')</script>";
-                echo "<script>window.location='weeklyreportform.php'</script>";
-            }
+            if ($date_ < $referenceDate) {
+              echo "<script>alert('Error: Date cannot be before $referenceDate'); window.location='weeklyreportform.php'</script>";
+            } else {
+              $sql = "INSERT INTO weeklyreport (lrn, id, weeknum, date_, hrs, descript_of_task, Progress) VALUES ('$lrn', '$id', '$weeknum', '$date_', '$hrs', '$descript_of_task', '$Progress')";
+              $query = mysqli_query($mysqli, $sql);
+              if($query){
+                echo "<script>alert('Added Successfully!'); window.location='weeklyreport.php'</script>";
+              } else {
+                echo "<script>alert('Failed!'); window.location='weeklyreportform.php'</script>";
+              }
         }
+      }
     ?>
     <form action="" method="POST"><br>
         <label for="date_">Date:</label>
@@ -217,7 +223,7 @@ label{
       $id = $_POST[ 'id'];
       $date_ = $_POST['date_'];
       $hrs = $_POST['hrs'];
-      $descript_of_task = $_POST['descript_of_task'];
+      $descript_of_task = addslashes($_POST['descript_of_task']);
       $Progress = $_POST['Progress'];
       $dateofcom = $_POST['dateofcom'];
 

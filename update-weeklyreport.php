@@ -53,13 +53,13 @@ label{
         <label for="weeknum">Week Number:</label><br>
             <center><input type="text" name="weeknum" value="<?php echo $row['weeknum']; ?>" class="form-control" disabled></center><br>
         <label for="date_">Date:</label><br>
-        <center><input type="date" name="date_" value="<?php echo date_format(date_create($row['date_']), 'Y-m-d') ?>" class="form-control"></center><br><br>
+        <center><input type="date" name="date_" value="<?php echo date_format(date_create($row['date_']), 'Y-m-d') ?>" class="form-control" required disabled></center><br><br>
         <label for="hrs">Hours:</label><br>
-        <center><input type="number" name="hrs" value="<?php echo $row['hrs']; ?>" class="form-control"></center><br>
+        <center><input type="number" name="hrs" value="<?php echo $row['hrs']; ?>" class="form-control" required></center><br>
         <label for="descript_of_task">Description of Task:</label><br>
-        <center><textarea style='width: 450px;' id="descript_of_task" name="descript_of_task" rows="4" cols="35" class="form-control"><?php echo $row['descript_of_task']; ?></textarea></center><br>
+        <center><textarea style='width: 450px;' id="descript_of_task" name="descript_of_task" rows="4" cols="35" class="form-control" required><?php echo stripslashes($row['descript_of_task']); ?></textarea></center><br>
         <label for="dateofcom">Date Of Completion:</label><br>
-        <center><input type="date" name="dateofcom" id="" value="<?php echo date_format(date_create($row['dateofcom']), 'Y-m-d')?>" class="form-control"></center><br>
+        <center><input type="date" name="dateofcom" id="" value="<?php echo date_format(date_create($row['dateofcom']), 'Y-m-d')?>" class="form-control" required></center><br>
                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>"> 
         <label for="Progress">Progress:</label>
         <center><select style='width: 450px;' name="Progress" id="Progress" class="form-control" required>

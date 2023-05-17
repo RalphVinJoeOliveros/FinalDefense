@@ -264,11 +264,21 @@ if(isset($_POST['add'])){
   $id = id();
   $lrn = $_SESSION['lrn'];
 
-  $sql = "INSERT INTO dtr (lrn, id, date_, time_in, time_out, numofhrs) VALUES ('$lrn', '$id', '$date_', '$time_in', '00:00:00', '0')";
 
-  if(mysqli_query($mysqli, $sql)){
+  $sqlreference = "SELECT * FROM students WHERE lrn = '$lrn'";
+  $queryreference = mysqli_query($mysqli, $sqlreference);
+  $rowreference = mysqli_fetch_array($queryreference);
+  $referenceDate = nl2br(date_format(date_create($rowreference['startdate']), 'F d, Y' . " " . 'l'));
+
+  if ($date_ < $referenceDate) {
+    echo "<script>alert('Error: Date cannot be before $referenceDate'); window.location='weeklyreportform.php'</script>";
+  }else {
+    $sql = "INSERT INTO dtr (lrn, id, date_, time_in, time_out, numofhrs) VALUES ('$lrn', '$id', '$date_', '$time_in', '00:00:00', '0')";
+    $check = mysqli_query($mysqli, $sql);
+    if ($check) {
       echo "<script>alert('Successfully added!')</script>";
       echo "<script>window.location='dtr.php'</script>";
+    }
   }
 }
 
@@ -300,7 +310,7 @@ if(isset($_POST['punchOut'])){
 
   $numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
 
-  if ($numofhrs <= 0) {
+if ($numofhrs <= 0) {
     echo "<script>alert('Your working hours must be longer than one hour.')</script>";
 } elseif($numofhrs > 15){
     echo "<script>alert('Number of hours cannot be greater than 15!')</script>";
