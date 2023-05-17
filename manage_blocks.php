@@ -60,7 +60,7 @@ include "blocks_modal.php";
                             if($count == 0) {
                                 echo "<a href='' class='del-btn' data-toggle='modal' data-target='#delModal' data-id='" . $result['student_block'] . "'>Delete</a>";
                             } else {
-                                echo "<a href='' class='del-btn'  onclick=\"alert('You are not eligible to delete this block because there are currently $count student(s) associated with it.')\">Delete</a>";
+                                echo "<a href='' onclick=\"alert('You are not eligible to delete this block because there are currently $count student(s) associated with it.')\">Delete</a>";
                             }
                             echo "</td>";
                             echo "</tr>";

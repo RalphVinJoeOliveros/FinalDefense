@@ -180,7 +180,7 @@ z-index: 1;
                 </td>
                 <td>
                 </td>  
-                <td align=left>&nbsp;&nbsp;&nbsp;&nbsp;
+                <td align="center">
                 <?php
                     $sequel = "SELECT * FROM students WHERE lrn = $_SESSION[lrn]";
                     $result = mysqli_query($mysqli, $sequel);

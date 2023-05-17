@@ -140,7 +140,7 @@ z-index: 1;
     </tbody>
     <tfoot>
     <tr style="background-color: white;">
-        <td>
+        <td align="left">
         <div>
         <?php
             $lrn = $_SESSION['lrn'];
