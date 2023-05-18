@@ -152,6 +152,28 @@ if(isset($_SESSION['lrn'])){
             }
         }
     }
+    if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != '') {
+        $previousPage = $_SERVER['HTTP_REFERER'];
+        $currentPage = $_SERVER['PHP_SELF'];
+    
+        if($previousPage != $currentPage) {
+            unset($_SESSION['fname']);
+            unset($_SESSION['mname']);
+            unset($_SESSION['lname']);
+            unset($_SESSION['lrn']);
+            unset($_SESSION['cpnum']);
+            unset($_SESSION['email']);
+            unset($_SESSION['block']);
+            unset($_SESSION['sy']);
+            unset($_SESSION['bdate']);
+            unset($_SESSION['placeofbirth']);
+            unset($_SESSION['gender']);
+            unset($_SESSION['nationality']);
+            unset($_SESSION['marital_status']);
+            unset($_SESSION['religion']);
+            unset($_SESSION['height']);
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
