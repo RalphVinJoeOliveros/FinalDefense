@@ -36,7 +36,7 @@ if(isset($_SESSION['lrn'])){
         $cpass = $_POST['cpass'];
         $nschool = "Iligan Computer Institute, Inc.";
         $block = $_POST['block'];
-        $schoolyear = $_POST['sy'];
+        $schoolyear = $_POST['schoolyear'];
         $bdate = $_POST['bdate'];
         $placeofbirth = trim($_POST['placeofbirth']);
         $gender = $_POST['gender'];
@@ -163,8 +163,6 @@ if(isset($_SESSION['lrn'])){
             unset($_SESSION['lrn']);
             unset($_SESSION['cpnum']);
             unset($_SESSION['email']);
-            unset($_SESSION['block']);
-            unset($_SESSION['sy']);
             unset($_SESSION['bdate']);
             unset($_SESSION['placeofbirth']);
             unset($_SESSION['gender']);
@@ -172,6 +170,8 @@ if(isset($_SESSION['lrn'])){
             unset($_SESSION['marital_status']);
             unset($_SESSION['religion']);
             unset($_SESSION['height']);
+            unset($_SESSION['block']);
+            unset($_SESSION['sy']);
         }
     }
 ?>
@@ -240,9 +240,6 @@ if(isset($_SESSION['lrn'])){
   position: relative;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
   opacity: 0.8;
     
     }
@@ -361,7 +358,7 @@ hr{
                 <center><input type="password" name="cpass" required></center>
 <br><br><hr> <br><br>               
                 <label for="">Date of Birth:</label> 
-                <center><input type="date" name="bdate" value="<?php echo htmlspecialchars(isset($_SESSION['bdate']) ? $_SESSION['bdate'] : $fname); ?>" required></center>
+                <center><input type="date" name="bdate" value="<?php echo htmlspecialchars(isset($_SESSION['bdate']) ? $_SESSION['bdate'] : $bdate); ?>" required></center>
   
                 <label for="">Place of Birth:</label> 
                 <center><input type="text" name="placeofbirth" value="<?php echo htmlspecialchars(isset($_SESSION['placeofbirth']) ? $_SESSION['placeofbirth'] : $placeofbirth); ?>" required></center>
@@ -403,11 +400,23 @@ hr{
                 <label for="block">Block:</label>
                 <center><select id="block" name="block" required>
                     <option value="">-Select Block-</option>
-                    <?php echo loadStudentBlocks($mysqli); ?>
+                    <?php
+                        $sql = "SELECT * FROM student_block ORDER BY student_block ASC";
+                        $result = mysqli_query($mysqli, $sql);
+                        while($row = mysqli_fetch_array($result)){
+                    
+                            $selected = '';
+                            $student_block = $row["student_block"];
+                            if(htmlspecialchars(isset($_SESSION['block']) ? $_SESSION['block'] : $block) == $student_block){
+                                $selected = 'selected';
+                            } 
+                            echo "<option value='$student_block' $selected>$student_block</option>";
+                        }
+                    ?>
                     </select></center>
 
                     <label for="">School Year:</label>
-                    <center><select id="sy" name="sy" required>
+                    <center><select id="schoolyear" name="schoolyear" required>
                         <option value="">-Select School Year-</option>
                         <?php
                             $start_year = 2019;
@@ -429,7 +438,7 @@ hr{
                                 $school_year = $start_year . '-' . $next_year;
 
                                 $selected = '';
-                                if(isset($_SESSION['sy']) && $_SESSION['sy'] == $school_year){
+                                if(htmlspecialchars(isset($_SESSION['sy']) ? $_SESSION['sy'] : $schoolyear) == $school_year){
                                     $selected = 'selected';
                                 }
                                 echo "<option value='$school_year' $selected>$school_year</option>";
@@ -449,21 +458,7 @@ hr{
         <label style='color: #ccc;' for="">Already have an account? <a onclick="window.location.href='index.php'"><strong> Login here.</strong></a></label>
         </div>
 <br><br>
+</form>
+</div>
+</body>
 </html>
-
-<?php
-function loadStudentBlocks($mysqli) {
-    $output = '';
-    $sql = "SELECT * FROM student_block ORDER BY student_block ASC";
-    $result = mysqli_query($mysqli, $sql);
-    while($row = mysqli_fetch_array($result)){
-        $selected = '';
-        if(htmlspecialchars(isset($_SESSION['block']) && $_SESSION['block'] == $row['student_block'])){
-            $selected = 'selected';
-        } 
-        $output .= '<option value="' . $row["student_block"] . '" '. $selected . '>' . $row["student_block"] . '</option>';
-    }
-    return $output;
-}
-?>
-

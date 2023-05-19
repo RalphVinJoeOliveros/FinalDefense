@@ -7,6 +7,7 @@ if(isset($_SESSION['lrn'])){
 }elseif(isset($_SESSION['department'])){
     header('location: department-studentslist.php');
 }
+
 include 'capstone_database.php';
 if(isset($_POST['Submit'])){
     $user = trim($_POST['user']);
