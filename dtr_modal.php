@@ -238,12 +238,16 @@ label{
 
     $numofhrs = numofhrs($time_in, $time_out);
       if ($numofhrs <= 0) {
-        echo "<script>alert('Time in cannot be lesser than or equal to time out!')</script>";
+        echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
     } elseif($numofhrs > 15){
-        echo "<script>alert('Number of hours cannot be greater than 15!')</script>";
+        echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
     } else {
       $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
       $query = mysqli_query($mysqli, $sql);
+      if($query){
+          echo "<script>alert('Successfully Updated!')</script>";
+          echo "<script>window.location='dtr.php'</script>";
+      }
     }
   }
 if(isset($_POST['add'])){
@@ -311,9 +315,9 @@ if(isset($_POST['punchOut'])){
   $numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
 
 if ($numofhrs <= 0) {
-    echo "<script>alert('Your working hours must be longer than one hour.')</script>";
+    echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
 } elseif($numofhrs > 15){
-    echo "<script>alert('Number of hours cannot be greater than 15!')</script>";
+    echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
 } else {
       $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
       $query = mysqli_query($mysqli, $sql);
