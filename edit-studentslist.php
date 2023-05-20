@@ -123,7 +123,7 @@ select{
             <input type="hidden" name="lrn" value="<?php echo $_POST['userid']; ?>">
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+                <input type="submit" name="submit" value="Assign" class="btn btn-primary">
             </div>
             </div>
         </div>

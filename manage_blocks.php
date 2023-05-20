@@ -82,7 +82,7 @@ include "blocks_modal.php";
                         </div>
                         <?php
                             if(isset($_POST['register_block_btn'])) {
-                                $register_block = trim($_POST['register_block']);
+                                $register_block = trim(strtoupper($_POST['register_block']));
                                 register_block($mysqli, $register_block);
                             }
                         ?>

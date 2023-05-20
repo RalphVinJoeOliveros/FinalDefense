@@ -140,7 +140,7 @@ body {
 				<div class="dropdown-menu dropdown-menu-right" style='margin-top: 7px;'>
 					<a href="profileinfo.php" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></a>
 					<div class="dropdown-divider"></div>
-					<a href="settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></a>
+					<a href="settings.php" class="dropdown-item"><i class="fa fa-sliders"></i> Profile Settings</a></a>
 					<div class="dropdown-divider"></div>
 					<a href="student-logout.php" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a></a>
 				</div>

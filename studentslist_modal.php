@@ -92,10 +92,10 @@
     $sql = "UPDATE students SET startdate = '$startDate', department = '$department', schedule = '$schedule' WHERE lrn = '$lrn'";
 
     if(mysqli_query($mysqli, $sql)){
-      echo "<script>alert('Successfully Updated!')</script>";
+      echo "<script>alert('Successfully Assigned!')</script>";
       echo "<script>window.location='studentslist.php'</script>";
     }else{
-        echo "<script>alert('Failed to Update!')</script>";
+        echo "<script>alert('Failed to Assign!')</script>";
         echo "<script>window.location='studentslist.php'</script>";
     }
   }                                    

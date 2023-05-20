@@ -18,6 +18,7 @@ if(isset($_SESSION['lrn'])){
     $schoolyear = "";
     $bdate = "";
     $placeofbirth = "";
+    $homeaddress = "";
     $gender = "";
     $nationality = "";
     $marital_status = "";
@@ -39,6 +40,7 @@ if(isset($_SESSION['lrn'])){
         $schoolyear = $_POST['schoolyear'];
         $bdate = $_POST['bdate'];
         $placeofbirth = trim($_POST['placeofbirth']);
+        $homeaddress = trim($_POST['homeaddress']);
         $gender = $_POST['gender'];
         $nationality = $_POST['nationality'];
         $marital_status = $_POST['marital_status'];
@@ -64,6 +66,7 @@ if(isset($_SESSION['lrn'])){
             $_SESSION['sy'] = $schoolyear;
             $_SESSION['bdate'] = $bdate;
             $_SESSION['placeofbirth'] = $placeofbirth;
+            $_SESSION['homeaddress'] = $homeaddress;
             $_SESSION['gender'] = $gender;
             $_SESSION['nationality'] = $nationality;
             $_SESSION['marital_status'] = $marital_status;
@@ -98,6 +101,7 @@ if(isset($_SESSION['lrn'])){
             $_SESSION['sy'] = $schoolyear;
             $_SESSION['bdate'] = $bdate;
             $_SESSION['placeofbirth'] = $placeofbirth;
+            $_SESSION['homeaddress'] = $homeaddress;
             $_SESSION['gender'] = $gender;
             $_SESSION['nationality'] = $nationality;
             $_SESSION['marital_status'] = $marital_status;
@@ -116,6 +120,7 @@ if(isset($_SESSION['lrn'])){
             $_SESSION['sy'] = $schoolyear;
             $_SESSION['bdate'] = $bdate;
             $_SESSION['placeofbirth'] = $placeofbirth;
+            $_SESSION['homeaddress'] = $homeaddress;
             $_SESSION['gender'] = $gender;
             $_SESSION['nationality'] = $nationality;
             $_SESSION['marital_status'] = $marital_status;
@@ -123,9 +128,9 @@ if(isset($_SESSION['lrn'])){
             $_SESSION['height'] = $height;
         }else {
             $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
-            $query = "INSERT INTO students (fname, mname, lname, lrn, email, cpnum, pass, nschool, `block`, `schoolyear`, bdate, placeofbirth, gender, nationality, marital_status, religion, height, coordinator, dateRegistered, `status`, remarks) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO students (fname, mname, lname, lrn, email, cpnum, pass, nschool, `block`, `schoolyear`, bdate, placeofbirth, homeaddress, gender, nationality, marital_status, religion, height, coordinator, dateRegistered, `status`, remarks) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $mysqli->prepare($query);
-            $registerResult = $stmt->execute([$fname, $mname, $lname, $lrn, $email, $cpnum, $hashed_password, $nschool, $block, $schoolyear, $bdate, $placeofbirth, $gender, $nationality, $marital_status, $religion, $height, $coordinator, $dateRegistered, $status, $remarks]);
+            $registerResult = $stmt->execute([$fname, $mname, $lname, $lrn, $email, $cpnum, $hashed_password, $nschool, $block, $schoolyear, $bdate, $placeofbirth, $homeaddress, $gender, $nationality, $marital_status, $religion, $height, $coordinator, $dateRegistered, $status, $remarks]);
 
             $evaluation_query = "INSERT INTO evaluation (lrn) VALUES (?)";
             $evaluation_stmt = $mysqli->prepare($evaluation_query);
@@ -144,6 +149,7 @@ if(isset($_SESSION['lrn'])){
             unset($_SESSION['sy']);
             unset($_SESSION['bdate']);
             unset($_SESSION['placeofbirth']);
+            unset($_SESSION['homeaddress']);
             unset($_SESSION['gender']);
             unset($_SESSION['nationality']);
             unset($_SESSION['marital_status']);
@@ -165,6 +171,7 @@ if(isset($_SESSION['lrn'])){
             unset($_SESSION['email']);
             unset($_SESSION['bdate']);
             unset($_SESSION['placeofbirth']);
+            unset($_SESSION['homeaddress']);
             unset($_SESSION['gender']);
             unset($_SESSION['nationality']);
             unset($_SESSION['marital_status']);
@@ -363,6 +370,9 @@ hr{
                 <label for="">Place of Birth:</label> 
                 <center><input type="text" name="placeofbirth" value="<?php echo htmlspecialchars(isset($_SESSION['placeofbirth']) ? $_SESSION['placeofbirth'] : $placeofbirth); ?>" required></center>
                 
+                <label for="">Current Address:</label> 
+                <center><input type="text" name="homeaddress" value="<?php echo htmlspecialchars(isset($_SESSION['homeaddress']) ? $_SESSION['homeaddress'] : $homeaddress); ?>" required></center> 
+
                 <label for="">Sex</label>
                 <center><select name="gender" id="gender" required>
                         <option value="">-Select Sex-</option>

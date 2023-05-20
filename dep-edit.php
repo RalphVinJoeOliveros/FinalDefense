@@ -23,6 +23,10 @@ $row = mysqli_fetch_assoc($result);
         width: 98%;
         border: 1px solid #ddd;
     }
+    .deptable td, .deptable th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
 </style>
 <br>
 <form action="" method="POST">
@@ -31,8 +35,8 @@ $row = mysqli_fetch_assoc($result);
         <tr>
             <th>LRN</th>
             <th>Full Name</th>
-            <th>Block</th>
-            <th>School Year</th>
+            <th>Start Date</th>
+            <th>Schedule of OJT</th>
             <th>Remarks</th>
         </tr>
     </thead>
@@ -45,10 +49,10 @@ $row = mysqli_fetch_assoc($result);
                 <?php echo $row['fname'] . " " . $row['mname'] . " " . $row['lname']; ?>
             </td>
             <td>
-                <?php echo $row['block']; ?>
+                <?php echo $row['startdate']; ?>
             </td>
             <td>
-                <?php echo $row['schoolyear']; ?>
+                <?php echo $row['schedule']; ?>
             </td>
             <td>
                 <select name="remarks" id="remarks" class="form-control" required>

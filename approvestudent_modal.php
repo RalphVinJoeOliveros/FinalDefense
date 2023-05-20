@@ -128,7 +128,7 @@
         $sequel = "UPDATE students SET `status` = 'Approved' WHERE lrn = '$id'";
         $query = mysqli_query($mysqli, $sequel);
         if($query){
-            echo "<script>alert('Successfully approved!')</script>";
+            echo "<script>alert('Successfully Approved!')</script>";
         }else{
             echo "Failed";
         }
@@ -148,10 +148,10 @@
         $weeklyreportquery = mysqli_query($mysqli, $weeklyreport);
 
         if($studentsquery && $dtrquery && $evaluationquery && $weeklyreportquery){
-            echo "<script>alert('Successfully deleted!')</script>";
+            echo "<script>alert('Successfully Deleted!')</script>";
             echo "<script>window.location='approve-student.php'</script>";
         }else{
-            echo "<script>alert('Failed to delete!')</script>";
+            echo "<script>alert('Failed to Delete!')</script>";
             echo "<script>window.location='approve-student.php'</script>";
         }
     }
@@ -166,10 +166,10 @@
       $query = mysqli_stmt_execute($stmt);
 
       if ($query) {
-        echo "<script>alert('Successfully Updated!')</script>";
+        echo "<script>alert('Password Successfully Changed!')</script>";
         echo "<script>window.location='approve-student.php'</script>";
       }else{
-        echo "<script>alert('Failed to Update!')</script>";
+        echo "<script>alert('Password Successfully Changed!')</script>";
         echo "<script>window.location='approve-student.php'</script>";
       }
   

@@ -304,14 +304,14 @@
 
                     echo "<script>alert('Successfully Updated!')</script>";
                     echo "<script>window.location='settings.php'</script>";   
+                }if(!in_array($fileType, $allowedTypes)) {
+                    echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
+                    die;
                 }if(move_uploaded_file($tempFilename, $targetFilePath)){
                     $newsequel = "UPDATE `students` SET `picture`='$newFilename' WHERE lrn = '$lrn'";
                     $result = mysqli_query($mysqli, $newsequel);
                     echo "<script>alert('Successfully Updated!')</script>";
                     echo "<script>window.location='settings.php'</script>";              
-                    }if(!in_array($fileType, $allowedTypes)) {
-                        echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
-                        die;
                     }
                 }
         }else{
@@ -360,14 +360,14 @@
                     
                                         echo "<script>alert('Successfully Updated!')</script>";
                                         echo "<script>window.location='settings.php'</script>";   
+                                    }if(!in_array($fileType, $allowedTypes)) {
+                                        echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
+                                        die;
                                     }if(move_uploaded_file($tempFilename, $targetFilePath)){
                                         $newsequel = "UPDATE `students` SET `picture`='$newFilename' WHERE lrn = '$lrn'";
                                         $result = mysqli_query($mysqli, $newsequel);
                                         echo "<script>alert('Successfully Updated!')</script>";
                                         echo "<script>window.location='settings.php'</script>";              
-                                        }if(!in_array($fileType, $allowedTypes)) {
-                                            echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
-                                            die;
                                         }
                                     }
                                 }

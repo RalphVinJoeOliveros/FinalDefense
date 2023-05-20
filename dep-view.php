@@ -693,7 +693,7 @@ if(isset($_POST['updateeval'])){
   $result = mysqli_query($mysqli, $sequel);
 
     if($result){
-        echo "<script>alert('Evaluation Updated!');</script>";
+        echo "<script>alert('Successfully Evaluated!');</script>";
         echo "<script>window.location.href='dep-view.php?lrn=$id';</script>";
     } else {
         echo "<script>alert('Evaluation Not Updated!');</script>";
