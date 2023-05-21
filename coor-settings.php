@@ -208,7 +208,7 @@ body {
 
         if(empty($currentpass) AND empty($newpass) AND empty($confirmpass)){
             $stmt = mysqli_prepare($mysqli, "UPDATE coordinator SET username = ?, first_name = ?, last_name = ?, email = ?, cpnum = ?, address = ?, fb_name = ? WHERE email = ?");
-            mysqli_stmt_bind_param($stmt, "ssssssss", $usename, $fname, $lname, $email, $cpnum, $address, $fb, $email);
+            mysqli_stmt_bind_param($stmt, "ssssssss", $username, $fname, $lname, $email, $cpnum, $address, $fb, $email);
             $result = mysqli_stmt_execute($stmt);
                 
             if($result){             

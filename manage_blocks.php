@@ -109,13 +109,13 @@ include "blocks_modal.php";
         $count = mysqli_num_rows(mysqli_query($mysqli, $sql));
 
         if($count == 1) {
-            echo "<script>alert('Grade Level and Block already exists in the system, please try again'); window.location='manage_blocks.php';</script>";
+            echo "<script>alert('Grade Level and Block already exists in the system, please try another one.'); window.location='manage_blocks.php';</script>";
         } else {
             $sql = "INSERT INTO student_block (student_block) VALUES ('$register_block')";
             if(mysqli_query($mysqli, $sql)) {
-                echo "<script>alert('Grade Level and Block successfully registered'); window.location='manage_blocks.php';</script>";
+                echo "<script>alert('Grade Level and Block successfully registered.'); window.location='manage_blocks.php';</script>";
             } else {
-                echo "<script>alert('Grade Level and Block registration failed'); window.location='manage_blocks.php';</script>";
+                echo "<script>alert('Grade Level and Block registration failed.'); window.location='manage_blocks.php';</script>";
             }
         }
     }

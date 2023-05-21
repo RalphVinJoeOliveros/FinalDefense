@@ -72,9 +72,9 @@
     <br>
 <div class="container">
     <div class="row justify-content-md-center">
-        <div class="col-sm-12">
+        <div class="col-sm-13">
             <div class="card mb-5">
-                <div class="card-body table-sm small" style="max-width: 1200px">
+                <div class="card-body table-sm small" style="max-width: 1300px">
                     <h5 class="card-title">Students List</h5>
                     <table id="table" class="display nowrap" style="width: 100%;">
                         <thead>

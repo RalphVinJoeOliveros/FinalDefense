@@ -142,11 +142,11 @@ include "managedepartment_modal.php";
                             <label for="email">Email Address</label>
                             <input type="text" class="form-control" placeholder="Please type Email Address" id="register_block" name="email" aria-describedby="register_block" >
                             <label for="address">Industry Address</label>
-                            <input type="text" class="form-control" placeholder="Please Type Department's Address" id="register_block" name="address" aria-describedby="register_block" >
+                            <input type="text" class="form-control" placeholder="Please Type Industry's Address" id="register_block" name="address" aria-describedby="register_block" >
                             <label for="text">Phone Number/Telephone Number</label>
                             <input type="text" class="form-control" placeholder="Please Type Phone Number/Telephone Number" id="register_block" name="number" aria-describedby="register_block" >
                             <label for="text">Facebook Name/Facebook Page</label>
-                            <input type="text" class="form-control" placeholder="Please Type Department's Facebook Name" id="register_block" name="fb" aria-describedby="register_block">
+                            <input type="text" class="form-control" placeholder="Please Type Industry's Facebook Name" id="register_block" name="fb" aria-describedby="register_block">
                         </div>
     <script>
         function loadPreview(event) {
@@ -198,7 +198,7 @@ include "managedepartment_modal.php";
                                 $check_result = mysqli_query($mysqli, $check_dep);
 
                                 if(mysqli_num_rows($check_result) > 0){
-                                    echo "<script>alert('Department already exists!')</script>";
+                                    echo "<script>alert('Industry already exists!')</script>";
                                     echo "<script>window.location='manage_departments.php'</script>";
                                 } elseif (mysqli_num_rows($checkUserResult) > 0) {
                                     echo "<script>alert('Username already exists!')</script>";
@@ -212,23 +212,22 @@ include "managedepartment_modal.php";
 
                                     if ($result) {
                                         if($fileName == "silhouette.png"){
-                                            echo "<script>alert('Successfully Updated!')</script>";
+                                            echo "<script>alert('Industry has successfully registered!')</script>";
                                             echo "<script>window.location='manage_departments.php'</script>";
                                         } else {
-                                        if (move_uploaded_file($tempFilename, $targetFilePath)) {
-                                            echo "<script>alert('Successfully Updated!')</script>";
+                                            if (!in_array($fileType, $allowedTypes)) {
+                                                echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
+                                                echo "<script>window.location='manage_departments.php'</script>";
+                                            }if (move_uploaded_file($tempFilename, $targetFilePath)) {
+                                            echo "<script>alert('Industry has successfully registered!')</script>";
                                             echo "<script>window.location='manage_departments.php'</script>";              
                                         }
-                                    if (!in_array($fileType, $allowedTypes)) {
-                                        echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
-                                        echo "<script>window.location='manage_departments.php'</script>";
-                                    }
                                     }
                                 }   
                             }
                         }
                         ?>
-                        <button type="submit" class="btn btn-success" name="submit">Register Department</button>
+                        <button type="submit" class="btn btn-success" name="submit">Register Industry</button>
                         </form>
                 </div>
                 </div>
