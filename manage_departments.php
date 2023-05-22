@@ -6,7 +6,7 @@ if(isset($_SESSION['lrn'])) {
   }elseif(isset($_SESSION['department'])) {
     echo "<script>window.location='department-studentslist.php'; </script>";
     die();
-  } elseif(!isset($_SESSION['email'])) {
+  } elseif(!isset($_SESSION['ID'])) {
       echo "<script>window.location='index.php'; </script>";
       die();
   }
@@ -63,6 +63,10 @@ include "managedepartment_modal.php";
     .highlight4{
         color: #25B8B4;
         font-weight: 500;
+    }
+    .forlabel label{
+        margin-top: 10px;
+        margin-bottom: 0px;
     }
     </style>
   </head>
@@ -131,7 +135,8 @@ include "managedepartment_modal.php";
                                 <input type="file" id="upload-pic" name="picture" accept="2x2/*" onchange="loadPreview(event)">
                             </div>
                             <br>
-                            <label for="register_name">Industry Name</label>
+                            <div class="forlabel">
+                            <label style='margin-top: -10px;' for="register_name">Industry Name</label>
                             <input type="text" class="form-control text-uppercase" placeholder="Please Type name of industry" id="register_block" name="register_name" aria-describedby="register_block" required>
                             <label for="username">Username</label>
                             <input type="text" class="form-control" placeholder="Please Type Username" id="register_block" name="username" pattern="[a-z]+\d{0,2}\.[a-z]+\d{0,2}" aria-describedby="register_block" title="Please enter a valid username (e.g. john12.smith34, john.smith, john.smith12)" required>
@@ -147,6 +152,7 @@ include "managedepartment_modal.php";
                             <input type="text" class="form-control" placeholder="Please Type Phone Number/Telephone Number" id="register_block" name="number" aria-describedby="register_block" >
                             <label for="text">Facebook Name/Facebook Page</label>
                             <input type="text" class="form-control" placeholder="Please Type Industry's Facebook Name" id="register_block" name="fb" aria-describedby="register_block">
+                            </div>
                         </div>
     <script>
         function loadPreview(event) {
@@ -190,7 +196,7 @@ include "managedepartment_modal.php";
                                 $tempFilename = $_FILES["picture"]["tmp_name"];
                                 $targetFilePath = $targetDir . $newFilename;
                                 $allowedTypes = array('jpg', 'png', 'jpeg');
-                                $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+                                $fileExtension = strtolower(pathinfo($_FILES["picture"]["name"], PATHINFO_EXTENSION));              
                                 
                                 $checkUser = "SELECT * FROM departments WHERE username = '$username'";
                                 $checkUserResult = mysqli_query($mysqli, $checkUser);
@@ -207,25 +213,30 @@ include "managedepartment_modal.php";
                                     echo "<script>alert('Password does not match!')</script>";
                                     echo "<script>window.location='manage_departments.php'</script>";
                                 } else {
-                                    $sql = "INSERT INTO departments (username, department, email, pass, `address`, `number`, fb, picture) VALUES ('$username', '$register_name', '$email', '$pass', '$address', '$number', '$fb', '$newFilename')";
-                                    $result = mysqli_query($mysqli, $sql);
-
-                                    if ($result) {
                                         if($fileName == "silhouette.png"){
+                                            $newFilename = $fileName;
+                                            $hash = password_hash($pass, PASSWORD_DEFAULT);
+                                                $sql = "INSERT INTO departments (ID, username, department, email, pass, `address`, `number`, fb, picture) VALUES ('$id', '$username', '$register_name', '$email', '$hash', '$address', '$number', '$fb', '$newFilename')";
+                                                $result = mysqli_query($mysqli, $sql);
+
                                             echo "<script>alert('Industry has successfully registered!')</script>";
                                             echo "<script>window.location='manage_departments.php'</script>";
                                         } else {
-                                            if (!in_array($fileType, $allowedTypes)) {
+                                            if (!in_array($fileExtension, $allowedTypes)) {
                                                 echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
-                                                echo "<script>window.location='manage_departments.php'</script>";
+                                                die();
                                             }if (move_uploaded_file($tempFilename, $targetFilePath)) {
+                                                $newFilename = $newFilename;
+                                                $hash = password_hash($pass, PASSWORD_DEFAULT);
+                                                $sql = "INSERT INTO departments (ID, username, department, email, pass, `address`, `number`, fb, picture) VALUES ('$id', '$username', '$register_name', '$email', '$hash', '$address', '$number', '$fb', '$newFilename')";
+                                                $result = mysqli_query($mysqli, $sql);
+            
                                             echo "<script>alert('Industry has successfully registered!')</script>";
                                             echo "<script>window.location='manage_departments.php'</script>";              
                                         }
                                     }
                                 }   
                             }
-                        }
                         ?>
                         <button type="submit" class="btn btn-success" name="submit">Register Industry</button>
                         </form>
@@ -246,22 +257,5 @@ include "managedepartment_modal.php";
                 $('#blocks_table').DataTable();
             } );
         </script>
-    <?php
-    function register_block($mysqli, $register_block) {
-        $sql = "SELECT * FROM student_block WHERE student_block = '$register_block'";
-        $count = mysqli_num_rows(mysqli_query($mysqli, $sql));
-
-        if($count == 1) {
-            echo "<script>alert('Grade Level and Block already exists in the system, please try again'); window.location='manage_blocks.php';</script>";
-        } else {
-            $sql = "INSERT INTO student_block (student_block) VALUES ('$register_block')";
-            if(mysqli_query($mysqli, $sql)) {
-                echo "<script>alert('Grade Level and Block successfully registered'); window.location='manage_blocks.php';</script>";
-            } else {
-                echo "<script>alert('Grade Level and Block registration failed'); window.location='manage_blocks.php';</script>";
-            }
-        }
-    }
-?>
 </body>
 </html>

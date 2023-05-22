@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['lrn'])){
     header('location: student-landing-page.php');
-}elseif(isset($_SESSION['email'])){
+}elseif(isset($_SESSION['ID'])){
     header('location: studentslist.php');
 }elseif(isset($_SESSION['department'])){
     header('location: department-studentslist.php');
@@ -53,8 +53,8 @@ if(isset($_POST['Submit'])){
             if(mysqli_num_rows($check_coor) == 1){
                 $check_rowcoor = mysqli_fetch_assoc($check_coor);
                 if(password_verify($pass, $check_rowcoor['pass'])){
-                    $email = $check_rowcoor['email'];
-                    $_SESSION['email'] = $email;
+                    $id = $check_rowcoor['ID'];
+                    $_SESSION['ID'] = $id;
                     echo "<script>alert('Logged In Successfully!')</script>";
                     echo "<script>window.location.href='studentslist.php'</script>";
                 } else{
@@ -210,12 +210,39 @@ input[type=submit]{
 .logo{
     width: 290px;
 }
+.navbar ul li{
+        list-style: none;
+        display: inline-block;
+        margin: 0 20px;
+        position: relative;
+    }
+    .navbar ul li a{
+        text-decoration: none;
+        color: #fff;
+    
+    }
+    .navbar ul li::after{
+        content: '';
+        height: 3px;
+        width: 0;
+        background: #009688;
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        transition:0.5s;
+    }
+    .navbar ul li:hover::after{
+        width: 100%;
+    }
     </style>
 </head>
 <body>
 <div class="banner">
     <div class="navbar">
     <a href="index.php"><img src="uploads/logo1.png" alt="ICI logo"class="logo"></a>
+            <ul>
+            <li><a href="about_us.html">ABOUT</a></li>
+        </ul>
     </div>
     <section>
         <div class="form-box">

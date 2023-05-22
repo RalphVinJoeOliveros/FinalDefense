@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(isset($_SESSION['email'])) {
+    if(isset($_SESSION['ID'])) {
         echo "<script>window.location='studentslist.php'; </script>";
         die();
       }elseif(isset($_SESSION['department'])) {
@@ -146,40 +146,40 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12">
-                                <label class="labels">First Name</label>
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">First Name</label>
                                 <input type="text" class="form-control" placeholder="first name" value="<?php echo $row['fname'] ?>" name="fname">
-                                <label class="labels">Middle Name</label>
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Middle Name</label>
                                 <input type="text" class="form-control" value="<?php echo $row['mname'] ?>" placeholder="surname" name="mname">
-                                <label class="labels">Surname</label>
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Surname</label>
                                 <input type="text" class="form-control" value="<?php echo $row['lname'] ?>" placeholder="surname" name="lname">
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12">
-                                <label class="labels">Email Address</label>
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Email Address</label>
                                 <input type="email" class="form-control" value="<?php echo $row['email'] ?>"  placeholder="enter email address" name="email" required>
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Mobile Number</label>
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Mobile Number</label>
                                 <input type="text" class="form-control" placeholder="enter phone number" value="<?php echo $row['cpnum'] ?>" name="cpnum">
                             </div><br><br><br><br>
                             <div class="p-3 d-flex justify-content-between align-items-center">
                                 <h4 class="text-right">Personal Information</h4>
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Date of Birth</label>
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Date of Birth</label>
                                 <input type="date" class="form-control" placeholder="enter current address" value="<?php echo $row['bdate'] ?>" name="bdate">
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Place of Birth</label>
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Place of Birth</label>
                                 <input type="text" class="form-control" placeholder="enter place of birth" value="<?php echo $row['placeofbirth'] ?>" name="pob">
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Current Address</label>
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Current Address</label>
                                 <input type="text" class="form-control" placeholder="enter current address" value="<?php echo $row['homeaddress'] ?>" name="address">
                             </div>
                             <div class="col-md-12">
-                            <label class="labels">Nationality:</label><br>
+                            <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Nationality:</label><br>
                                 <select name="nationality" id="" class="form-control">
                                 <?php
                                     $nationality = "SELECT nationality FROM students where lrn = '" . $_SESSION['lrn'] . "'";
@@ -192,39 +192,39 @@
                                 </select>
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Religion</label>
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Religion</label>
                                 <input type="text" class="form-control" placeholder="enter current address" value="<?php echo stripslashes($row['religion']) ?>" name="religion">
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Height (cm)</label>
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Height (cm)</label>
                                 <input type="number" step="any" class="form-control" placeholder="enter current address" value="<?php echo $row['height'] ?>" name="height">
                             </div><br><br><br><br>
                             <div class="p-3 d-flex justify-content-between align-items-center">
                                 <h4 class="text-right">Character References</h4>
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Name:</label>
-                                <input type="text" class="form-control" placeholder="enter place of birth" value="<?php echo $row['cr1name'] ?>" name="cr1name">
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Name:</label>
+                                <input type="text" class="form-control" placeholder="enter name" value="<?php echo $row['cr1name'] ?>" name="cr1name">
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Relation:</label>
-                                <input type="text" class="form-control" placeholder="enter place of birth" value="<?php echo $row['cr1relation'] ?>" name="cr1relation">
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Relation:</label>
+                                <input type="text" class="form-control" placeholder="enter relation" value="<?php echo $row['cr1relation'] ?>" name="cr1relation">
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Contact Information:</label>
-                                <input type="text" class="form-control" placeholder="enter place of birth" value="<?php echo $row['cr1info'] ?>" name="cr1info">
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Contact Information:</label>
+                                <input type="text" class="form-control" placeholder="enter contact information" value="<?php echo $row['cr1info'] ?>" name="cr1info">
                             </div><br><br><br><br>
                             <div class="col-md-12">
-                                <label class="labels">Name:</label>
-                                <input type="text" class="form-control" placeholder="enter place of birth" value="<?php echo $row['cr2name'] ?>" name="cr2name">
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Name:</label>
+                                <input type="text" class="form-control" placeholder="enter name" value="<?php echo $row['cr2name'] ?>" name="cr2name">
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Relation:</label>
-                                <input type="text" class="form-control" placeholder="enter place of birth" value="<?php echo $row['cr2relation'] ?>" name="cr2relation">
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Relation:</label>
+                                <input type="text" class="form-control" placeholder="enter relation" value="<?php echo $row['cr2relation'] ?>" name="cr2relation">
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Contact Information:</label>
-                                <input type="text" class="form-control" placeholder="enter place of birth" value="<?php echo $row['cr2info'] ?>" name="cr2info">
+                                <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Contact Information:</label>
+                                <input type="text" class="form-control" placeholder="enter contact information" value="<?php echo $row['cr2info'] ?>" name="cr2info">
                             </div>
                         </div>
                     </div>

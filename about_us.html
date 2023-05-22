@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About Us</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    *{
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+    .navbar{
+        width: 85%;
+        margin: auto;
+        padding: 35px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .logo{
+        width: 290px;
+    }
+    .navbar ul li{
+        list-style: none;
+        display: inline-block;
+        margin: 0 20px;
+        position: relative;
+    }
+    .navbar ul li a{
+        text-decoration: none;
+        color: #000;
+    
+    }
+    .navbar ul li::after{
+        content: '';
+        height: 3px;
+        width: 0;
+        background: #009688;
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        transition:0.5s;
+    }
+    .navbar ul li:hover::after{
+        width: 100%;
+    }
+    h5{
+        line-height: 2;
+        font-size: 19px;
+    }
+    .card{
+        padding: 10px;
+        padding-left: 20px;
+    }
+    img{
+        margin-left: -5px;
+    }
+        </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="navbar">
+        <a href="index.php"><img src="uploads/logo.png" alt="ICI logo"class="logo"></a>
+        <ul>
+            <li><a href="index.php">LOGIN</a></li>
+        </ul>
+        </div>
+
+
+  <main class="container my-5">
+    <section>
+      <center><h1>OJT Timesheet Monitoring System</h1></center><br>
+      <center><h5 style="text-align: justify;">The OJT Timesheet Monitoring System is designed to assist various stakeholders, including OJT coordinators, supervisors, and Grade 12 ICI intern students, in monitoring and managing the intern students' on-the-job training progress, accumulated working hours, and other important information. Here's a breakdown of the functions and benefits of the system for each user:</h5></center>
+      <br>
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="row-sm-5">
+                <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Grade 12 ICI Intern Students:</h5>
+                    <p>
+                        <ul>
+                            <li>Easy tracking and recording of on-the-job training hours: The system allows intern students to conveniently track, compute, and record their working hours during the on-the-job training period.</li>
+                            <li>
+                                Ensuring completion of required hours: The system helps students ensure that they have completed the necessary number of hours required for their course. It provides a clear overview of their accumulated hours and progress towards meeting the requirements.
+                            </li>
+                            <li>
+                                Real-time monitoring of development: Students can monitor their own development and progress through the system, enabling them to assess their performance and identify areas for improvement.
+                            </li>
+                            <li>
+                                Convenient and accurate reporting: The system generates accurate timesheets and reports, making it easier for students to provide their school with clear records of their training progress.
+                            </li>
+                        </ul>
+                    </p>
+
+                </div>
+            </div>
+        </div><br>
+        <div class="row-sm-5">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Industry Supervisors:</h5>
+                <p>
+                    <ul>
+                        <li>
+                            Real-time visibility into trainee progress: Supervisors have access to real-time updates on the progress of each intern student. They can easily track the number of hours worked, activities performed, and overall performance.
+                        </li>
+                        <li>
+                            Effective assessment of trainees: By keeping track of the number of hours worked, supervisors can more effectively assess the trainees' performance and identify any areas that may require additional attention or improvement.
+                        </li>
+                        <li>
+                            Efficient monitoring and control: The system enhances the process of monitoring and controlling trainees' work hours, activities, and progress. It provides supervisors with a centralized platform to manage and track trainee development.
+                        </li>
+                    </ul>
+                </p>
+
+            </div>
+        </div>
+    </div><br>
+    <div class="row-sm-5">
+        <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">OJT Coordinator:</h5>
+        <p>
+            <ul>
+                <li>
+                    Overall data management: The OJT coordinator manages all the data within the system, including files and information related to the entire program. They oversee the registration of user accounts for supervisors and ensure the smooth functioning of the system.
+                </li>
+                <li>
+                    Streamlined administration: The system simplifies the administrative tasks associated with managing the on-the-job training program. It provides a centralized platform for managing trainee information, progress tracking, and generating reports.
+                </li>
+                <li>
+                    Improved training outcomes: By leveraging the features of the system, the OJT coordinator can better manage trainees and enhance the overall training outcomes. The system facilitates efficient communication and coordination between coordinators, supervisors, and students.
+                </li>
+            </ul>
+        </p>
+        </div>
+</div>
+</div>
+    </section>
+<br><br>
+    <section>
+      <center><h1>Our Team</h1></center><br>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img src="uploads/vinjo.jpg" alt="Team Member 1" class="card-img-top">
+            <div class="card-body">
+              <h4 align="center" class="card-title">Ralph Vin Joe J. Oliveros</h4>
+              <p class="card-text"><i> Back-End Developer</i></p>
+              <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/oliveros.vin">Ra Lph</a><br>
+              <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;&nbsp;<a href="https://www.instagram.com/oliverosralph/">oliverosralph</a>
+            
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img src="uploads/ayki.jpg" alt="Team Member 2" class="card-img-top">
+            <div class="card-body">
+              <h4 align="center" class="card-title">Ivanne Karl M. Sombol</h4>
+              <p class="card-text"><i>Front-End Developer </i></p>
+              <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/Karlvanne.Sombol/">Ivanne Karl Sombol</a><br>
+              <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;&nbsp;<a href="https://www.instagram.com/karlvanne.7/">karlvanne.7</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img src="uploads/yisha.jpg" alt="Team Member 3" class="card-img-top">
+            <div class="card-body">
+              <h4 align="center" class="card-title">Yisha J. Villarin</h4>
+              <p class="card-text"><i> System Analyst</i></p>
+              <ion-icon name="logo-facebook"></ion-icon>&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/yisha.villarin.5">Yisha Villarin</a><br>
+              <ion-icon name="logo-instagram"></ion-icon>&nbsp;&nbsp;&nbsp;<a href="https://www.instagram.com/darlingysh">darlingysh</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+  </main>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

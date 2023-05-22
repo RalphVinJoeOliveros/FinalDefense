@@ -5,7 +5,7 @@
       }elseif(isset($_SESSION['department'])) {
       echo "<script>window.location='department-studentslist.php'; </script>";
       die();
-      } elseif(!isset($_SESSION['email'])) {
+      } elseif(!isset($_SESSION['ID'])) {
         echo "<script>window.location='index.php'; </script>";
         die();
       }

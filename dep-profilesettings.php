@@ -3,7 +3,7 @@
     if(isset($_SESSION['lrn'])) {
         echo "<script>window.location='student-landing-page.php'; </script>";
         die();
-        } elseif(isset($_SESSION['email'])) {
+        } elseif(isset($_SESSION['ID'])) {
             echo "<script>window.location='studentslist.php'; </script>";
             die();
         } elseif (!isset($_SESSION['department'])) {
@@ -210,7 +210,7 @@ body {
                     $row = mysqli_fetch_array($result);
                     $existingPicture = $row['picture'];
 
-                    $newsequel = "UPDATE `departments` SET `picture`='$existingPicture' WHERE email = '$department'";
+                    $newsequel = "UPDATE `departments` SET `picture`='$existingPicture' WHERE ID = '$department'";
                     $result = mysqli_query($mysqli, $newsequel);
 
                     echo "<script>alert('Successfully Updated!')</script>";

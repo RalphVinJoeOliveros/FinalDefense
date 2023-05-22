@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['lrn'])){
     header('location: student-landing-page.php');
-}elseif(isset($_SESSION['email'])){
+}elseif(isset($_SESSION['ID'])){
     header('location: studentslist.php');
 }elseif(isset($_SESSION['department'])){
     header('location: department-studentslist.php');
@@ -337,43 +337,43 @@ hr{
 <body>
 <div class="banner">
     <div class="navbar">
-        <img src="uploads/logo1.png" alt="ICI logo"class="logo">
+    <a href="index.php"><img src="uploads/logo1.png" alt="ICI logo"class="logo"></a>
     </div>
 
     <form action="student-signup_page.php" method="post" id="myForm">
 <div class="contact-form">
 <br><h1>Student Registration Form</h1><br><br><br>
                 <label for="">First Name:</label> 
-                <center><td><input type="text" name="fname" value="<?php echo htmlspecialchars(isset($_SESSION['fname']) ? $_SESSION['fname'] : $fname); ?>" required></center>
+                <center><td><input placeholder="Please enter your first name" type="text" name="fname" value="<?php echo htmlspecialchars(isset($_SESSION['fname']) ? $_SESSION['fname'] : $fname); ?>" required></center>
 
                 <label for="">Middle Name:</label> 
-                <center><input type="text" name="mname" value="<?php echo htmlspecialchars(isset($_SESSION['mname']) ? $_SESSION['mname'] : $mname); ?>" required><br></center>
+                <center><input type="text" name="mname" value="<?php echo htmlspecialchars(isset($_SESSION['mname']) ? $_SESSION['mname'] : $mname); ?>" placeholder="(Optional)"><br></center>
          
                 <label for="">Last Name:</label> 
-                <center><input type="text" name="lname" value="<?php echo htmlspecialchars(isset($_SESSION['lname']) ? $_SESSION['lname'] : $lname); ?>" required></center>
+                <center><input placeholder="Please enter your last name" type="text" name="lname" value="<?php echo htmlspecialchars(isset($_SESSION['lname']) ? $_SESSION['lname'] : $lname); ?>" required></center>
 
                 <label for="">Email:</label> 
-                <center><input type="email" name="email" value="<?php echo htmlspecialchars(isset($_SESSION['email']) ? $_SESSION['email'] : $email); ?>" required></center>
+                <center><input placeholder="Please enter your email" type="email" name="email" value="<?php echo htmlspecialchars(isset($_SESSION['email']) ? $_SESSION['email'] : $email); ?>" required></center>
 
                 <label for="">Contact Number:</label>
-                <center><input type="number" name="cpnum" value="<?php echo htmlspecialchars(isset($_SESSION['cpnum']) ? $_SESSION['cpnum'] : $cpnum); ?>" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" required></center>
+                <center><input placeholder="09XX-XXX-XXXX" type="number" name="cpnum" value="<?php echo htmlspecialchars(isset($_SESSION['cpnum']) ? $_SESSION['cpnum'] : $cpnum); ?>" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" required></center>
 
-                <label for="">Password:</label> 
-                <center><input type="password" name="pass" required></center>
+                <label for="">Password: <p style='color: gray; margin-top: 10px; margin-left: 20px; font-size: 13px;'>Password must be at least 8 characters long and contain at least one uppercase letter, <br> one lowercase letter, and one number.</p> </label> 
+                <center><input placeholder="Type your password" type="password" name="pass" required></center>
 
                 <label for="">Confirm Password:</label> 
-                <center><input type="password" name="cpass" required></center>
+                <center><input placeholder="Re-enter your password" type="password" name="cpass" required></center>
 <br><br><hr> <br><br>               
                 <label for="">Date of Birth:</label> 
                 <center><input type="date" name="bdate" value="<?php echo htmlspecialchars(isset($_SESSION['bdate']) ? $_SESSION['bdate'] : $bdate); ?>" required></center>
   
                 <label for="">Place of Birth:</label> 
-                <center><input type="text" name="placeofbirth" value="<?php echo htmlspecialchars(isset($_SESSION['placeofbirth']) ? $_SESSION['placeofbirth'] : $placeofbirth); ?>" required></center>
+                <center><input placeholder="Please enter your place of birth" type="text" name="placeofbirth" value="<?php echo htmlspecialchars(isset($_SESSION['placeofbirth']) ? $_SESSION['placeofbirth'] : $placeofbirth); ?>" required></center>
                 
                 <label for="">Current Address:</label> 
-                <center><input type="text" name="homeaddress" value="<?php echo htmlspecialchars(isset($_SESSION['homeaddress']) ? $_SESSION['homeaddress'] : $homeaddress); ?>" required></center> 
+                <center><input placeholder="Please enter your current address"  type="text" name="homeaddress" value="<?php echo htmlspecialchars(isset($_SESSION['homeaddress']) ? $_SESSION['homeaddress'] : $homeaddress); ?>" required></center> 
 
-                <label for="">Sex</label>
+                <label for="">Sex:</label>
                 <center><select name="gender" id="gender" required>
                         <option value="">-Select Sex-</option>
                         <option value="Male" <?php if(htmlspecialchars(isset($_SESSION['gender']) ? $_SESSION['gender'] : $gender)){echo "selected";} ?>>Male</option>
@@ -397,15 +397,15 @@ hr{
                     </select></center>
                     
                 <label for="" >Religion:</label> 
-                <center><input type="text" name="religion" id="religion" value="<?php echo htmlspecialchars(isset($_SESSION['religion']) ? $_SESSION['religion'] : $religion); ?>" required></center>
+                <center><input placeholder="Please enter your religion" type="text" name="religion" id="religion" value="<?php echo htmlspecialchars(isset($_SESSION['religion']) ? $_SESSION['religion'] : $religion); ?>" required></center>
       
-                <label for="">Height:</label> 
-                <center><input type="number" name="height" id="height" step='any' value="<?php echo htmlspecialchars(isset($_SESSION['height']) ? $_SESSION['height'] : $height); ?>" required></center>
+                <label for="">Height: <i>(cm)</i></label> 
+                <center><input type="number" placeholder="Please type your height" name="height" id="height" step='any' value="<?php echo htmlspecialchars(isset($_SESSION['height']) ? $_SESSION['height'] : $height); ?>" required></center>
 
 <br><br><hr> <br><br>
 
                 <label for="">LRN:</label> <br>
-                <center><input type="number" name="lrn" value="<?php echo htmlspecialchars(isset($_SESSION['lrn']) ? $_SESSION['lrn'] : $lrn); ?>" required></center>
+                <center><input type="number" placeholder="Please enter your Learner Reference Number" name="lrn" value="<?php echo htmlspecialchars(isset($_SESSION['lrn']) ? $_SESSION['lrn'] : $lrn);?>" maxlength="12" required></center>
 
                 <label for="block">Block:</label>
                 <center><select id="block" name="block" required>

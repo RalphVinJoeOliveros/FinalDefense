@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if(isset($_SESSION['email'])) {
+if(isset($_SESSION['ID'])) {
   echo "<script>window.location='studentslist.php'; </script>";
   die();
 }elseif(isset($_SESSION['department'])) {
@@ -171,7 +171,7 @@ $coordinator = mysqli_fetch_array($check1);
   <div class="firsttable" style='margin-left: -40px;'> 
     <div class="box">
       <div>
-        <img src="uploads/<?php echo $students['picture']; ?>" width="110" height="110" class="picture">
+        <img src="uploads/<?php if($students['picture'] == ""){ echo "silhouette.png";} else { echo $students['picture']; }?>" width="110" height="110" class="picture">
       </div>
       <div>
         <h4 class="mname" style='margin-top: 10px;'><?php echo $students['fname'] . "<br>" . $students['mname'] . " " . $students['lname']; ?></h4>

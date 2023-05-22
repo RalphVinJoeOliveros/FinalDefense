@@ -1,6 +1,6 @@
 <?php
 include 'capstone_database.php';
-if(isset($_SESSION['email'])) {
+if(isset($_SESSION['ID'])) {
     echo "<script>window.location='studentslist.php'; </script>";
     die();
   }elseif(isset($_SESSION['department'])) {
@@ -132,7 +132,12 @@ body {
 					$imagesql = "SELECT * FROM students WHERE lrn = '" . $_SESSION['lrn'] . "'";
 					$imagequery = mysqli_query($mysqli, $imagesql);
 						if($students = mysqli_fetch_array($imagequery)){
-						echo "<a style='color: black;' href='#' data-toggle='dropdown' class='nav-link dropdown-toggle user-action'><img src='uploads/" . $students['picture'] . "' width = '200' height = '200' class='avatar' alt='Avatar'>" . $students['fname'] . "<b class='caret'></b></a>";
+							if($students['picture'] == ""){
+								$picture = "silhouette.png";
+							} else {
+								$picture = $students['picture'];
+							}
+						echo "<a style='color: black;' href='#' data-toggle='dropdown' class='nav-link dropdown-toggle user-action'><img src='uploads/$picture' width = '200' height = '200' class='avatar' alt='Avatar'>" . $students['fname'] . "<b class='caret'></b></a>";
 						}
 				}
 				picture(); 

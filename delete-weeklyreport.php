@@ -1,13 +1,13 @@
 <?php
 session_start();
-if(isset($_SESSION['email'])) {
-  echo "<script>alert('ACCESS DENIED! Only logged in Grade 12 Intern Students can access this page.'); window.location='studentslist.php'; </script>";
+if(isset($_SESSION['ID'])) {
+  echo "<script>window.location='studentslist.php'; </script>";
   die();
 }elseif(isset($_SESSION['department'])) {
-  echo "<script>alert('ACCESS DENIED! Only logged in Grade 12 Intern Students can access this page.'); window.location='department-studentslist.php'; </script>";
+  echo "<script>window.location='department-studentslist.php'; </script>";
   die();
 } elseif(!isset($_SESSION['lrn'])) {
-    echo "<script>alert('ACCESS DENIED! Only logged in Grade 12 Intern Students can access this page.'); window.location='index.php'; </script>";
+    echo "<script>window.location='index.php'; </script>";
     die();
 }
     $id = $_POST['userid'];

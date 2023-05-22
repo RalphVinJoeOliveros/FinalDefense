@@ -5,7 +5,7 @@
       }elseif(isset($_SESSION['department'])) {
       echo "<script>window.location='department-studentslist.php'; </script>";
       die();
-      } elseif(!isset($_SESSION['email'])) {
+      } elseif(!isset($_SESSION['ID'])) {
         echo "<script>window.location='index.php'; </script>";
         die();
       }
@@ -82,6 +82,7 @@
   if(isset($_POST['submit'])){
     $startDate = $_POST['startdate'];
     $department = $_POST['Department'];
+    $hrs = $_POST['hrs'];
     if(isset($_POST['Schedule']) == null){
       $schedule = null;
     }else{
@@ -89,7 +90,7 @@
     }
     $lrn = $_POST['lrn'];                                  
     
-    $sql = "UPDATE students SET startdate = '$startDate', department = '$department', schedule = '$schedule' WHERE lrn = '$lrn'";
+    $sql = "UPDATE students SET startdate = '$startDate', department = '$department', schedule = '$schedule', hrs = '$hrs' WHERE lrn = '$lrn'";
 
     if(mysqli_query($mysqli, $sql)){
       echo "<script>alert('Successfully Assigned!')</script>";

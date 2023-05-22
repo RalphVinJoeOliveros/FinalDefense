@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION['lrn'])) {
     echo "<script>window.location='student-landing-page.php'; </script>";
     die();
-  } elseif(isset($_SESSION['email'])) {
+  } elseif(isset($_SESSION['ID'])) {
       echo "<script>window.location='studentslist.php'; </script>";
       die();
   } elseif (!isset($_SESSION['department'])) {
@@ -444,12 +444,13 @@ h1{
                 $row = mysqli_fetch_array($result);
             ?>
             <br><h1 align=center>TRAINEE'S PERFORMANCE EVALUATION</h1><br>
-        
-           
+        <div class="container" >
+           <div class="container-fixed" style='margin-left: -120px;'>
+         
             <div class="text-left p-3">
                 <h4 style='margin-left: 50px;'>Total Percentage: <?php echo $row['total'] . "%"; ?></h4>
             </div>
-
+   <div style='display: flex;'>
             <form action="" method="POST">
                 <div style='display: flex;'>
                     <div class="card mb-3" style="margin-left: 40px;">
@@ -562,8 +563,11 @@ h1{
                             </div>
                         </div>
                             <input type="hidden" name="id" value="<?php echo $row['lrn']; ?>">
-                            <br><center><input type="submit" value="Update" name="updateeval" class="btn btn-primary"></center>
+                            <br><center><input type="submit" value="Update" name="updateeval" class="btn btn-primary"></center><br>
                     <br></form>
+                </div>
+                </div>
+                    </div>
                 </div>
             </div>
 </body>

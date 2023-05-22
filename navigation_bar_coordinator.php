@@ -5,7 +5,7 @@
 	  }elseif(isset($_SESSION['department'])) {
 		echo "<script>window.location='department-studentslist.php'; </script>";
 		die();
-	  } elseif(!isset($_SESSION['email'])) {
+	  } elseif(!isset($_SESSION['ID'])) {
 		  echo "<script>window.location='index.php'; </script>";
 		  die();
 	  }
@@ -128,7 +128,7 @@ body {
 			<div class="nav-item dropdown">
 				<?php
 					include "capstone_database.php";
-						$sequel = "SELECT * FROM coordinator WHERE `email` = '".$_SESSION['email']."'";
+						$sequel = "SELECT * FROM coordinator WHERE `ID` = '".$_SESSION['ID']."'";
 						$result = mysqli_query($mysqli, $sequel);
 						$row = mysqli_fetch_assoc($result);
 

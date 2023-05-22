@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['email'])) {
+if(isset($_SESSION['ID'])) {
   echo "<script>window.location='studentslist.php'; </script>";
   die();
 }elseif(isset($_SESSION['department'])) {
