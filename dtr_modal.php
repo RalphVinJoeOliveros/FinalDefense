@@ -214,14 +214,22 @@ label{
         }
     }
     $id = id();
-
-    $sql = "INSERT INTO dtr (lrn, id, date_, time_in, time_out, numofhrs) VALUES ('$lrn', '$id', '$date', '$time_in', '00:00:00', '0')";
-    $check = mysqli_query($mysqli, $sql);
-    
-    if($check) {
-        echo "<script>alert('Successfully added!')</script>";
-        echo "<script>window.location='dtr.php'</script>";
-    }
+    $sqlreference = "SELECT * FROM students WHERE lrn = '$lrn'";
+    $queryreference = mysqli_query($mysqli, $sqlreference);
+    $rowreference = mysqli_fetch_array($queryreference);
+    $referenceDate = nl2br(date_format(date_create($rowreference['startdate']), 'F d, Y' . " " . 'l'));
+  
+    if ($date < $referenceDate) {
+      echo "<script>alert('Error: Date cannot be before $referenceDate'); window.location='dtr.php'</script>";
+    }else {
+      $sql = "INSERT INTO dtr (lrn, id, date_, time_in, time_out, numofhrs) VALUES ('$lrn', '$id', '$date', '$time_in', '00:00:00', '0')";
+      $check = mysqli_query($mysqli, $sql);
+      
+      if($check) {
+          echo "<script>alert('Successfully added!')</script>";
+          echo "<script>window.location='dtr.php'</script>";
+      }
+  }
 }
   if(isset($_POST['updatedtr'])){
       $id = $_POST['id'];
@@ -275,7 +283,7 @@ if(isset($_POST['add'])){
   $referenceDate = nl2br(date_format(date_create($rowreference['startdate']), 'F d, Y' . " " . 'l'));
 
   if ($date_ < $referenceDate) {
-    echo "<script>alert('Error: Date cannot be before $referenceDate'); window.location='weeklyreportform.php'</script>";
+    echo "<script>alert('Error: Date cannot be before $referenceDate'); window.location='dtr.php'</script>";
   }else {
     $sql = "INSERT INTO dtr (lrn, id, date_, time_in, time_out, numofhrs) VALUES ('$lrn', '$id', '$date_', '$time_in', '00:00:00', '0')";
     $check = mysqli_query($mysqli, $sql);
