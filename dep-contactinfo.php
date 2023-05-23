@@ -70,7 +70,7 @@
                 <div class="card-body">
                     <h5 class="card-title">OJT Coordinator Contact Information</h5>
                     <div class="text-center">
-                        <img src="uploads/<?php if($coor['picture'] == ""){ echo "silhouette.png";} else { echo $coor['picture']; } ?>" alt="teacher" width="100px" height="100px" class="rounded">
+                        <img src="uploads/<?php if($coor['picture'] == ""){ echo "silhouette.png";} else { echo $coor['picture']; } ?>" alt="Coordinator Photo" width="100px" height="100px" class="rounded">
                     </div>
                         <small class="text-muted">Coordinator's Name</small>
                             <h6><?php echo $coor['first_name'] . " " . $coor['last_name'] ?></h6>
