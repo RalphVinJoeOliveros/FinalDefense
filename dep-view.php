@@ -106,7 +106,6 @@ header{
 	color: #7b7b7b;
 	margin-bottom: 5px;
 	font-size: 15px;
-	margin-left: -15px;
 }
 .fa{
 	color: #151b29;
