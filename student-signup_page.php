@@ -137,7 +137,7 @@ if(isset($_SESSION['lrn'])){
             $evaluationResult = $evaluation_stmt->execute([$lrn]);
 
             if($registerResult && $evaluationResult){
-            echo "<script>alert('Your account has been registered! Please wait for 1-3 business days for approval.')</script>";
+            echo "<script>alert('Your account has been registered! Please wait for approval.')</script>";
             echo "<script>window.location.href='index.php'</script>";
             unset($_SESSION['fname']);
             unset($_SESSION['mname']);

@@ -260,7 +260,7 @@ input[type=submit]{
                         <label for="">Password:</label>
                     </div>
 
-                    <input type="submit" value="LOG IN" name="Submit"> <br><br><br>
+                    <input type="submit" value="LOGIN" name="Submit"> <br><br><br>
 
                       <div class="forget">
                         <label for="">Don't have an account? <a onclick="window.location.href='student-signup_page.php'"> Sign up here.</a></label>
