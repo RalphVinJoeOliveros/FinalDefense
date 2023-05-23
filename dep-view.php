@@ -298,11 +298,8 @@ h1{
                             $total = $dtr['total'];
                             $remaining = ensure_positive($hrs - $total);
             
-                                if($remaining <= 0){
-                                    return "<p style='color: green;'>Completed</p>";
-                                }else{
-                                    return "" . $remaining . " Hours";
-                                }
+                            
+                            return "" . $remaining . " Hour/s";
                         }
                     
                         $lrn = $_GET['lrn'];
