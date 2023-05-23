@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 03:56 PM
+-- Generation Time: May 23, 2023 at 04:48 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -102,10 +102,10 @@ INSERT INTO `dtr` (`lrn`, `id`, `date_`, `time_in`, `time_out`, `numofhrs`, `rem
 ('128094120067', 283960, '2023-05-29', '09:00:00', '17:00:00', 8, ''),
 ('128094120067', 375988, '2023-04-12', '09:00:00', '17:00:00', 8, ''),
 ('128094120067', 521060, '2023-04-18', '09:00:00', '17:00:00', 8, ''),
-('128094120067', 527375, '2023-04-10', '09:00:00', '21:00:00', 12, ''),
+('128094120067', 527375, '2023-04-10', '09:00:00', '21:00:00', 12, 'Approved'),
 ('128094120067', 583906, '2023-04-11', '09:00:00', '17:00:00', 8, ''),
-('128094120067', 661768, '2023-04-03', '09:00:00', '17:00:00', 8, ''),
-('128094120067', 673058, '2023-04-04', '09:00:00', '17:00:00', 8, ''),
+('128094120067', 661768, '2023-04-03', '09:00:00', '17:00:00', 8, 'Approved'),
+('128094120067', 673058, '2023-04-04', '09:00:00', '17:00:00', 8, 'Approved'),
 ('128094120067', 681963, '2023-04-17', '09:00:00', '17:00:00', 8, ''),
 ('128094120067', 865979, '2023-04-24', '09:00:00', '17:18:00', 8, ''),
 ('463009150259', 924272, '2023-05-01', '09:00:00', '21:00:00', 12, '');
@@ -147,7 +147,7 @@ INSERT INTO `evaluation` (`lrn`, `jobKnowledge`, `qualityOfWork`, `quantityOfWor
 (128092112370, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
 (128093111248, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
 (128094100270, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
-(128094120067, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
+(128094120067, 14, 13, 12, 10, 9, 8, 10, 5, 5, 5, 'Good Job', 'Learn More', 'Ralph', 'Supervisor', 91),
 (128095133250, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
 (128104100036, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
 (128111100021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
@@ -329,7 +329,7 @@ INSERT INTO `weeklyreport` (`lrn`, `id`, `weeknum`, `date_`, `hrs`, `descript_of
 ('128094120067', 303856, 'Week 9', '2023-05-29', 15, '-	Learning new tools and application for editing software.\r\n-	Gain new experience in regards of making flyers.', 'DONE', '2023-04-25', ''),
 ('128094120067', 341904, 'Week 2', '2023-04-11', 8, '-	I have learned to design and how to print lanyards.\r\n-	I have learned easy tips in order to layout tarps creatively.', 'DONE', '2023-04-11', ''),
 ('128094120067', 399880, 'Week 2', '2023-04-12', 8, '-Lay-outing AMLAG lanyards, lay-outing tarpaulins, lay-outing PVC IDs.\r\n-Printing and lay-outing St. Peter tarpaulins.', 'DONE', '2023-04-12', ''),
-('128094120067', 601953, 'Week 1', '2023-04-03', 8, '-Lay-outing IDs and tarpaulins, printing DTI papers, Lay-outing banners of Go Hotel.\r\n\r\n-Lay-outing banners and tarpaulins.', 'DONE', '2023-04-03', ''),
+('128094120067', 601953, 'Week 1', '2023-04-03', 8, '-Lay-outing IDs and tarpaulins, printing DTI papers, Lay-outing banners of Go Hotel.\r\n\r\n-Lay-outing banners and tarpaulins.', 'DONE', '2023-04-03', 'Approved'),
 ('128094120067', 625119, 'Week 3', '2023-04-18', 8, '-Printing ICI and AMLAG lanyards.\r\n-Lay-outing and printing tarps of C1 Diaper Store.', 'DONE', '2023-04-18', ''),
 ('128094120067', 626824, 'Week 1', '2023-04-04', 8, '-I have learned to layout IDs and printing papers in a faster way.\r\n-Enhancing my skills in creative way to design tarps.', 'DONE', '2023-04-04', ''),
 ('463009150259', 702637, 'Week 1', '2023-05-01', 8, '-	I have learned to design and how to print lanyards.\r\n-	I have learned easy tips in order to layout tarps creatively.', 'NOT DONE', '2023-05-01', ''),
