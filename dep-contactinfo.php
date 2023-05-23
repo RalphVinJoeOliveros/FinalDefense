@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Your Contact Information</h5>
                     <div class="text-center">
-                        <img src="uploads/<?php if($dep['picture'] == ""){ echo "silhouette.png";} else { echo $dep['picture']; } ?>" alt="teacher" width="100px" height="100px" class="rounded">
+                        <img src="uploads/<?php if($dep['picture'] == ""){ echo "silhouette.png";} else { echo $dep['picture']; } ?>" alt="Logo" width="100px" height="100px" class="rounded">
                     </div>
                         <small class="text-muted">Industry Name</small>
                             <h6><?php echo $dep['department'] ?></h6>

@@ -117,7 +117,7 @@ body {
                     <img src="uploads/<?php echo $row['picture'] ?>" alt="Upload Photo">
                     <input type="file" id="upload-pic" name="picture" accept="2x2/*" onchange="loadPreview(event)">
                 </div>
-                <span class="font-weight-bold"><?php echo $row['department']; ?></span><span class="text-black-50"><?php echo "Username: " . $row['username'] ?></span><span> </span></div>
+                <span style='margin-top: 10px;' class="font-weight-bold"><?php echo $row['department']; ?></span><span class="text-black-50"><?php echo "Username: " . $row['username'] ?></span><span> </span></div>
         </div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
@@ -126,25 +126,25 @@ body {
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12">
-                        <label class="labels">Department Name</label>
+                        <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Department Name</label>
                         <input type="text" class="form-control" placeholder="Input Department Name" value="<?php echo $row['department'] ?>" name="dep-name">
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12">
-                        <label class="labels">Email Address</label>
+                        <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Email Address</label>
                         <input type="email" class="form-control" value="<?php echo $row['email'] ?>"  placeholder="enter email address" name="email" required>
                     </div>
                     <div class="col-md-12">
-                        <label class="labels">Mobile Number</label>
+                        <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Mobile Number</label>
                         <input type="text" class="form-control" placeholder="enter phone number" value="<?php echo $row['number'] ?>" name="number">
                     </div>
                     <div class="col-md-12">
-                        <label class="labels">Current Address</label>
+                        <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Current Address</label>
                         <input type="text" class="form-control" placeholder="enter current address" value="<?php echo $row['address'] ?>" name="address">
                     </div>
                     <div class="col-md-12">
-                        <label class="labels">Facebook Name/Messenger Name</label>
+                        <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Facebook Name/Messenger Name</label>
                         <input type="text" class="form-control" placeholder="Enter Facebook name/Messenger name" value="<?php echo $row['fb'] ?>" name="fb">
                     </div>
                 </div>
@@ -152,14 +152,14 @@ body {
         </div>
         <div class="col-md-4">
             <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span>Change Password</span></div><br>
+                <div class="d-flex justify-content-between align-items-center experience"><span><h4 style='margin-left: 16px;'>Change Password</h4> </span></div><br>
                 <div class="col-md-12"><label class="labels">Current Password</label><input type="password" class="form-control" placeholder="Type current password" name="currentpass" value=""></div> <br>
                 <div class="col-md-12"><label class="labels">New Password</label><input type="password" class="form-control" placeholder="Type new password" name="newpass" value=""></div> <br>
                 <div class="col-md-12"><label class="labels">Confirm New Password</label><input type="password" class="form-control" placeholder="Confirm new password" name="confirmpass" value=""></div> <br>
             </div>
         </div>
     </div>
-    <div class="mt-5 text-center"><input type="submit" class="btn btn-success" value="Save Changes" name="submit"></div>
+    <div class="mt-5 text-center"><input type="submit" class="btn-success" value="Save Changes" name="submit"></div>
 <br>
 </div>
 </div>
