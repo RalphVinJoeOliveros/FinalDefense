@@ -62,7 +62,7 @@
                         <small class="text-muted p-t-30 db">Email Address</small>
                             <h6><?php if($dep['email'] == ""){ echo "N/A";} else {echo $dep['email'];} ?></h6>
                         <small class="text-muted p-t-30 db">Phone Number/Telephone Number</small>
-                            <h6><?php if($dep['number'] == ""){ echo "N/A";} else {echo "+63 " . $dep['number'];} ?></h6>
+                            <h6><?php if($dep['number'] == ""){ echo "N/A";} else {echo $dep['number'];} ?></h6>
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@
                         <small class="text-muted p-t-30 db">Email Address</small>
                             <h6><?php if($coor['email'] == ""){ echo "N/A";} else {echo $coor['email'];} ?></h6>
                         <small class="text-muted p-t-30 db">Phone Number/Telephone Number</small>
-                            <h6><?php if($coor['cpnum'] == ""){ echo "N/A";} else {echo "+63 " . $coor['cpnum'];} ?></h6>
+                            <h6><?php if($coor['cpnum'] == ""){ echo "N/A";} else {echo $coor['cpnum'];} ?></h6>
                 </div>
                 <?php
         }

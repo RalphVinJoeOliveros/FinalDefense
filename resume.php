@@ -1,6 +1,15 @@
 <?php
+if(isset($_SESSION['ID'])) {
+	echo "<script>window.location='studentslist.php'; </script>";
+	die();
+  }elseif(isset($_SESSION['department'])) {
+	echo "<script>window.location='department-studentslist.php'; </script>";
+	die();
+  } elseif(!isset($_SESSION['lrn'])) {
+	  echo "<script>window.location='index.php'; </script>";
+	  die();
+  }
     include 'capstone_database.php';
-
     $sequel = "SELECT * FROM students WHERE lrn = '".$_SESSION['lrn']."'";
     $result = mysqli_query($mysqli, $sequel);
     $row = mysqli_fetch_assoc($result);
@@ -139,22 +148,6 @@ h6{
 					<?php echo "• " . str_replace(',', '<br>•', $row['qualifications'])  ?>	
 				</ul>
 				<br><br><br>
-				<p class="head" style="margin-top: -20px;">CHARACTER REFERENCE:</p>
-				<ul class="skills">
-					<?php 
-						echo "<b>" . $row['cr1name'] . "</b><br><hr>";
-						echo $row['cr1relation'] . "<br>";
-						echo $row['cr1info'] . "<br>";
-					?>
-				</ul>
-				<br><br>
-				<ul class="skills">
-					<?php 
-						echo "<b>" . $row['cr2name'] . "</b><br><hr>";
-						echo $row['cr2relation'] . "<br>";
-						echo $row['cr2info'] . "<br>";
-					?>
-				</ul>
 		</div>
 			<div class="line"></div>
 		<div class="col">
@@ -183,6 +176,28 @@ h6{
 
 			</div>
 		</div>
+		<p class="head" align="center">CHARACTER REFERENCES:</p><hr><br>
+		<div class="row">
+			<div class="col">
+				<ul class="skills">
+					<?php 
+						echo "<b>" . $row['cr1name'] . "</b><br><hr>";
+						echo $row['cr1relation'] . "<br>";
+						echo $row['cr1info'] . "<br>";
+					?>
+				</ul>
+			</div>
+			<div class="col">
+				<ul class="skills">
+					<?php 
+						echo "<b>" . $row['cr2name'] . "</b><br><hr>";
+						echo $row['cr2relation'] . "<br>";
+						echo $row['cr2info'] . "<br>";
+					?>
+				</ul>
+			</div>
+		</div>
+		<br><br><br>
 </div>
 
 </div>

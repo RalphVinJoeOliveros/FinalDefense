@@ -203,7 +203,7 @@ padding: 18px;
 			<p class="p2">Intern Student</p>
 		</div>
 <br>
-				<div class="row">
+		<div class="row">
 			<div class="col">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item" role="presentation">
@@ -254,22 +254,6 @@ padding: 18px;
 						<br>
 						<br>
 						<br>
-						<p class="head" style="margin-top: -20px;">CHARACTER REFERENCE:</p>
-						<ul class="skills">
-							<?php 
-								echo "<b>" . $row['cr1name'] . "</b><br><hr>";
-								echo $row['cr1relation'] . "<br>";
-								echo $row['cr1info'] . "<br>";
-							?>
-						</ul>
-						<br><br>
-						<ul class="skills">
-							<?php 
-								echo "<b>" . $row['cr2name'] . "</b><br><hr>";
-								echo $row['cr2relation'] . "<br>";
-								echo $row['cr2info'] . "<br>";
-							?>
-						</ul>
 						</div>
 					</div>
 					<div class="line"></div>
@@ -300,6 +284,27 @@ padding: 18px;
 						<p class="p-4"><?php echo $row['height'] . " cm" ?></p>
 						</div>
 					</div>
+					</div>
+				</div><br>
+				<p class="head" align="center">CHARACTER REFERENCES:</p><hr><br>
+				<div class="row">
+					<div class="col">
+						<ul class="skills">
+							<?php 
+								echo "<b>" . $row['cr1name'] . "</b><br><hr>";
+								echo $row['cr1relation'] . "<br>";
+								echo $row['cr1info'] . "<br>";
+							?>
+						</ul>
+					</div>
+					<div class="col">
+						<ul class="skills">
+							<?php 
+								echo "<b>" . $row['cr2name'] . "</b><br><hr>";
+								echo $row['cr2relation'] . "<br>";
+								echo $row['cr2info'] . "<br>";
+							?>
+						</ul>
 					</div>
 				</div>
 				</div>

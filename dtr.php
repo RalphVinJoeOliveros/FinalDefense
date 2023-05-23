@@ -126,7 +126,7 @@ z-index: 1;
  <table class="text-center" id="dtrprint">
     <thead>
     <tr>
-        <th style='width: 190px;'>DATE</th>
+        <th style='width: 230px;'>DATE</th>
         <th>TIME IN</th>
         <th>TIME OUT</th>
         <th>TOTAL HOURS</th>

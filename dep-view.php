@@ -207,75 +207,77 @@ h1{
                             $result = mysqli_query($mysqli, $sequel);
                             $row = mysqli_fetch_assoc($result);
                         ?>
-                    <div class="clearfix"></div>
-                    <div class="col-div-4">
-                        <div class="content-box">
-                            <p class="head">Contact:</p>
-                            <p class="p3"><i class="fa fa-phone" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['cpnum'] ?></p>
-                            <p class="p3"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['email'] ?></p>
-                            <p class="p3"><i class="fa fa-home" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['homeaddress'] ?></p>
-                            <br/>
-                            <p class="head">MY SKILLS:</p>
-                            <ul class="skills">
-                                <?php echo "• " . str_replace(',', '<br>•', $row['skills'])  ?>
-                            </ul>
-                            <br><br><br>
-                            <p class="head" style="margin-top: -20px;">QUALIFICATIONS:</p>
-                            <ul class="skills">
-                                <?php echo "• " . str_replace(',', '<br>•', $row['qualifications'])  ?>	
-                            </ul>
-                            <br><br><br>
-                            <p class="head" style="margin-top: -20px;">CHARACTER REFERENCE:</p>
-                            <ul class="skills">
-                                <?php 
-                                    echo "<b>" . $row['cr1name'] . "</b><br><hr>";
-                                    echo $row['cr1relation'] . "<br>";
-                                    echo $row['cr1info'] . "<br>";
-                                ?>
-                            </ul>
-                            <br><br>
-                            <ul class="skills">
-                                <?php 
-                                    echo "<b>" . $row['cr2name'] . "</b><br><hr>";
-                                    echo $row['cr2relation'] . "<br>";
-                                    echo $row['cr2info'] . "<br>";
-                                ?>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="line"></div>
-                        <div class="col-div-8">
-                            <div class="content-box">
-                            <p class="head">Objective:</p><hr>
-                            <p class="p3" style="font-size: 14px;"><?php echo $row['objective'] ?><br>
-                            <br><br>
+					<div class="row">
+					<div class="col">
+						<div class="content-box" style="padding-left: 40px;">	
+						<p class="head">Contact:</p><hr>
+						<p class="p3"><i class="fa fa-phone" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['cpnum'] ?></p>
+						<p class="p3"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['email'] ?></p>
+						<p class="p3"><i class="fa fa-home" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['homeaddress'] ?></p>
+						<br/>
+						<p class="head">MY SKILLS:</p>
+						<ul class="skills">
+							<?php echo "• " . str_replace(',', '<br>•', $row['skills'])  ?>
+						</ul>
+						<br>
+						<br>
+						<br>
+						<p class="head" style="margin-top: -20px;">QUALIFICATIONS:</p>
+						<ul class="skills">
+							<?php echo "• " . str_replace(',', '<br>•', $row['qualifications'])  ?>	
+						</ul>
+						<br>
+						<br>
+						<br>
+						<p class="head" style="margin-top: -20px;">CHARACTER REFERENCE:</p>
+						<ul class="skills">
+							<?php 
+								echo "<b>" . $row['cr1name'] . "</b><br><hr>";
+								echo $row['cr1relation'] . "<br>";
+								echo $row['cr1info'] . "<br>";
+							?>
+						</ul>
+						<br><br>
+						<ul class="skills">
+							<?php 
+								echo "<b>" . $row['cr2name'] . "</b><br><hr>";
+								echo $row['cr2relation'] . "<br>";
+								echo $row['cr2info'] . "<br>";
+							?>
+						</ul>
+						</div>
+					</div>
+					<div class="line"></div>
+					<div class="col">
+						<div class="content-box">
 
-                            <p class="head">Personal Information:</p><hr>
+						<p class="head">Personal Information:</p><hr>
 
-                            <h6>DATE OF BIRTH:</h6>
-                            <p class="p-4"><?php echo date_format(date_create($row['bdate']), "F d, Y") ?></p>
+						<h6>DATE OF BIRTH:</h6>
+						<p class="p-4"><?php echo date_format(date_create($row['bdate']), "F d, Y") ?></p>
 
-                            <h6>PLACE OF BIRTH:</h6>
-                            <p class="p-4"><?php echo $row['placeofbirth'] ?></p>
+						<h6>PLACE OF BIRTH:</h6>
+						<p class="p-4"><?php echo $row['placeofbirth'] ?></p>
 
-                            <h6>NATIONALITY:</h6>
-                            <p class="p-4"><?php echo $row['nationality'] ?></p>
+						<h6>NATIONALITY:</h6>
+						<p class="p-4"><?php echo $row['nationality'] ?></p>
 
-                            <h6>GENDER:</h6>
-                            <p class="p-4"><?php echo $row['Gender'] ?></p>
+						<h6>GENDER:</h6>
+						<p class="p-4"><?php echo $row['Gender'] ?></p>
 
-                            <h6>CIVIL STATUS:</h6>
-                            <p class="p-4"><?php echo $row['marital_status'] ?></p>
+						<h6>CIVIL STATUS:</h6>
+						<p class="p-4"><?php echo $row['marital_status'] ?></p>
 
-                            <h6>RELIGION:</h6>
-                            <p class="p-4"><?php echo stripslashes($row['religion']) ?></p>
+						<h6>RELIGION:</h6>
+						<p class="p-4"><?php echo $row['religion'] ?></p>
 
-                            <h6>HEIGHT:</h6>
-                            <p class="p-4"><?php echo $row['height'] . " cm" ?></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+						<h6>HEIGHT:</h6>
+						<p class="p-4"><?php echo $row['height'] . " cm" ?></p>
+						</div>
+					</div>
+					</div>
+				</div>
+				</div>
             <div class="tab-pane fade" id="dtr" role="tabpanel" aria-labelledby="dtr-tab">
                 <br><h1 align = "center">OJT DAILY TIME RECORD</h1><br>
                 <table align = "center" style='border-collapse: collapse; width: 1300px;'> 

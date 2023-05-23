@@ -118,13 +118,13 @@ label{
             $rowreference = mysqli_fetch_array($queryreference);
             $referenceDate = nl2br(date_format(date_create($rowreference['startdate']), 'F d, Y' . " " . 'l'));
                 
-            if ($date_ < $referenceDate) {
+            if ($date_ < $rowreference['startdate']) {
               echo "<script>alert('Error: Date cannot be before $referenceDate'); window.location='weeklyreportform.php'</script>";
             } else {
               $sql = "INSERT INTO weeklyreport (lrn, id, weeknum, date_, hrs, descript_of_task, Progress) VALUES ('$lrn', '$id', '$weeknum', '$date_', '$hrs', '$descript_of_task', '$Progress')";
               $query = mysqli_query($mysqli, $sql);
               if($query){
-                echo "<script>alert('Added Successfully!'); window.location='weeklyreport.php'</script>";
+                echo "<script>alert('Added Successfully!'); window.location='weeklyreportform.php'</script>";
               } else {
                 echo "<script>alert('Failed!'); window.location='weeklyreportform.php'</script>";
               }
@@ -221,14 +221,13 @@ label{
 <?php
     if(isset($_POST['update'])){
       $id = $_POST[ 'id'];
-      $date_ = $_POST['date_'];
       $hrs = $_POST['hrs'];
       $descript_of_task = addslashes($_POST['descript_of_task']);
       $Progress = $_POST['Progress'];
       $dateofcom = $_POST['dateofcom'];
 
 
-      $sql = "UPDATE weeklyreport SET date_ = '$date_', hrs = '$hrs', descript_of_task = '$descript_of_task', Progress = '$Progress', dateofcom = '$dateofcom' WHERE id = '$id'";
+      $sql = "UPDATE weeklyreport SET hrs = '$hrs', descript_of_task = '$descript_of_task', Progress = '$Progress', dateofcom = '$dateofcom' WHERE id = '$id'";
       $check = mysqli_query($mysqli, $sql);
   }
 ?>
