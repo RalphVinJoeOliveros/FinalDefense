@@ -219,7 +219,7 @@ label{
     $rowreference = mysqli_fetch_array($queryreference);
     $referenceDate = nl2br(date_format(date_create($rowreference['startdate']), 'F d, Y' . " " . 'l'));
   
-    if ($date < $referenceDate) {
+    if ($date <  $rowreference['startdate']) {
       echo "<script>alert('Error: Date cannot be before $referenceDate'); window.location='dtr.php'</script>";
     }else {
       $sql = "INSERT INTO dtr (lrn, id, date_, time_in, time_out, numofhrs) VALUES ('$lrn', '$id', '$date', '$time_in', '00:00:00', '0')";
@@ -282,7 +282,7 @@ if(isset($_POST['add'])){
   $rowreference = mysqli_fetch_array($queryreference);
   $referenceDate = nl2br(date_format(date_create($rowreference['startdate']), 'F d, Y' . " " . 'l'));
 
-  if ($date_ < $referenceDate) {
+  if ($date_ < $rowreference['startdate']) {
     echo "<script>alert('Error: Date cannot be before $referenceDate'); window.location='dtr.php'</script>";
   }else {
     $sql = "INSERT INTO dtr (lrn, id, date_, time_in, time_out, numofhrs) VALUES ('$lrn', '$id', '$date_', '$time_in', '00:00:00', '0')";
