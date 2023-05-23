@@ -113,7 +113,7 @@ include "managedepartment_modal.php";
                             if($count == 0) {
                                 echo "<a href='' class='del-btn' data-toggle='modal' data-target='#delModal' data-id='" . $result['ID'] . "'>Delete</a>";
                             } else {
-                                echo "<a href='' class='delete-btn' onclick=\"alert('Unfortunately, you do not have the permission to delete this industry due to the fact that there are currently $count student/s assigned to it.')\">Delete</a>";
+                                echo "<a href='' class='delete-btn' onclick=\"alert('Unfortunately, you do not have permission to delete this industry because there are currently $count student/s assigned to it.')\">Delete</a>";
                             }
                             echo "</td>";
                             echo "</tr>";
