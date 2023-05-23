@@ -119,7 +119,7 @@ select{
                 </div><br>
 
             <label class="label1" for="">Number of Hours Required:</label>
-                <center><input style='margin-top: -1px;' type="number" class="form-control" name="hrs" id="" value="<?php echo $row['hrs']; ?>" min="80"></center><br>
+                <center><input style='margin-top: -1px;' type="number" class="form-control" name="hrs" id="" value="<?php echo $row['hrs']; ?>" min="0"></center><br>
             <input type="hidden" name="lrn" value="<?php echo $_POST['userid']; ?>">
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
