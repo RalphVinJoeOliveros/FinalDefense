@@ -545,7 +545,7 @@ h1{
                 <div class="card border mb-3" style="width: 400px; height: 250px; margin-left: 915px; margin-top: -40px;">
                     <div class="card-header"><h5> Evaluated by:</h5></div>
                         <div class="card-body text-secondary">
-                            <h5 style='margin-top: -10px;' class="card-title">Supervisor: </h5><p style='font-size: 20px; color: black;' class="card-text"><input class="form-control" type="text" name="supervisor" value="<?php echo $row['supervisor']; ?>"></p>
+                            <h5 style='margin-top: -10px;' class="card-title">Name: </h5><p style='font-size: 20px; color: black;' class="card-text"><input class="form-control" type="text" name="supervisor" value="<?php echo $row['supervisor']; ?>"></p>
                             <h5 class="card-title">Designation: </h5><p style='font-size: 20px; color: black;' class="card-text"><input class="form-control" type="text" name="designation" value="<?php echo $row['designation']; ?>"></p>
                         </div>
                     </div>

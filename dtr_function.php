@@ -32,11 +32,9 @@
                 $total = $dtr['total'];
                 $remaining = ensure_positive($hrs - $total);
 
-                    if($remaining <= 0){
-                        return "<p style='color: green;'>Completed</p>";
-                    }else{
-                        return "<p>" . $remaining . " Hours</p>";
-                    }
+                
+                return "<p>" . $remaining . " Hour/s</p>";
+                
             }
              while($students = mysqli_fetch_array($query)){
                  echo "<tr>";

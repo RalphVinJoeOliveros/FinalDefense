@@ -136,11 +136,16 @@ body {
 			<div class="nav-item dropdown">
 				<?php
 					include 'capstone_database.php';
+					function firstName($string) {
+						$word = strtok($string, ' ');
+						return $word !== false ? $word : '';
+					}
+
 					$myseq = "SELECT * FROM `departments` WHERE `ID` ='" . $_SESSION['department'] . "'";
 					$result = mysqli_query($mysqli, $myseq);
 					$row = mysqli_fetch_assoc($result);
 				?>
-				<a style="color: black;" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="uploads/<?php echo $row['picture'] ?>" class="avatar" alt="Avatar"><?php echo $row['department'] ?><b class="caret"></b></a>
+				<a style="color: black;" href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="uploads/<?php echo $row['picture'] ?>" class="avatar" alt="Avatar"><?php echo firstName($row['department']); ?><b class="caret"></b></a>
 				<div class="dropdown-menu dropdown-menu-right" style='margin-top: 7px;'>
 					<a href="dep-profilesettings.php" class="dropdown-item"><i class="fa fa-user-o"></i> Profile Settings</a></a>
 

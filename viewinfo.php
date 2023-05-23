@@ -87,6 +87,7 @@
 .fa{
 	color: #151b29;
 	font-size: 20px;
+	padding-left: 20px;
 }
 .skills{
 	margin-left: -20px;
@@ -220,11 +221,21 @@ padding: 18px;
 				</ul>
 				<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="Resume" role="tabpanel" aria-labelledby="Resume-tab">
+				<div class="container">
+					<div class="row">
 					<div class="clearfix"></div>
-					<div class="col-div-4">
+						<div class="col">
 						<div class="content-box" style="padding-left: 40px;">
-							
-						<p class="head">Contact:</p>
+							<p class="head">Objective:</p><hr>
+							<p class="p3" style="font-size: 14px; padding-left: 15px;"><?php echo $row['objective'] ?><br>
+							<br>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+					<div class="col">
+						<div class="content-box" style="padding-left: 40px;">	
+						<p class="head">Contact:</p><hr>
 						<p class="p3"><i class="fa fa-phone" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['cpnum'] ?></p>
 						<p class="p3"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['email'] ?></p>
 						<p class="p3"><i class="fa fa-home" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['homeaddress'] ?></p>
@@ -262,11 +273,8 @@ padding: 18px;
 						</div>
 					</div>
 					<div class="line"></div>
-					<div class="col-div-8">
+					<div class="col">
 						<div class="content-box">
-						<p class="head">Objective:</p><hr>
-						<p class="p3" style="font-size: 14px;"><?php echo $row['objective'] ?><br>
-						<br><br>
 
 						<p class="head">Personal Information:</p><hr>
 
@@ -292,6 +300,8 @@ padding: 18px;
 						<p class="p-4"><?php echo $row['height'] . " cm" ?></p>
 						</div>
 					</div>
+					</div>
+				</div>
 				</div>
 				<div class="tab-pane fade" id="DTR" role="tabpanel" aria-labelledby="DTR-tab">
 					<br><h1 align = "center">OJT DAILY TIME RECORD</h1><br>

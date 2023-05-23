@@ -85,15 +85,14 @@
 	color: #7b7b7b;
 	margin-bottom: 5px;
 	font-size: 15px;
-	margin-left: -15px;
 }
 .fa{
 	color: #151b29;
 	font-size: 20px;
 }
 .skills{
-	margin-left: -20px;
-	    margin-bottom: 0px;
+	margin-left: -15px;
+	margin-bottom: 0px;
 }
 .skills li{
 	padding: 5px;
@@ -108,94 +107,85 @@ h6{
 </head>
 
 <body>
-
-	<div class="main">
+<div class="container main">
 		<div class="top-section">
 			<img src="uploads/<?php echo $row['picture'] ?>" class="profile" />
 			<p class="p1"><?php echo $row['fname'] . " " . $row['mname'] . " " . $row['lname']; ?></span></p>
 			<p class="p2">Intern Student</p>
 		</div>
-		<div class="clearfix"></div>
-
-		<div class="col-div-4">
-			<div class="content-box" style="padding-left: 40px;">
-
-				
-			<p class="head">Contact:</p>
-			<p class="p3"><i class="fa fa-phone" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['cpnum'] ?></p>
-			<p class="p3"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['email'] ?></p>
-			<p class="p3"><i class="fa fa-home" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['homeaddress'] ?></p>
-			
-
-			<br/>
-			<p class="head">MY SKILLS:</p>
-			<ul class="skills">
-                <?php echo "• " . str_replace(',', '<br>•', $row['skills'])  ?>
-			</ul>
+<div class="row">
+<div class="clearfix"></div>
+		<div class="col">
+				<br>
+				<h4>Objective:</h4>
+				<p class="p3" style="font-size: 14px;"><?php echo $row['objective'] ?><br>
 			<br>
-			<br>
-			<br>
-			<p class="head" style="margin-top: -20px;">QUALIFICATIONS:</p>
-            <ul class="skills">
-                <?php echo "• " . str_replace(',', '<br>•', $row['qualifications'])  ?>	
-            </ul>
-			<br>
-			<br>
-			<br>
-            <p class="head" style="margin-top: -20px;">CHARACTER REFERENCE:</p>
-            <ul class="skills">
-                <?php 
-                    echo "<b>" . $row['cr1name'] . "</b><br><hr>";
-                    echo $row['cr1relation'] . "<br>";
-                    echo $row['cr1info'] . "<br>";
-                ?>
-            </ul>
-            <br><br>
-            <ul class="skills">
-                <?php 
-                    echo "<b>" . $row['cr2name'] . "</b><br><hr>";
-                    echo $row['cr2relation'] . "<br>";
-                    echo $row['cr2info'] . "<br>";
-                ?>
-            </ul>
-			</div>
 		</div>
-		<div class="line"></div>
-		<div class="col-div-8">
-			<div class="content-box">
-			<p class="head">Objective:</p><hr>
-			<p class="p3" style="font-size: 14px;"><?php echo $row['objective'] ?><br>
-			<br><br>
+</div>
+<div class="row">
+		<div class="col">
+				<p class="head">Contact:</p><hr>
+				<p class="p3"><i class="fa fa-phone" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['cpnum'] ?></p>
+				<p class="p3"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['email'] ?></p>
+				<p class="p3"><i class="fa fa-home" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['homeaddress'] ?></p>
+				<br/>
+				<p class="head">MY SKILLS:</p>
+					<ul class="skills">
+						<?php echo "• " . str_replace(',', '<br>•', $row['skills'])  ?>
+					</ul>
+				<br><br><br>
+				<p class="head" style="margin-top: -20px;">QUALIFICATIONS:</p>
+				<ul class="skills">
+					<?php echo "• " . str_replace(',', '<br>•', $row['qualifications'])  ?>	
+				</ul>
+				<br><br><br>
+				<p class="head" style="margin-top: -20px;">CHARACTER REFERENCE:</p>
+				<ul class="skills">
+					<?php 
+						echo "<b>" . $row['cr1name'] . "</b><br><hr>";
+						echo $row['cr1relation'] . "<br>";
+						echo $row['cr1info'] . "<br>";
+					?>
+				</ul>
+				<br><br>
+				<ul class="skills">
+					<?php 
+						echo "<b>" . $row['cr2name'] . "</b><br><hr>";
+						echo $row['cr2relation'] . "<br>";
+						echo $row['cr2info'] . "<br>";
+					?>
+				</ul>
+		</div>
+			<div class="line"></div>
+		<div class="col">
+				<p class="head">Personal Information:</p><hr>
 
-			<p class="head">Personal Information:</p><hr>
+				<h6>DATE OF BIRTH:</h6>
+				<p class="p-4"><?php echo date_format(date_create($row['bdate']), "F d, Y") ?></p>
 
-			<h6>DATE OF BIRTH:</h6>
-			<p class="p-4"><?php echo date_format(date_create($row['bdate']), "F d, Y") ?></p>
+				<h6>PLACE OF BIRTH:</h6>
+				<p class="p-4"><?php echo $row['placeofbirth'] ?></p>
 
-            <h6>PLACE OF BIRTH:</h6>
-			<p class="p-4"><?php echo $row['placeofbirth'] ?></p>
+				<h6>NATIONALITY:</h6>
+				<p class="p-4"><?php echo $row['nationality'] ?></p>
 
-            <h6>NATIONALITY:</h6>
-			<p class="p-4"><?php echo $row['nationality'] ?></p>
+				<h6>GENDER:</h6>
+				<p class="p-4"><?php echo $row['Gender'] ?></p>
 
-            <h6>GENDER:</h6>
-			<p class="p-4"><?php echo $row['Gender'] ?></p>
+				<h6>CIVIL STATUS:</h6>
+				<p class="p-4"><?php echo $row['marital_status'] ?></p>
 
-            <h6>CIVIL STATUS:</h6>
-			<p class="p-4"><?php echo $row['marital_status'] ?></p>
+				<h6>RELIGION:</h6>
+				<p class="p-4"><?php echo $row['religion'] ?></p>
 
-            <h6>RELIGION:</h6>
-			<p class="p-4"><?php echo $row['religion'] ?></p>
-
-            <h6>HEIGHT:</h6>
-			<p class="p-4"><?php echo $row['height'] . " cm" ?></p>
+				<h6>HEIGHT:</h6>
+				<p class="p-4"><?php echo $row['height'] . " cm" ?></p>
 
 			</div>
 		</div>
+</div>
 
-		<div class="clearfix"></div>
-
-	</div>
-		<br/>
-		
+</div>
+<br>
 </body>
+</html>

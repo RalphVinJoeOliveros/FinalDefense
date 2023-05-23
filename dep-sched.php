@@ -22,7 +22,7 @@ include 'capstone_database.php';
                 <h6 class="text-muted">Full Name</h6>
             </div>
             <div class="col">
-                <p><?php echo $students['fname'] . " " . $students['lname']; ?></p>
+                <p><?php echo $students['fname'] . " " . $students['mname'] . " " . $students['lname']; ?></p>
             </div>
         </div>
         <div class="row">

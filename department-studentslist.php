@@ -79,13 +79,15 @@
                     <table id="table" class="display nowrap" style="width: 100%;">
                         <thead>
                             <tr>
+                                <th>Remarks</th>
                                 <th>LRN</th>
                                 <th>Full Name</th>
                                 <th>Block</th>
                                 <th>School Year</th>
                                 <th>Start Date</th>
                                 <th>Schedule</th>
-                                <th>Remarks</th>
+                                <th>Hours Required</th>
+                                <th>Hours Rendered</th>
                                 <th>Info</th>
                                 <th>Edit</th>
                             </tr>
@@ -111,9 +113,14 @@
                                 $sequel = "SELECT * FROM departments WHERE `ID` = '$dep'";
                                 $department = mysqli_fetch_array(mysqli_query($mysqli, $sequel));
                                 echo "<tr>";
-                                echo "<td>". $students['lrn'] ."</td>";
+                                echo "<td align='center'>";
+                                echo remarks($students['remarks']);
+                                echo "</td>";
                                 echo "<td>";
-                                echo "<a href='' class='name-btn' data-toggle='modal' data-target='#nameModal' data-id='" . $students['lrn'] . "'>" . $students['fname'] . " " . $students['mname'] . " " . $students['lname'] . "</a>";
+                                echo $students['lrn'];
+                                echo "</td>";
+                                echo "<td>";
+                                echo "<a href='' class='name-btn' data-toggle='modal' data-target='#nameModal' data-id='" . $students['lrn'] . "'>" . $students['fname'] . " " . substr($students['mname'], 0, 1) . ". " . $students['lname'] . "</a>";
                                 echo "</td>";
                                 echo "<td align='left'>";
                                 echo $students['block'];
@@ -131,8 +138,15 @@
                                 echo "<td>";
                                 echo $students['schedule'];
                                 echo "</td>";
-                                echo "<td align='center'>";
-                                echo remarks($students['remarks']);
+                                echo "<td>";
+                                echo $students['hrs'] . " Hours";
+                                echo "</td>";
+                                echo "<td>";
+                                    $hrs = "SELECT sum(numofhrs) FROM dtr WHERE lrn = '" . $students['lrn'] . "' AND (remarks = 'Approved' OR remarks = '')";
+                                    $query = mysqli_query($mysqli, $hrs);
+                                    $hours = mysqli_fetch_array($query);
+
+                                    if($hours['sum(numofhrs)'] == ""){ echo "0 Hour/s";} else {echo $hours['sum(numofhrs)'] . " Hour/s";}
                                 echo "</td>";
                                 echo "<td align='center'>";
                                 echo "<a class='btn btn-sm btn-success' href='dep-view.php?lrn=" . $students['lrn'] . "'>view</a>";
@@ -145,13 +159,15 @@
                         ?>
                         </tbody>
                         <tfoot>
+                                <th>Remarks</th>
                                 <th>LRN</th>
                                 <th>Full Name</th>
-                                <th>Block</th>
-                                <th>School Year</th>
-                                <th>Remarks</th>
-                                <th>Start Date</th>
-                                <th>Schedule</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                         </tfoot>
@@ -174,7 +190,7 @@
     <script>
 $(document).ready(function() {
     $('#table tfoot th').each(function(i) {
-        if (i < 7) {
+        if (i < 3) {
             var title = $(this).text();
             $(this).html('<input type="text" placeholder="Search ' + title + '" />');
         }
@@ -183,7 +199,7 @@ $(document).ready(function() {
     var table = $('#table').DataTable({
         searchPanes: {
             viewTotal: true,
-            columns: [2, 3, 4]
+            columns: [0, 3, 4]
         },
         dom: 'PlfrtipB', // Add 'B' for buttons
         buttons: [
@@ -195,12 +211,12 @@ $(document).ready(function() {
 
         columnDefs: [
                 {
-                    target: 2,
+                    target: 3,
                     visible: false,
                     searchable: true,
                 },
                 {
-                    target: 3,
+                    target: 4,
                     visible: false,
                 },
             ],

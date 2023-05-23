@@ -131,9 +131,9 @@
                     </div>
                     <span class="font-weight-bold"><?php echo $row['fname'] . " " . $row['mname'] . " " . $row['lname']; ?></span><span class="text-black-50"><?php echo "LRN: " . $row['lrn'] ?></span><span></span></div>
                     <label class="labels">Objectives</label>
-                    <textarea name="objectives" id="" class="form-control" cols="30" rows="10" placeholder="Write your objectives here."><?php echo $row['objective']; ?></textarea><br>
+                    <textarea name="objective" id="" class="form-control" cols="30" rows="10" placeholder="Write your objectives here."><?php echo $row['objective']; ?></textarea><br>
                     <label class="labels">Skills</label>
-                    <textarea name="skills" id="" class="form-control" cols="30" rows="5" placeholder="Write your objectives here."><?php echo $row['skills']; ?></textarea>
+                    <textarea name="skills" id="" class="form-control" cols="30" rows="5" placeholder="Write your Skills here."><?php echo $row['skills']; ?></textarea>
                     <small id="" class="form-text text-muted">(Please include a comma in your list of skills. Ex. Writing, Communication, Teamwork)</small><br>
                     <label class="labels">Qualifications</label>
                     <textarea name="qualifications" id="" class="form-control" cols="30" rows="5" placeholder="Write your qualifications here."><?php echo $row['skills']; ?></textarea>
@@ -187,7 +187,7 @@
                                     $existingValue = mysqli_fetch_array($check)['nationality'];
                                 ?>
                                     <option value="">-- select one --</option>
-                                    <option value="filipino" <?php if($existingValue == 'filipino') echo 'selected'; ?>>Filipino</option>
+                                    <option value="Filipino" <?php if($existingValue == 'Filipino') echo 'selected'; ?>>Filipino</option>
                                     <option value="Others" <?php if($existingValue == 'Others') echo 'selected'; ?>>Others</option>
                                 </select>
                             </div>
@@ -278,6 +278,9 @@
         $cr2name = ucwords(trim($_POST['cr2name']));
         $cr2relation = addslashes(trim($_POST['cr2relation']));
         $cr2info = addslashes(trim($_POST['cr2info']));
+        $objective = addslashes(trim($_POST['objective']));
+        $skills = addslashes(trim($_POST['skills']));
+        $qualifications = addslashes(trim($_POST['qualifications']));
 
         $currentpass = $_POST['currentpass'];
         $newpass = $_POST['newpass'];
@@ -288,8 +291,8 @@
         $row = mysqli_fetch_array($result);
 
         if(empty($currentpass) AND empty($newpass) AND empty($confirmpass)){
-            $stmt = $mysqli->prepare("UPDATE students SET `fname`=?, `lname`=?, `email`=?, `homeaddress`=?, `cpnum`=?, `bdate`=?, `placeofbirth`=?, `nationality`=?, `religion`=?, `height`=?, `cr1name`=?, `cr1relation`=?, `cr1info`=?, `cr2name`=?, `cr2relation`=?, `cr2info`=? WHERE lrn = ?");
-            mysqli_stmt_bind_param($stmt, "sssssssssssssssss", $fname, $lname, $email, $address, $cpnum, $bdate, $pob, $nationality, $religion, $height, $cr1name, $cr1relation, $cr1info, $cr2name, $cr2relation, $cr2info, $lrn);
+            $stmt = $mysqli->prepare("UPDATE students SET `fname`=?, `lname`=?, `email`=?, `homeaddress`=?, `cpnum`=?, `bdate`=?, `placeofbirth`=?, `nationality`=?, `religion`=?, `height`=?, `cr1name`=?, `cr1relation`=?, `cr1info`=?, `cr2name`=?, `cr2relation`=?, `cr2info`=?,  `objective`=?, `skills`=?, `qualifications`=? WHERE lrn=?");
+            mysqli_stmt_bind_param($stmt, "sssssssssssssssssssi", $fname, $lname, $email, $address, $cpnum, $bdate, $pob, $nationality, $religion, $height, $cr1name, $cr1relation, $cr1info, $cr2name, $cr2relation, $cr2info, $objective, $skills, $qualifications, $lrn);
             $result = mysqli_stmt_execute($stmt);
     
             if($result){             
@@ -344,8 +347,8 @@
                             } else {
                                 $hash = password_hash($newpass, PASSWORD_DEFAULT);
 
-                                $stmt = $mysqli->prepare("UPDATE students SET fname=?, lname=?, email=?, homeaddress=?, cpnum=?, bdate=?, placeofbirth=?, nationality=?, religion=?, height=?, cr1name=?, cr1relation=?, cr1info=?, cr2name=?, cr2relation=?, cr2info=?, pass=? WHERE lrn=?");
-                                $stmt->bind_param("ssssssssssssssssss", $fname, $lname, $email, $address, $cpnum, $bdate, $pob, $nationality, $religion, $height, $cr1name, $cr1relation, $cr1info, $cr2name, $cr2relation, $cr2info, $hash, $lrn);
+                                $stmt = $mysqli->prepare("UPDATE students SET fname=?, lname=?, email=?, homeaddress=?, cpnum=?, bdate=?, placeofbirth=?, nationality=?, religion=?, height=?, cr1name=?, cr1relation=?, cr1info=?, cr2name=?, cr2relation=?, cr2info=?, pass=?, objective=?, skills=?, qualifications=? WHERE lrn=?");
+                                $stmt->bind_param("ssssssssssssssssssssi", $fname, $lname, $email, $address, $cpnum, $bdate, $pob, $nationality, $religion, $height, $cr1name, $cr1relation, $cr1info, $cr2name, $cr2relation, $cr2info, $hash, $objective, $skills, $qualifications, $lrn);
                                 $result = $stmt->execute();
                     
                                 if($result){             
