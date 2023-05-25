@@ -127,7 +127,7 @@ label{
             <button type="button" class="btn btn-secondary edit-btn">Input</button>
             <form action="" method="post">
                 <input type="hidden" name="lrn" value="<?php echo $_SESSION['lrn']; ?>">
-                <input type="hidden" name="dtrid" value="<?php echo $_POST['dtrid']; ?>">
+                <input type="hidden" name="dtrid" value="">
                 <input type="hidden" name="current_date" value="<?php echo date("Y-m-d", time()); ?>">
                 <input type="hidden" name="current_time" value="<?php echo date("H:i:s", time()); ?>">
                 <button type="submit" class="btn btn-danger" name="punchOut">Punch Out</button>
@@ -269,9 +269,9 @@ label{
 
     $numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
     
-      if ($numofhrs <= 0) {
+      if ($numofhrs <= '0:00') {
         echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
-    } elseif($numofhrs > 15){
+    } elseif($numofhrs > '15:00'){
         echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
     } else {
       $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
@@ -358,16 +358,18 @@ if(isset($_POST['punchOut'])){
 
 $numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
 
-  if ($numofhrs <= 0) {
+  if ($numofhrs <= '0:59') {
     echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
-} elseif($numofhrs > 15){
+    echo "<script>window.location='dtr.php'</script>";
+} elseif($numofhrs > '15:00'){
     echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
+    echo "<script>window.location='dtr.php'</script>";
 } else {
   $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
   $query = mysqli_query($mysqli, $sql);
   if($query){
-      // echo "<script>alert('Successfully Updated!')</script>";
-      // echo "<script>window.location='dtr.php'</script>";
+      echo "<script>alert('Successfully Updated!')</script>";
+      echo "<script>window.location='dtr.php'</script>";
   }
 }
 }
