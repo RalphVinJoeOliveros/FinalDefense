@@ -128,15 +128,13 @@ if(isset($_SESSION['lrn'])){
             $_SESSION['height'] = $height;
         }else {
             $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
-            $query = "INSERT INTO students (fname, mname, lname, lrn, email, cpnum, pass, nschool, `block`, `schoolyear`, bdate, placeofbirth, homeaddress, gender, nationality, marital_status, religion, height, coordinator, dateRegistered, `status`, remarks) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $mysqli->prepare($query);
-            $registerResult = $stmt->execute([$fname, $mname, $lname, $lrn, $email, $cpnum, $hashed_password, $nschool, $block, $schoolyear, $bdate, $placeofbirth, $homeaddress, $gender, $nationality, $marital_status, $religion, $height, $coordinator, $dateRegistered, $status, $remarks]);
+            $query = "INSERT INTO students (fname, mname, lname, lrn, email, cpnum, pass, nschool, `block`, `schoolyear`, bdate, placeofbirth, homeaddress, gender, nationality, marital_status, religion, height, coordinator, dateRegistered, `status`, remarks) VALUES ('$fname', '$mname', '$lname', '$lrn', '$email', '$cpnum', '$hashed_password', '$nschool', '$block', '$schoolyear', '$bdate', '$placeofbirth', '$homeaddress', '$gender', '$nationality', '$marital_status', '$religion', '$height', '$coordinator', '$dateRegistered', '$status', '$remarks')";
+            $query = mysqli_query($mysqli, $query);
 
-            $evaluation_query = "INSERT INTO evaluation (lrn) VALUES (?)";
-            $evaluation_stmt = $mysqli->prepare($evaluation_query);
-            $evaluationResult = $evaluation_stmt->execute([$lrn]);
+            $evaluation_query = "INSERT INTO evaluation (lrn) VALUES ('$lrn')";
+            $checkEval = mysqli_query($mysqli, $evaluation_query);
 
-            if($registerResult && $evaluationResult){
+            if($query && $checkEval){
             echo "<script>alert('Your account has been registered! Please wait for approval.')</script>";
             echo "<script>window.location.href='index.php'</script>";
             unset($_SESSION['fname']);
@@ -355,8 +353,20 @@ hr{
                 <label for="">Email:</label> 
                 <center><input placeholder="Please enter your email" type="email" name="email" value="<?php echo htmlspecialchars(isset($_SESSION['email']) ? $_SESSION['email'] : $email); ?>" required></center>
 
-                <label for="">Contact Number:</label>
-                <center><input placeholder="09XX-XXX-XXXX" type="number" name="cpnum" value="<?php echo htmlspecialchars(isset($_SESSION['cpnum']) ? $_SESSION['cpnum'] : $cpnum); ?>" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" required></center>
+                <label for="cpnum">Contact Number:</label>
+                <center><input placeholder="09XX-XXX-XXXX" oninput="validateNumber(this)" maxlength="11" type="text" name="cpnum" value="<?php echo htmlspecialchars(isset($_SESSION['cpnum']) ? $_SESSION['cpnum'] : $cpnum); ?>" pattern="((^(\+)(\d){12}$)|(^\d{11}$))" required>
+
+<script>
+  function validateNumber(input) {
+    input.value = input.value.replace(/[^\d]/g, '');
+    if (input.value.length > input.maxLength) {
+      input.value = input.value.slice(0, input.maxLength);
+    }
+  }
+</script>
+
+
+</center>
 
                 <label for="">Password: <p style='color: gray; margin-top: 10px; margin-left: 20px; font-size: 13px;'>Password must be at least 8 characters long and contain at least one uppercase letter, <br> one lowercase letter, and one number.</p> </label> 
                 <center><input placeholder="Type your password" type="password" name="pass" required></center>
@@ -405,7 +415,16 @@ hr{
 <br><br><hr> <br><br>
 
                 <label for="">LRN:</label> <br>
-                <center><input type="number" placeholder="Please enter your Learner Reference Number" name="lrn" value="<?php echo htmlspecialchars(isset($_SESSION['lrn']) ? $_SESSION['lrn'] : $lrn);?>" maxlength="12" required></center>
+                <center><input type="number" placeholder="Please enter your Learner Reference Number" name="lrn" value="<?php echo htmlspecialchars(isset($_SESSION['lrn']) ? $_SESSION['lrn'] : $lrn);?>" oninput="limitLRNLength(this)" required>
+
+<script>
+  function limitLRNLength(input) {
+    if (input.value.length > 12) {
+      input.value = input.value.slice(0, 12);
+    }
+  }
+</script>
+</center>
 
                 <label for="block">Block:</label>
                 <center><select id="block" name="block" required>

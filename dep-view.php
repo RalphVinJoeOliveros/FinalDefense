@@ -282,24 +282,54 @@ h1{
                 <table align = "center" style='border-collapse: collapse; width: 1300px;'> 
                     <?php
                     function dtr(){
-                        function hrsRemaining($lrn){
+                        function hrsRemaining() {
                             global $mysqli;
-            
-                            function ensure_positive($num) {
-                                return max($num, 0);
-                              }
-                            $mysequel = "SELECT * FROM students where lrn = '$lrn'";
+                            
+                            function formatTime($hours, $minutes) {
+                                $formatted_hours = sprintf('%02d Hr(s)', $hours);
+                                $formatted_minutes = sprintf('%02d Min(s)', $minutes);
+                                return $formatted_hours . ' ' . $formatted_minutes;
+                            }
+                        
+                            $lrn = $_GET['lrn'];
+                            $mysequel = "SELECT * FROM students WHERE lrn = '$lrn'";
                             $query = mysqli_query($mysqli, $mysequel);
                             $students = mysqli_fetch_array($query);
-                            $hrs = $students['hrs'];
-                            $mysequel = "SELECT SUM(numofhrs) AS total FROM dtr WHERE lrn = '$lrn' AND (remarks = 'Approved' or remarks = '')";
+                            $required_hours = $students['hrs'];
+                        
+                            $mysequel = "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(TIME(numofhrs)))) AS total_time FROM dtr WHERE lrn = '$lrn' AND (remarks = 'Approved' OR remarks = '')";
                             $query = mysqli_query($mysqli, $mysequel);
                             $dtr = mysqli_fetch_array($query);
-                            $total = $dtr['total'];
-                            $remaining = ensure_positive($hrs - $total);
-            
+                            $total_time = $dtr['total_time'];
+                        
+                            // Extract total hours and minutes from the total time
+                            $time_parts = explode(':', $total_time);
+                
+                            if (count($time_parts) >= 2) {
+                                $total_hours = (int) $time_parts[0];
+                                $total_minutes = (int) $time_parts[1];
+                            } else {
+                                // Handle the case when $time_parts doesn't have enough elements
+                                // You can assign default values or display an error message
+                                $total_hours = 0;
+                                $total_minutes = 0;
+                            }
                             
-                            return "" . $remaining . " Hour/s";
+                        
+                            // Calculate remaining hours and minutes
+                            $remaining_hours = $required_hours - $total_hours - 1;
+                            $remaining_minutes = 60 - $total_minutes;
+                        
+                            // Adjust remaining hours and minutes if necessary
+                            if ($remaining_minutes >= 60) {
+                                $remaining_hours++;
+                                $remaining_minutes -= 60;
+                            }
+                        
+                            // Format the remaining hours and minutes
+                            $formatted_remaining_time = formatTime($remaining_hours, $remaining_minutes);
+                        
+                            return "<p>" . $formatted_remaining_time . "</p>";
                         }
                     
                         $lrn = $_GET['lrn'];

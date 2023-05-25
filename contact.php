@@ -61,7 +61,7 @@
                             <h6><?php if($dep['fb'] == ""){ echo "N/A";} else {echo $dep['fb'];} ?></h6>
                         <small class="text-muted p-t-30 db">Email Address</small>
                             <h6><?php if($dep['email'] == ""){ echo "N/A";} else {echo $dep['email'];} ?></h6>
-                        <small class="text-muted p-t-30 db">Phone Number/Telephone Number</small>
+                        <small class="text-muted p-t-30 db">Contact Address</small>
                             <h6><?php if($dep['number'] == ""){ echo "N/A";} else {echo $dep['number'];} ?></h6>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                             <h6><?php if($coor['fb_name'] == ""){ echo "N/A";} else {echo $coor['fb_name'];} ?></h6>
                         <small class="text-muted p-t-30 db">Email Address</small>
                             <h6><?php if($coor['email'] == ""){ echo "N/A";} else {echo $coor['email'];} ?></h6>
-                        <small class="text-muted p-t-30 db">Phone Number/Telephone Number</small>
+                        <small class="text-muted p-t-30 db">Contact Address</small>
                             <h6><?php if($coor['cpnum'] == ""){ echo "N/A";} else {echo $coor['cpnum'];} ?></h6>
                 </div>
                 <?php

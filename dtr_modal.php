@@ -127,7 +127,7 @@ label{
             <button type="button" class="btn btn-secondary edit-btn">Input</button>
             <form action="" method="post">
                 <input type="hidden" name="lrn" value="<?php echo $_SESSION['lrn']; ?>">
-                <input type="hidden" name="dtrid" value="">
+                <input type="hidden" name="dtrid" value="<?php echo $_POST['dtrid']; ?>">
                 <input type="hidden" name="current_date" value="<?php echo date("Y-m-d", time()); ?>">
                 <input type="hidden" name="current_time" value="<?php echo date("H:i:s", time()); ?>">
                 <button type="submit" class="btn btn-danger" name="punchOut">Punch Out</button>
@@ -201,7 +201,7 @@ label{
   if(isset($_POST['punchIn'])) {
     $lrn = $_POST['lrn'];
     $date = $_POST['current_date'];
-    $time_in = $_POST['current_time'];
+    $time_in = date('H:i', strtotime($_POST['current_time']));
     function id(){
         while(true){
             include('capstone_database.php');
@@ -222,7 +222,7 @@ label{
     if ($date <  $rowreference['startdate']) {
       echo "<script>alert('Error: Date cannot be before $referenceDate'); window.location='dtr.php'</script>";
     }else {
-      $sql = "INSERT INTO dtr (lrn, id, date_, time_in, time_out, numofhrs) VALUES ('$lrn', '$id', '$date', '$time_in', '00:00:00', '0')";
+      $sql = "INSERT INTO dtr (lrn, id, date_, time_in) VALUES ('$lrn', '$id', '$date', '$time_in')";
       $check = mysqli_query($mysqli, $sql);
       
       if($check) {
@@ -233,18 +233,42 @@ label{
 }
   if(isset($_POST['updatedtr'])){
       $id = $_POST['id'];
-      $time_in = $_POST['time_in'];
+      $time_in = date('H:i', strtotime($_POST['time_in']));
       $time_out = $_POST['time_out'];
+      $date = $_POST['date_'];
 
-      function numofhrs($time_in, $time_out){
-          $time_in = strtotime($time_in);
-          $time_out = strtotime($time_out);
-          $num_of_hrs = $time_out - $time_in;
-          $qoutient = $num_of_hrs / 3600;
-          return $qoutient;
-      }
+      $sequel = "SELECT * FROM dtr WHERE id = '$id'";
+      $query = mysqli_query($mysqli, $sequel);
+      $row = mysqli_fetch_array($query);
+      $time_in = date('H:i', strtotime($row['time_in']));
+      $current_date = $row['date_'];
 
-    $numofhrs = numofhrs($time_in, $time_out);
+      function calculate_work_hours($date_started, $time_started, $date_ended, $time_ended) {
+        // Convert start and end datetime values to Unix timestamps
+        $start_timestamp = strtotime("$date_started $time_started");
+        $end_timestamp = strtotime("$date_ended $time_ended");
+    
+        // Calculate time difference in seconds
+        $time_diff = $end_timestamp - $start_timestamp;
+    
+        // Calculate hours and minutes
+        $hours = floor($time_diff / 3600);
+        $minutes = floor(($time_diff % 3600) / 60);
+    
+        // Subtract 1 hour if hours is greater than 7
+        if ($hours >= 7) {
+            $hours -= 1;
+        }
+    
+        // Format the result as HH:MM
+        $formatted_result = sprintf('%02d:%02d', $hours, $minutes);
+    
+        return $formatted_result;
+    }
+    
+
+    $numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
+    
       if ($numofhrs <= 0) {
         echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
     } elseif($numofhrs > 15){
@@ -260,7 +284,7 @@ label{
   }
 if(isset($_POST['add'])){
   $date_ = $_POST['date_'];
-  $time_in = $_POST['time_in'];
+  $time_in = date('H:i', strtotime($_POST['time_in']));
 
   function id(){
       while(true){
@@ -285,7 +309,7 @@ if(isset($_POST['add'])){
   if ($date_ < $rowreference['startdate']) {
     echo "<script>alert('Error: Date cannot be before $referenceDate'); window.location='dtr.php'</script>";
   }else {
-    $sql = "INSERT INTO dtr (lrn, id, date_, time_in, time_out, numofhrs) VALUES ('$lrn', '$id', '$date_', '$time_in', '00:00:00', '0')";
+    $sql = "INSERT INTO dtr (lrn, id, date_, time_in) VALUES ('$lrn', '$id', '$date_', '$time_in')";
     $check = mysqli_query($mysqli, $sql);
     if ($check) {
       echo "<script>alert('Successfully added!')</script>";
@@ -295,44 +319,57 @@ if(isset($_POST['add'])){
 }
 
 if(isset($_POST['punchOut'])){
-  $lrn = $_POST['lrn'];
-  $id =  $_POST['dtrid'];
-  $current_date = $_POST['current_date'];
-  $time_out = $_POST['current_time'];
+  $sqlPO = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM dtr WHERE id = '{$_POST['dtrid']}'"));
+  $id = $sqlPO['id'];
+  $time_in = date('H:i', strtotime($sqlPO['time_in']));
+  // $time_out = $_POST['time_out'];
+  $time_out = date("H:i", time());
+  $date = $sqlPO['date_'];
 
   $sequel = "SELECT * FROM dtr WHERE id = '$id'";
   $query = mysqli_query($mysqli, $sequel);
   $row = mysqli_fetch_array($query);
-  $time_in = $row['time_in'];
-  $date = $row['date_'];
+  $time_in = date('H:i', strtotime($row['time_in']));
+  $current_date = $row['date_'];
 
   function calculate_work_hours($date_started, $time_started, $date_ended, $time_ended) {
     // Convert start and end datetime values to Unix timestamps
     $start_timestamp = strtotime("$date_started $time_started");
     $end_timestamp = strtotime("$date_ended $time_ended");
-  
+
     // Calculate time difference in seconds
     $time_diff = $end_timestamp - $start_timestamp;
-  
-    // Convert time difference to hours
-    $hours = round($time_diff / 3600);
-  
-    return $hours;
-  }
 
-  $numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
+    // Calculate hours and minutes
+    $hours = floor($time_diff / 3600);
+    $minutes = floor(($time_diff % 3600) / 60);
 
-if ($numofhrs <= 0) {
+    // Subtract 1 hour if hours is greater than 7
+    if ($hours >= 7) {
+        $hours -= 1;
+    }
+
+    // Format the result as HH:MM
+    $formatted_result = sprintf('%02d:%02d', $hours, $minutes);
+
+    return $formatted_result;
+}
+
+
+$numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
+
+  if ($numofhrs <= 0) {
     echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
 } elseif($numofhrs > 15){
     echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
 } else {
-      $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
-      $query = mysqli_query($mysqli, $sql);
-
-      echo "<script>alert('Successfully Updated!')</script>";
-      echo "<script>window.location='dtr.php'</script>"; 
+  $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
+  $query = mysqli_query($mysqli, $sql);
+  if($query){
+      // echo "<script>alert('Successfully Updated!')</script>";
+      // echo "<script>window.location='dtr.php'</script>";
   }
+}
 }
 ?>
 

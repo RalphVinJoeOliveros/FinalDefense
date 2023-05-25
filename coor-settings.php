@@ -127,7 +127,20 @@ body {
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Username</label>
-                        <input type="text" class="form-control" placeholder="enter username" value="<?php echo $row['username'] ?>" name="username">
+                        <input type="text" class="form-control" placeholder="enter username" value="<?php echo $row['username'] ?>" name="username" oninput="validateUsername(this)">
+
+<script>
+  function validateUsername(input) {
+    var value = input.value.trim(); // Remove leading/trailing spaces
+
+    if (value.includes(' ')) {
+      input.setCustomValidity('Username cannot contain spaces');
+    } else {
+      input.setCustomValidity(''); // Reset error message
+    }
+  }
+</script>
+
                     </div>
                     <div class="col-md-6">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">First Name</label>
@@ -141,11 +154,32 @@ body {
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Email Address</label>
-                        <input type="email" class="form-control" value="<?php echo $row['email'] ?>"  placeholder="enter email address" name="email" required>
+                        <input type="email" class="form-control" value="<?php echo $row['email'] ?>" placeholder="enter email address" name="email" required oninput="validateEmail(this)">
+
+<script>
+  function validateEmail(input) {
+    var value = input.value.trim(); // Remove leading/trailing spaces
+
+    if (value.includes(' ')) {
+      input.setCustomValidity('Email address cannot contain spaces');
+    } else {
+      input.setCustomValidity(''); // Reset error message
+    }
+  }
+</script>
+
                     </div>
                     <div class="col-md-12">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Mobile Number</label>
-                        <input type="text" class="form-control" placeholder="enter phone number" value="<?php echo $row['cpnum'] ?>" name="cpnum">
+                        <input type="text" class="form-control" placeholder="enter phone number" value="<?php echo $row['cpnum'] ?>" name="cpnum" oninput="validateNumber(this)" pattern="\d*" maxlength="11">
+
+<script>
+  function validateNumber(input) {
+    input.value = input.value.replace(/[^\d]/g, '');
+  }
+</script>
+
+
                     </div>
                     <div class="col-md-12">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Current Address</label>

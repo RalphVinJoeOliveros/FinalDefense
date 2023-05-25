@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 04:48 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 24, 2023 at 09:23 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -38,7 +39,7 @@ CREATE TABLE `coordinator` (
   `cpnum` varchar(50) NOT NULL,
   `fb_name` varchar(500) NOT NULL,
   `picture` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `coordinator`
@@ -63,7 +64,7 @@ CREATE TABLE `departments` (
   `number` varchar(500) NOT NULL,
   `fb` varchar(255) NOT NULL,
   `picture` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `departments`
@@ -89,26 +90,18 @@ CREATE TABLE `dtr` (
   `date_` date NOT NULL,
   `time_in` time NOT NULL,
   `time_out` time NOT NULL,
-  `numofhrs` int(11) NOT NULL,
+  `numofhrs` time NOT NULL,
   `remarks` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `dtr`
 --
 
 INSERT INTO `dtr` (`lrn`, `id`, `date_`, `time_in`, `time_out`, `numofhrs`, `remarks`) VALUES
-('128094120067', 244455, '2023-05-24', '09:00:00', '17:00:00', 8, ''),
-('128094120067', 283960, '2023-05-29', '09:00:00', '17:00:00', 8, ''),
-('128094120067', 375988, '2023-04-12', '09:00:00', '17:00:00', 8, ''),
-('128094120067', 521060, '2023-04-18', '09:00:00', '17:00:00', 8, ''),
-('128094120067', 527375, '2023-04-10', '09:00:00', '21:00:00', 12, 'Approved'),
-('128094120067', 583906, '2023-04-11', '09:00:00', '17:00:00', 8, ''),
-('128094120067', 661768, '2023-04-03', '09:00:00', '17:00:00', 8, 'Approved'),
-('128094120067', 673058, '2023-04-04', '09:00:00', '17:00:00', 8, 'Approved'),
-('128094120067', 681963, '2023-04-17', '09:00:00', '17:00:00', 8, ''),
-('128094120067', 865979, '2023-04-24', '09:00:00', '17:18:00', 8, ''),
-('463009150259', 924272, '2023-05-01', '09:00:00', '21:00:00', 12, '');
+('463009150259', 339198, '2023-05-24', '08:00:00', '15:19:00', '06:19:00', ''),
+('463009150259', 346250, '2023-05-24', '15:22:00', '17:00:00', '01:38:00', ''),
+('463009150259', 942153, '2023-05-25', '08:30:00', '15:22:00', '06:52:00', '');
 
 -- --------------------------------------------------------
 
@@ -133,7 +126,7 @@ CREATE TABLE `evaluation` (
   `supervisor` varchar(255) NOT NULL,
   `designation` varchar(80) NOT NULL,
   `total` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `evaluation`
@@ -152,6 +145,7 @@ INSERT INTO `evaluation` (`lrn`, `jobKnowledge`, `qualityOfWork`, `quantityOfWor
 (128104100036, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
 (128111100021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
 (128112100016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
+(128112123016, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
 (128495640956, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
 (128563454653, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
 (128668415633, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', 0),
@@ -209,7 +203,7 @@ CREATE TABLE `students` (
   `remarks` varchar(80) NOT NULL,
   `status` varchar(80) NOT NULL,
   `dateRegistered` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
@@ -228,6 +222,7 @@ INSERT INTO `students` (`fname`, `mname`, `lname`, `lrn`, `email`, `cpnum`, `pas
 ('Keith Russel', 'Bagsican', 'Lacuna', '128104100036', 'lacuna.keithrussel@ici.edu.ph', 9519674839, '$2y$10$Uh4rSe0CRV3KvT4z.xAKIu1W9mWciL8kmcg6fA68Ss7kTUMKaSOUW', 'Iligan Computer Institute, Inc.', '678234', '2345678', 'G12.IT3', '2022-2023', 80, 'Iligan City', '2005-01-13', 'Dapitan City', 'Male', '', 'Single', 'Roman catholic', '167.64', '', '', '646b2024646029.30652847-keith.jpg', '', '', '', '', '', '', '', 'Mon, Tue, Wed', '2023-04-03', 'Not Yet Started', 'Approved', '2023-05-22'),
 ('Asleah rustel', 'Semblante', 'Sumalinog', '128111100021', 'sumalinog.asleahrustel@ici.edu.ph', 9558409599, '$2y$10$EgZfHzu1clt6FQb7U.NBi.y5nfWEB9G9hRbhru6.647XA95lqqPIe', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.IT3', '2022-2023', 0, 'Kiwalan, Iligan City', '2004-02-13', 'Linanot, Iligan City', 'Male', 'Filipino', 'Single', 'Roman catholic', '152.4', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Approved', '2023-05-22'),
 ('Ivanne Karl', 'Migriño', 'Sombol', '128112100016', 'sombol.ivannekarl@ici.edu.ph', 9631360901, '$2y$10$zUOShdASRWpiDewo5lDA1uN1wwP9v0QXCvDECfok5QVvSPttzJYyy', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.IT3', '2022-2023', 0, 'Paitan, Dalipuga, Iligan City', '2005-02-14', 'Baslayan, Iligan City', 'Female', 'Others', 'Divorced', 'Roman catholic', '172.72', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Approved', '2023-05-22'),
+('Yisha', '', 'Villarn', '128112123016', 'yisha@gmail.com', 9631360901, '$2y$10$sOtPau.7OJjKkf2ieN9gPeGc5qvy48NkrwrN2jrTldmgYnPfo2aey', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.IT3', '2022-2023', 0, 'Iligan City', '2005-12-02', 'Iligan City', 'Female', 'Others', 'Divorced', 'Roman catholic', '165', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Pending', '2023-05-24'),
 ('Jeff michael', 'Lacang', 'Carbaquil', '128495640956', 'lacang.jeffmichael@ici.edu.ph', 9354956654, '$2y$10$4lR/L9Np0bEbF.yH2lygK.Hf6gywUYCQvr5DatzebiN38wgi6/pti', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.STEM1', '2022-2023', 0, 'Paitan, Dalipuga, Iligan City', '2004-05-04', 'Dalipuga, Iligan City', 'Male', 'Filipino', 'Single', 'Born again', '163.2', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Approved', '2023-05-22'),
 ('Chelsey', 'Mangubat', 'Canoy', '128563454653', 'canoy.chelsey@ici.edu.ph', 9565856402, '$2y$10$hbYEt8Grpt.T6YNhUWUlgeKWCOhzakFTDpj4vPd2SmdFi0Hi6qzuW', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.ABM2', '2021-2022', 0, 'Santa Filoma, Iligan City', '2005-03-04', 'Santa Filomena, Valderrama, Iligan City', 'Female', 'Filipino', 'Single', 'Jehova\\\'s witnesses', '155.1', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Approved', '2023-05-22'),
 ('Neo eric', '', 'Juarez', '128668415633', 'juarez.neoeric@ici.edu.ph', 9568581456, '$2y$10$BGY.Kz9aVbjNIuUWEpPuyOtGZyKhljOnymx/W3mboI5T1Gr10pGlu', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.IT3', '2021-2022', 0, 'Santa Elena, Iligan City', '2006-05-09', 'Santa Elena, Iligan City', 'Male', 'Filipino', 'Single', 'Roman catholic', '168.23', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Pending', '2023-05-22'),
@@ -238,7 +233,7 @@ INSERT INTO `students` (`fname`, `mname`, `lname`, `lrn`, `email`, `cpnum`, `pas
 ('Chrisronan', 'Chavez', 'Lucea', '305300110683', 'lucea.chrisronan@ici.edu.ph', 9558005795, '$2y$10$7Eq3yiDp/IOOkIvPCyTOkOdtz1yJ2pEnqUTsws42eaH7NjjIq5rlC', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.STEM1', '2022-2023', 0, 'Acmac, Iligan City', '1998-07-15', 'Acmac, Iligan City', 'Male', 'Filipino', 'Single', 'Roman catholic', '152.4', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Pending', '2023-05-22'),
 ('Lynn Joza', 'Bangot', 'Bangquiao', '434565436365', 'banquiao.lynnjoza@ici.edu.ph', 9354753131, '$2y$10$lQmda34NK8WtudHmuOJxveG2bWbzDvw2pQ9AKJjW0wmbJywlBFzye', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.ABM2', '2021-2022', 0, 'Dalipuga, Iligan City', '2005-06-09', 'Saray, Iligan City', 'Female', 'Filipino', 'Single', 'Roman catholic', '165.11', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Pending', '2023-05-22'),
 ('Jay', 'Bohol', 'Catipay', '463000011113', 'catipay.jay@gmail.com', 9678563456, '$2y$10$PE8KVCjH9rXsbthls0QHWO7xMwSQx7ajvvUg17Ota.SVPSv94s9UW', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.ABM2', '2021-2022', 0, 'Tibanga, Iligan City', '2003-05-23', 'Tibanga, Iligan City', 'Male', 'Filipino', 'Single', 'Roman catholic', '154.34', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Pending', '2023-05-22'),
-('Ralph Vin Joe', 'Jabagat', 'Oliveros', '463009150259', 'oliveros.ralphvinjoe@ici.edu.ph', 9358887520, '$2y$10$LLzkwKcH2//DvrGKHmOh/eFzczQGix9NKmiRUWaAgnyvXBc0Eo0fa', 'Iligan Computer Institute, Inc.', '678234', '2345678', 'G12.IT3', '2022-2023', 80, 'Tag-ibo, Iligan City', '2005-02-03', 'Tag-ibo, Iligan City', 'Male', 'Filipino', 'Single', 'Roman catholic', '172', 'Highly motivated and detail-oriented marketing professional seeking a Marketing Coordinator position. Bringing a strong foundation in marketing strategy, campaign execution, and digital marketing to contribute to the success of marketing initiatives, nalytical thinking, Critical reasoning, Decision-making, Creative problem-solving, \r\nTroubleshooting', 'Proficient in multiple programming languages, Java, Python, C++, strong understanding of object-oriented programming concepts, experience with web development technologies, HTML, CSS, JavaScript, familiarity with database management systems like MySQL', '646cbcf4e6c346.37703981-6456785f40abc9.77155033-130096901_773621599915823_6525440605757007784_n.png', 'Highly motivated and detail-oriented marketing professional seeking a Marketing Coordinator position. Bringing a strong foundation in marketing strategy, campaign execution, and digital marketing to contribute to the success of marketing initiatives.', 'Jerick Carlo Almeda', 'Specialized Subject Instructor', 'jerick.almeda@ici.edu.ph', 'Clinton Butch Estudillo', 'Adviser', 'clintonbutch.estudillo@ici.edu.ph', 'Mon, Tue, Wed', '2023-05-01', 'On Going', 'Approved', '2023-05-22'),
+('Ralph Vin Joe', 'Jabagat', 'Oliveros', '463009150259', 'oliveros.ralphvinjoe@ici.edu.ph', 9358887520, '$2y$10$LLzkwKcH2//DvrGKHmOh/eFzczQGix9NKmiRUWaAgnyvXBc0Eo0fa', 'Iligan Computer Institute, Inc.', '678234', '2345678', 'G12.IT3', '2022-2023', 80, 'Tag-ibo, Iligan City', '2005-02-03', 'Tag-ibo, Iligan City', 'Male', 'Filipino', 'Single', 'Roman catholic', '172', 'Highly motivated and detail-oriented marketing professional seeking a Marketing Coordinator position. Bringing a strong foundation in marketing strategy, campaign execution, and digital marketing to contribute to the success of marketing initiatives, nalytical thinking, Critical reasoning, Decision-making, Creative problem-solving, \r\nTroubleshooting', 'Highly motivated and detail-oriented marketing professional seeking a Marketing Coordinator position. Bringing a strong foundation in marketing strategy, campaign execution, and digital marketing to contribute to the success of marketing initiatives, nalytical thinking, Critical reasoning, Decision-making, Creative problem-solving, \r\nTroubleshooting', '646cbcf4e6c346.37703981-6456785f40abc9.77155033-130096901_773621599915823_6525440605757007784_n.png', 'Highly motivated and detail-oriented marketing professional seeking a Marketing Coordinator position. Bringing a strong foundation in marketing strategy, campaign execution, and digital marketing to contribute to the success of marketing initiatives.', 'Jerick Carlo Almeda', 'Specialized Subject Instructor', 'jerick.almeda@ici.edu.ph', 'Clinton Butch Estudillo', 'Adviser', 'clintonbutch.estudillo@ici.edu.ph', 'Mon, Tue, Wed', '2023-05-01', 'On Going', 'Approved', '2023-05-22'),
 ('Matt', '', 'Leyson', '463900012345', 'leyson.matt@gmail.com', 9356789657, '$2y$10$q7ihp2WBvcv5rRnIHBzW7ekM4M38DSCvv52.32u1jf7QbNE7PPznq', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.HMSS1', '2022-2023', 0, 'Tibanga, Iligan City', '2003-09-10', 'Tibanga, Iligan City', 'Male', 'Filipino', 'Single', 'Roman catholic', '156.10', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Pending', '2023-05-22'),
 ('John Kerby', '', 'Cerda', '546478435322', 'cerda.kerby@ici.edu.ph', 9454665465, '$2y$10$bBaFR7mmPVlQTqw66Eb3wOjNd.B99Qt6vtV3IPIgZp8gO0luUapOG', 'Iligan Computer Institute, Inc.', '', '2345678', 'G12.EIM1', '2021-2022', 0, 'Tambo, Iligan City', '2005-09-05', 'Tambo, Iligan City', 'Male', 'Filipino', 'Single', 'Roman catholic', '165.12', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', 'Not Yet Started', 'Pending', '2023-05-22');
 
@@ -251,7 +246,7 @@ INSERT INTO `students` (`fname`, `mname`, `lname`, `lrn`, `email`, `cpnum`, `pas
 CREATE TABLE `student_block` (
   `student_block` varchar(40) NOT NULL,
   `block_desc` varchar(1000) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student_block`
@@ -316,7 +311,7 @@ CREATE TABLE `weeklyreport` (
   `Progress` text NOT NULL,
   `dateofcom` date DEFAULT NULL,
   `remarks` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `weeklyreport`

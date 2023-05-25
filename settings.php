@@ -149,7 +149,7 @@
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">First Name</label>
                                 <input type="text" class="form-control" placeholder="first name" value="<?php echo $row['fname'] ?>" name="fname">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Middle Name</label>
-                                <input type="text" class="form-control" value="<?php echo $row['mname'] ?>" placeholder="surname" name="mname">
+                                <input type="text" class="form-control" value="<?php echo $row['mname'] ?>" placeholder="(optional)" name="mname">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Surname</label>
                                 <input type="text" class="form-control" value="<?php echo $row['lname'] ?>" placeholder="surname" name="lname">
                             </div>
@@ -157,11 +157,29 @@
                         <div class="row mt-3">
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Email Address</label>
-                                <input type="email" class="form-control" value="<?php echo $row['email'] ?>"  placeholder="enter email address" name="email" required>
+                                <input type="email" class="form-control" value="<?php echo $row['email'] ?>" placeholder="enter email address" name="email" required oninput="this.value = this.value.replace(/\s/g, '');">
+
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Mobile Number</label>
-                                <input type="text" class="form-control" placeholder="enter phone number" value="<?php echo $row['cpnum'] ?>" name="cpnum">
+                                <input type="text" class="form-control" placeholder="09XX-XXX-XXXX" value="<?php echo $row['cpnum'] ?>" name="cpnum" pattern="[0-9]*" oninput="javascript: if (this.value.length > 11) this.value = this.value.slice(0, 11);">
+<script>
+    // Prevent the letter "e" from being entered in the number input field
+    const input = document.querySelector('input[name="cpnum"]');
+    input.addEventListener('keydown', function(event) {
+        if (event.key === 'e' || event.key === 'E') {
+            event.preventDefault();
+        }
+    });
+
+    // Update the input type to number and add the first "0" on page load
+    window.addEventListener('DOMContentLoaded', function() {
+        input.type = 'number';
+        input.value = '0' + input.value;
+    });
+</script>
+
+
                             </div><br><br><br><br>
                             <div class="p-3 d-flex justify-content-between align-items-center">
                                 <h4 class="text-right">Personal Information</h4>

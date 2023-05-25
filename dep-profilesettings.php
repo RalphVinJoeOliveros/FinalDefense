@@ -137,7 +137,14 @@ body {
                     </div>
                     <div class="col-md-12">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Mobile Number</label>
-                        <input type="text" class="form-control" placeholder="enter phone number" value="<?php echo $row['number'] ?>" name="number">
+                        <input type="text" class="form-control" placeholder="enter phone number" value="<?php echo $row['number'] ?>" name="number" oninput="validateNumber(this)" pattern="\d*" maxlength="11">
+
+<script>
+  function validateNumber(input) {
+    input.value = input.value.replace(/[^\d]/g, '');
+  }
+</script>
+
                     </div>
                     <div class="col-md-12">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Current Address</label>

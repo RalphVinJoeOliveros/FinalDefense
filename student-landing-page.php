@@ -230,14 +230,17 @@ $coordinator = mysqli_fetch_array($check1);
       $row = mysqli_fetch_array($newresult);
       $req = $row['hrs'];
 
-      $sqlcomp = "SELECT SUM(numofhrs) AS total FROM dtr WHERE lrn = '$lrn' AND (remarks = 'Approved' or remarks = '')";
+      $sqlcomp = "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(TIME(numofhrs)))) AS total FROM dtr WHERE lrn = '$lrn' AND (remarks = 'Approved' OR remarks = '')";
       $resultcomp = mysqli_query($mysqli, $sqlcomp);
       $rowcomp = mysqli_fetch_array($resultcomp);
       $comp = $rowcomp['total'];
+      
     ?>
-      <span class="text">Number of Hours Required: <?php echo $req ?> Hours</span><br>
-      <span class="text">Number of Hours Remaining: <?php echo max($req - $comp, 0) ?> Hours</span>
-  </div>
+    
+  <span class="text">Number of Hours Required: <?php echo $req ?> Hours</span><br>
+  <span class="text">Number of Hours Remaining: <?php echo max($req - intval($comp), 0) ?> Hours</span>
+</div>
+
 </div>  
 <script>
   let circularProgress = document.querySelector(".circular-progress"),
@@ -245,7 +248,7 @@ $coordinator = mysqli_fetch_array($check1);
 
   let progressStartValue = 0,
       totalProgress = <?php echo $req; ?>,
-      progressEndValue =<?php echo $comp * (100 / $req); ?>,    
+      progressEndValue =<?php echo intval($comp) * (100 / $req); ?>,    
       speed = 10;
       
   let progress = setInterval(() => {
