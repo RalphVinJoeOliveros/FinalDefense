@@ -329,7 +329,11 @@ h1{
                             // Format the remaining hours and minutes
                             $formatted_remaining_time = formatTime($remaining_hours, $remaining_minutes);
                         
-                            return "<p>" . $formatted_remaining_time . "</p>";
+                            if($formatted_remaining_time <= "00 Hr(s) 00 Min(s)"){
+                                return "00 Hr(s) 00 Min(s)";
+                            }else{
+                                return "<p>" . $formatted_remaining_time . "</p>";
+                            } 
                         }
                     
                         $lrn = $_GET['lrn'];
@@ -344,7 +348,7 @@ h1{
                                 echo "<td style=' width: 400px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; line-height: 2; text-align: center;'><strong>Start Date:</strong><br>" . date_format(date_create($students['startdate']), "F d, Y") . " </td>";                          
                                 echo "</tr>";
                                 echo "<tr>";
-                                echo "<td style=' width: 400px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; line-height: 2; text-align: center;'><strong>No. of Hours Required:</strong><br>" . $students['hrs'] . " </td>";
+                                echo "<td style=' width: 400px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; line-height: 2; text-align: center;'><strong>No. of Hours Required:</strong><br>" . $students['hrs'] . " Hour/s</td>";
                                 echo "<td style=' width: 400px; text-align: center; font-size: 18px; background-color: #f2f2f2; border: 1px solid #ddd; height: 90px; line-height: 2; text-align: center;'><strong>No. of Hours Remaining:</strong><br>" . hrsRemaining($lrn) . " </td>";
                                 echo "</tr>";
 

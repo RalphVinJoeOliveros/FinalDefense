@@ -62,7 +62,11 @@
             // Format the remaining hours and minutes
             $formatted_remaining_time = formatTime($remaining_hours, $remaining_minutes);
         
-            return "<p>" . $formatted_remaining_time . "</p>";
+            if($formatted_remaining_time <= "00 Hr(s) 00 Min(s)"){
+                return "00 Hr(s) 00 Min(s)";
+            }else{
+                return "<p>" . $formatted_remaining_time . "</p>";
+            } 
         }
         
              while($students = mysqli_fetch_array($query)){
@@ -82,7 +86,7 @@
                         echo $newdepartment['department'];
                     }
                  echo "</p></td>";
-                 echo "<td><strong>NO. OF HOURS REQUIRED:</strong><br><br><p>" . $students['hrs'] . " Hours</p></td>";
+                 echo "<td><strong>NO. OF HOURS REQUIRED:</strong><br><br><p>" . $students['hrs'] . " Hour/s</p></td>";
                  echo "<td><strong>NO. OF HOURS REMAINING:</strong><br><br>" . hrsRemaining() . " </td>";
                  echo "</tr>";
          }

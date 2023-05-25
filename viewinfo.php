@@ -84,7 +84,7 @@
 	font-size: 15px;
 	margin-left: -15px;
 }
-.fa{
+.icon{
 	color: #151b29;
 	font-size: 20px;
 	padding-left: 20px;
@@ -236,9 +236,9 @@ padding: 18px;
 					<div class="col">
 						<div class="content-box" style="padding-left: 40px;">	
 						<p class="head">Contact:</p><hr>
-						<p class="p3"><i class="fa fa-phone" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['cpnum'] ?></p>
-						<p class="p3"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['email'] ?></p>
-						<p class="p3"><i class="fa fa-home" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['homeaddress'] ?></p>
+						<p class="p3"><i class="icon fa fa-phone" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['cpnum'] ?></p>
+						<p class="p3"><i class="icon fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['email'] ?></p>
+						<p class="p3"><i class="icon fa fa-home" aria-hidden="true"></i> &nbsp;&nbsp;<?php echo $row['homeaddress'] ?></p>
 						<br/>
 						<p class="head">MY SKILLS:</p>
 						<ul class="skills">
@@ -366,7 +366,11 @@ padding: 18px;
 												// Format the remaining hours and minutes
 												$formatted_remaining_time = formatTime($remaining_hours, $remaining_minutes);
 											
-												return "<p>" . $formatted_remaining_time . "</p>";
+												if($formatted_remaining_time <= "00 Hr(s) 00 Min(s)"){
+													return "00 Hr(s) 00 Min(s)";
+												}else{
+													return "<p>" . $formatted_remaining_time . "</p>";
+												} 
 											}
 												while($students = mysqli_fetch_array($query)){
 													echo "<tr>"; 
@@ -383,8 +387,8 @@ padding: 18px;
 													echo "</p></td>";            
 													echo "</tr>";
 													echo "<tr>";
-													echo "<td><strong># of Hours Required:</strong><br><p>" . $students['hrs'] . "</p></td>";
-													echo "<td><strong>NO. OF HOURS REMAINING:</strong>" . hrsRemaining() . " </td>";
+													echo "<td><strong># of Hours Required:</strong><br><p>" . $students['hrs'] . " Hour/s</p></td>";
+													echo "<td><strong>NO. OF HOURS REMAINING:</strong><br>" . hrsRemaining() . " </td>";
 													echo "</tr>";
 											}
 									}   

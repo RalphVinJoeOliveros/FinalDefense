@@ -255,31 +255,37 @@ label{
         $hours = floor($time_diff / 3600);
         $minutes = floor(($time_diff % 3600) / 60);
     
-        // Subtract 1 hour if hours is greater than 7
+        // Subtract 1 hour if hours is greater than or equal to 7
         if ($hours >= 7) {
             $hours -= 1;
         }
     
-        // Format the result as HH:MM
-        $formatted_result = sprintf('%02d:%02d', $hours, $minutes);
-    
-        return $formatted_result;
+        return array('hours' => $hours, 'minutes' => $minutes);
     }
     
-
+    
+    
     $numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
     
-      if ($numofhrs <= '0:00') {
+    $hours = $numofhrs['hours'];
+    $minutes = $numofhrs['minutes'];
+    
+    // Check if working hours are within the specified range
+    if ($hours < 1 || ($hours == 1 && $minutes <= 0)) {
         echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
-    } elseif($numofhrs > '15:00'){
+    } elseif ($hours >= 15) {
         echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
     } else {
-      $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
-      $query = mysqli_query($mysqli, $sql);
-      if($query){
-          echo "<script>alert('Successfully Updated!')</script>";
-          echo "<script>window.location='dtr.php'</script>";
-      }
+        // Perform the update if the validation checks pass
+        $formatted_hours = sprintf("%02d", $hours);
+        $formatted_minutes = sprintf("%02d", $minutes);
+        $numofhrs = $formatted_hours . ":" . $formatted_minutes . ":00";
+        $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
+        $query = mysqli_query($mysqli, $sql);
+        if ($query) {
+            echo "<script>alert('Successfully Updated!')</script>";
+            echo "<script>window.location='dtr.php'</script>";
+        }
     }
   }
 if(isset($_POST['add'])){
@@ -344,33 +350,37 @@ if(isset($_POST['punchOut'])){
     $hours = floor($time_diff / 3600);
     $minutes = floor(($time_diff % 3600) / 60);
 
-    // Subtract 1 hour if hours is greater than 7
+    // Subtract 1 hour if hours is greater than or equal to 7
     if ($hours >= 7) {
         $hours -= 1;
     }
 
-    // Format the result as HH:MM
-    $formatted_result = sprintf('%02d:%02d', $hours, $minutes);
-
-    return $formatted_result;
+    return array('hours' => $hours, 'minutes' => $minutes);
 }
+
 
 
 $numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
 
-  if ($numofhrs <= '0:59') {
+$hours = $numofhrs['hours'];
+$minutes = $numofhrs['minutes'];
+
+// Check if working hours are within the specified range
+if ($hours < 1 || ($hours == 1 && $minutes <= 0)) {
     echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
-    echo "<script>window.location='dtr.php'</script>";
-} elseif($numofhrs > '15:00'){
+} elseif ($hours >= 15) {
     echo "<script>alert('Your working hours must exceed one hour and be below 15 hours.')</script>";
-    echo "<script>window.location='dtr.php'</script>";
 } else {
-  $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
-  $query = mysqli_query($mysqli, $sql);
-  if($query){
-      echo "<script>alert('Successfully Updated!')</script>";
-      echo "<script>window.location='dtr.php'</script>";
-  }
+    // Perform the update if the validation checks pass
+    $formatted_hours = sprintf("%02d", $hours);
+    $formatted_minutes = sprintf("%02d", $minutes);
+    $numofhrs = $formatted_hours . ":" . $formatted_minutes . ":00";
+    $sql = "UPDATE dtr SET time_out = '$time_out', numofhrs = '$numofhrs' WHERE id = '$id'";
+    $query = mysqli_query($mysqli, $sql);
+    if ($query) {
+        echo "<script>alert('Successfully Updated!')</script>";
+        echo "<script>window.location='dtr.php'</script>";
+    }
 }
 }
 ?>
