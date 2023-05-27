@@ -127,20 +127,7 @@ body {
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Username</label>
-                        <input type="text" class="form-control" placeholder="enter username" value="<?php echo $row['username'] ?>" name="username" oninput="validateUsername(this)">
-
-<script>
-  function validateUsername(input) {
-    var value = input.value.trim(); // Remove leading/trailing spaces
-
-    if (value.includes(' ')) {
-      input.setCustomValidity('Username cannot contain spaces');
-    } else {
-      input.setCustomValidity(''); // Reset error message
-    }
-  }
-</script>
-
+                        <input type="text" class="form-control" placeholder="Please Type Username" id="register_block" name="username" pattern="[a-z]+\d{0,2}\.[a-z]+\d{0,2}" aria-describedby="register_block" title="Please enter a valid username (e.g. john12.smith34, john.smith, john.smith12)" value="<?php echo $row['username'] ?>" required>
                     </div>
                     <div class="col-md-6">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">First Name</label>
@@ -224,7 +211,7 @@ body {
         $targetFilePath = $targetDir . $newFilename;
         $allowedTypes = array('jpg', 'png', 'jpeg');
         $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
-
+        
         $username = strtolower(trim($_POST['username']));
         $fname = ucwords(trim($_POST['fname']));
         $lname = ucwords(trim($_POST['lname']));
@@ -241,6 +228,13 @@ body {
         $row = mysqli_fetch_array($result);
 
         if(empty($currentpass) AND empty($newpass) AND empty($confirmpass)){
+            $usernameSequel = "SELECT * FROM `departments` WHERE username = '$username'";
+            $result1 = mysqli_query($mysqli, $usernameSequel);
+
+            if(mysqli_num_rows($result1) > 0){
+                echo "<script>alert('Username already exists!')</script>";
+                echo "<script>window.location='coor-settings.php'</script>";
+            }else{
             $stmt = mysqli_prepare($mysqli, "UPDATE coordinator SET username = ?, first_name = ?, last_name = ?, email = ?, cpnum = ?, address = ?, fb_name = ? WHERE ID = ?");
             mysqli_stmt_bind_param($stmt, "ssssssss", $username, $fname, $lname, $email, $cpnum, $address, $fb, $ID);
             $result = mysqli_stmt_execute($stmt);
@@ -267,6 +261,7 @@ body {
                     echo "<script>window.location='coor-settings.php'</script>";              
                     }
                 }
+            }
         }else{
             $query = "SELECT pass FROM coordinator WHERE ID = ?";
             $stmt = mysqli_prepare($mysqli, $query);
@@ -295,6 +290,13 @@ body {
                                 echo "<script>alert('Your password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.')</script>";
                                 echo "<script>window.location='coor-settings.php'</script>";
                             } else{
+                                $usernameSequel = "SELECT * FROM `departments` WHERE username = '$username'";
+                                $result1 = mysqli_query($mysqli, $usernameSequel);
+                    
+                                if(mysqli_num_rows($result1) > 0){
+                                    echo "<script>alert('Username already exists!')</script>";
+                                    echo "<script>window.location='coor-settings.php'</script>";
+                                }else{
                                 $hash = password_hash($newpass, PASSWORD_DEFAULT);
                                 $sequel = "UPDATE coordinator SET username = ?, first_name = ?, last_name = ?, email = ?, cpnum = ?, `address` = ?, fb_name = ?, `pass` = ? WHERE ID = ?";
                                 $stmt = mysqli_prepare($mysqli, $sequel);
@@ -322,6 +324,7 @@ body {
                                         echo "<script>alert('Successfully Updated!')</script>";
                                         echo "<script>window.location='coor-settings.php'</script>";              
                                     }
+                                }
                         }
                     }
                 }

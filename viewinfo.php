@@ -327,6 +327,7 @@ padding: 18px;
 													$formatted_minutes = sprintf('%02d Min(s)', $minutes);
 													return $formatted_hours . ' ' . $formatted_minutes;
 												}
+												
 											
 												$lrn = $_POST['userid'];
 												$mysequel = "SELECT * FROM students WHERE lrn = '$lrn'";
@@ -398,7 +399,7 @@ padding: 18px;
 							</table>
 						</div>
 						<br><br>
-						<div class="table2" align=center>
+						<div class="table2">
 							<table id="dtrprint" style='width: 1100px;'>
 								<thead>
 								<tr>
@@ -425,7 +426,23 @@ padding: 18px;
 															return $lrn;
 													}
 												}
-											
+												function getTimeDifference($time_in, $time_out) {
+													$time_in = strtotime($time_in);
+													$time_out = strtotime($time_out);
+													$diff_secs = abs($time_out - $time_in);
+													
+													$hours = floor($diff_secs / 3600);
+													$minutes = floor(($diff_secs % 3600) / 60);
+													
+													// Check if time difference is 7 hours or greater
+													if ($hours >= 7) {
+														$hours -= 1;
+													}
+													
+													$time_diff = sprintf('%02d hour(s) %02d minute(s)', $hours, $minutes);
+													
+													return $time_diff;
+												}
 												$lrn = lrn();
 											
 												GLOBAL $mysqli;
@@ -435,8 +452,13 @@ padding: 18px;
 																echo "<tr>";
 																echo "<td>&nbsp;&nbsp;" . date_format(date_create($dtr['date_']), 'F d, Y l') . "</td>";
 																echo "<td>&nbsp;&nbsp;" . date_format(date_create($dtr['time_in']), 'h:i A') . "</td>";
-																echo "<td>&nbsp;&nbsp;" . date_format(date_create($dtr['time_out']), 'h:i A') . "</td>";
-																echo "<td>&nbsp;&nbsp;" . $dtr['numofhrs'] . " hrs" . "</td>";
+																echo "<td>";
+																if($dtr['time_out'] == '00:00:00'){echo "";}else{echo date_format(date_create($dtr['time_out']), 'h:i A');} 
+																echo "</td>";
+																echo "<td>";
+																	if($dtr['numofhrs'] == "00:00:00")
+																	{echo "";}else{echo getTimeDifference($dtr['time_out'], $dtr['time_in']);}                                  
+																echo "</td>";
 																echo "<td>&nbsp;&nbsp;" . $dtr['remarks'] . "</td>";
 																echo "</tr>";
 															}

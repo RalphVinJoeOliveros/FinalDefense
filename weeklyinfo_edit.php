@@ -13,7 +13,7 @@ session_start();
 ?>
     <style>
     .edittable{
-        width: 600px;
+        width: 1100px;
     }
     .weekth{
         padding: 10px;
@@ -48,7 +48,7 @@ session_start();
     <tr>
         <td><?php echo $row['weeknum']; ?></td>
         <td><?php echo date_format(date_create($row['date_']), 'F d, Y l'); ?></td>
-        <td><?php echo $row['hrs']. " Hours"; ?></td>
+        <td><?php echo $row['hrs']. " Hr/s"; ?></td>
         <td><?php echo $row['descript_of_task']; ?></td>
         <td><?php echo $row['Progress']; ?></td>
         <td>

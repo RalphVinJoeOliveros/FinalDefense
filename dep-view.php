@@ -367,7 +367,7 @@ h1{
                         <th>TIME OUT</th>
                         <th>TOTAL HOURS</th>
                         <th>REMARKS</th>
-                        <th>OPERATIONS</th>
+                        <th style="max-width: 75px; ">OPERATIONS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -385,6 +385,23 @@ h1{
                                         return $lrn;
                                 }
                             }
+                            function getTimeDifference($time_in, $time_out) {
+                                $time_in = strtotime($time_in);
+                                $time_out = strtotime($time_out);
+                                $diff_secs = abs($time_out - $time_in);
+                                
+                                $hours = floor($diff_secs / 3600);
+                                $minutes = floor(($diff_secs % 3600) / 60);
+                                
+                                // Check if time difference is 7 hours or greater
+                                if ($hours >= 7) {
+                                    $hours -= 1;
+                                }
+                                
+                                $time_diff = sprintf('%02d hour(s) %02d minute(s)', $hours, $minutes);
+                                
+                                return $time_diff;
+                            }
                         
                             $lrn = lrn();
                         
@@ -395,11 +412,20 @@ h1{
                                     echo "<tr>";
                                     echo "<td>" . nl2br(date_format(date_create($dtr['date_']), 'F d, Y' . " " . 'l')) . "</td>";
                                     echo "<td>" . date_format(date_create($dtr['time_in']), 'h:i A') . "</td>";
-                                    echo "<td>" . date_format(date_create($dtr['time_out']), 'h:i A') . "</td>";
-                                    echo "<td>" . $dtr['numofhrs'] . " hrs" . "</td>";
+                                    echo "<td>";
+                                        if($dtr['time_out'] == '00:00:00'){echo "";}else{echo date_format(date_create($dtr['time_out']), 'h:i A');} 
+                                    echo "</td>";
+                                    echo "<td>";
+                                        if($dtr['numofhrs'] == "00:00:00")
+                                        {echo "";}else{echo getTimeDifference($dtr['time_out'], $dtr['time_in']);}                                  
+                                    echo "</td>";
                                     echo "<td>" . $dtr['remarks'] . "</td>";
                                     echo "<td align='center'>";
-                                    echo "<button type='button' class='btn btn-sm btn-primary edit-btn' data-toggle='modal' data-target='#editModal' data-id='" . $dtr['id'] . "'>Edit</button</a>";
+                                    if($dtr['time_out'] == '00:00:00'){
+                                        echo "";
+                                    }else{
+                                        echo "<button type='button' class='btn btn-sm btn-primary edit-btn' data-toggle='modal' data-target='#editModal' data-id='" . $dtr['id'] . "'>Edit</button>";
+                                    }
                                     echo "</td>";
                                     echo "</tr>";
                                 }
@@ -604,24 +630,28 @@ h1{
             </div>
 </body>
 </html>
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" style="max-width: 650px" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Assign Student</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="edit-body"> 
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="weeklyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="max-width: 650px" role="document">
+<div class="modal fade bd-example-modal-lg" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Assign Student</h5>
+        <h5 class="modal-title" id="exampleModalLabel">View</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="edit-body"> 
+
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="weeklyModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">View</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -630,6 +660,7 @@ h1{
 
         </div>
       </div>
+    </form>
     </div>
   </div>
 </div>

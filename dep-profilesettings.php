@@ -125,9 +125,14 @@ body {
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
                 <div class="row mt-2">
+                <div class="col-md-12">
+                        <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Username</label>
+                        <input type="text" class="form-control" placeholder="Please Type Username" id="register_block" name="username" pattern="[a-z]+\d{0,2}\.[a-z]+\d{0,2}" aria-describedby="register_block" title="Please enter a valid username (e.g. john12.smith34, john.smith, john.smith12)" value="<?php echo $row['username'] ?>" required>
+
+                    </div>
                     <div class="col-md-12">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Department Name</label>
-                        <input type="text" class="form-control" placeholder="Input Department Name" value="<?php echo $row['department'] ?>" name="dep-name">
+                        <input type="text" class="form-control" placeholder="Input Department Name" value="<?php echo $row['department'] ?>" name="dep-name" required>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -190,6 +195,11 @@ body {
         $allowedTypes = array('jpg', 'png', 'jpeg');
         $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
 
+        $id = "SELECT * FROM `departments` WHERE ID = '$department'";
+        $row = mysqli_fetch_array(mysqli_query($mysqli, $id));
+        $currentUsername = $row['username'];
+        
+        $username = strtolower(trim($_POST['username']));
         $depname = ucwords(trim($_POST['dep-name']));
         $email = strtolower(trim($_POST['email']));
         $cpnum = $_POST['number'];
@@ -204,34 +214,47 @@ body {
         $row = mysqli_fetch_array($result);
 
         if(empty($currentpass) AND empty($newpass) AND empty($confirmpass)){
-            $sequel = "UPDATE `departments` SET `department`=?, `email`=?, `number`=?, `address`=?, `fb`=? WHERE ID=?";
-            $stmt = $mysqli->prepare($sequel);
-            $stmt->bind_param("sssssi", $depname, $email, $cpnum, $address, $fb, $department);
-            $result = $stmt->execute();
-            $stmt->close();
-    
-            if($result){             
-                if(empty($fileName)){
-                    $existing = "SELECT * FROM `departments` WHERE ID = '$department'";
-                    $result = mysqli_query($mysqli, $existing);
-                    $row = mysqli_fetch_array($result);
-                    $existingPicture = $row['picture'];
+            $usernameSequel = "SELECT * FROM `departments` WHERE username = '$username' AND username != '$currentUsername'";
+            $result1 = mysqli_query($mysqli, $usernameSequel);
 
-                    $newsequel = "UPDATE `departments` SET `picture`='$existingPicture' WHERE ID = '$department'";
-                    $result = mysqli_query($mysqli, $newsequel);
+            $usernameSequel1 = "SELECT * FROM `coordinator` WHERE username = '$username'";
+            $result2 = mysqli_query($mysqli, $usernameSequel1);
 
-                    echo "<script>alert('Successfully Updated!')</script>";
-                    echo "<script>window.location='dep-profilesettings.php'</script>";   
-                }if(!in_array($fileType, $allowedTypes)) {
-                    echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
-                    die;
-                }if(move_uploaded_file($tempFilename, $targetFilePath)){
-                    $newsequel = "UPDATE `departments` SET `picture`='$newFilename' WHERE ID = '$department'";
-                    $result = mysqli_query($mysqli, $newsequel);
-                    echo "<script>alert('Successfully Updated!')</script>";
-                    echo "<script>window.location='dep-profilesettings.php'</script>";              
+            if(mysqli_num_rows($result1) > 0){
+                echo "<script>alert('Username already exists!')</script>";
+                echo "<script>window.location='dep-profilesettings.php'</script>";
+            }elseif(mysqli_num_rows($result2) > 0){
+                echo "<script>alert('Username already exists!')</script>";
+                echo "<script>window.location='dep-profilesettings.php'</script>";
+            }else{
+                $sequel = "UPDATE `departments` SET `username`=?, `department`=?, `email`=?, `number`=?, `address`=?, `fb`=? WHERE ID=?";
+                $stmt = $mysqli->prepare($sequel);
+                $stmt->bind_param("ssssssi", $username, $depname, $email, $cpnum, $address, $fb, $department);
+                $result = $stmt->execute();
+                $stmt->close();
+                if($result){             
+                    if(empty($fileName)){
+                        $existing = "SELECT * FROM `departments` WHERE ID = '$department'";
+                        $result = mysqli_query($mysqli, $existing);
+                        $row = mysqli_fetch_array($result);
+                        $existingPicture = $row['picture'];
+
+                        $newsequel = "UPDATE `departments` SET `picture`='$existingPicture' WHERE ID = '$department'";
+                        $result = mysqli_query($mysqli, $newsequel);
+
+                        echo "<script>alert('Successfully Updated!')</script>";
+                        echo "<script>window.location='dep-profilesettings.php'</script>";   
+                    }if(!in_array($fileType, $allowedTypes)) {
+                        echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
+                        die;
+                    }if(move_uploaded_file($tempFilename, $targetFilePath)){
+                        $newsequel = "UPDATE `departments` SET `picture`='$newFilename' WHERE ID = '$department'";
+                        $result = mysqli_query($mysqli, $newsequel);
+                        echo "<script>alert('Successfully Updated!')</script>";
+                        echo "<script>window.location='dep-profilesettings.php'</script>";              
                     }
                 }
+            }
         }else{
             $query = "SELECT pass FROM departments WHERE ID = ?";
             $stmt = mysqli_prepare($mysqli, $query);
@@ -260,6 +283,19 @@ body {
                                 echo "<script>alert('Your password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.')</script>";
                                 echo "<script>window.location='dep-profilesettings.php'</script>";
                             }  else {
+                                $usernameSequel = "SELECT * FROM `departments` WHERE username = '$username' AND username != '$currentUsername'";
+                                $result1 = mysqli_query($mysqli, $usernameSequel);
+                    
+                                $usernameSequel1 = "SELECT * FROM `coordinator` WHERE username = '$username'";
+                                $result2 = mysqli_query($mysqli, $usernameSequel1);
+                    
+                                if(mysqli_num_rows($result1) > 0){
+                                    echo "<script>alert('Username already exists!')</script>";
+                                    echo "<script>window.location='dep-profilesettings.php'</script>";
+                                }elseif(mysqli_num_rows($result2) > 0){
+                                    echo "<script>alert('Username already exists!')</script>";
+                                    echo "<script>window.location='dep-profilesettings.php'</script>";
+                                }else{
                                 $hash = password_hash($newpass, PASSWORD_DEFAULT);
                                 $sequel = "UPDATE `departments` SET `department`=?, `email`=?, `number`=?, `address`=?, `fb`=?, pass=? WHERE ID=?";
                                 $stmt = $mysqli->prepare($sequel);
@@ -288,6 +324,7 @@ body {
                                         echo "<script>alert('Successfully Updated!')</script>";
                                         echo "<script>window.location='dep-profilesettings.php'</script>";              
                                     }
+                                }
                         }
                     }
                 }
