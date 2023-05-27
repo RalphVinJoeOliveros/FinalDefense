@@ -127,7 +127,7 @@ body {
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Username</label>
-                        <input type="text" class="form-control" placeholder="Please Type Username" id="register_block" name="username" pattern="[a-z]+\d{0,2}\.[a-z]+\d{0,2}" aria-describedby="register_block" title="Please enter a valid username (e.g. john12.smith34, john.smith, john.smith12)" value="<?php echo $row['username'] ?>" required>
+                        <input type="text" class="form-control" placeholder="Please Type Username" id="register_block" name="username" pattern="[a-z]+\d{0,2}\.[a-z]+\d{0,2}" aria-describedby="register_block" title="(Ex. john12.smith34, john.smith, john.smith12)" value="<?php echo $row['username'] ?>" required>
                     </div>
                     <div class="col-md-6">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">First Name</label>
@@ -141,19 +141,7 @@ body {
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Email Address</label>
-                        <input type="email" class="form-control" value="<?php echo $row['email'] ?>" placeholder="enter email address" name="email" required oninput="validateEmail(this)">
-
-<script>
-  function validateEmail(input) {
-    var value = input.value.trim(); // Remove leading/trailing spaces
-
-    if (value.includes(' ')) {
-      input.setCustomValidity('Email address cannot contain spaces');
-    } else {
-      input.setCustomValidity(''); // Reset error message
-    }
-  }
-</script>
+                        <input type="email" class="form-control" value="<?php echo $row['email'] ?>" placeholder="enter email address" name="email">
 
                     </div>
                     <div class="col-md-12">
@@ -235,32 +223,37 @@ body {
                 echo "<script>alert('Username already exists!')</script>";
                 echo "<script>window.location='coor-settings.php'</script>";
             }else{
-            $stmt = mysqli_prepare($mysqli, "UPDATE coordinator SET username = ?, first_name = ?, last_name = ?, email = ?, cpnum = ?, address = ?, fb_name = ? WHERE ID = ?");
-            mysqli_stmt_bind_param($stmt, "ssssssss", $username, $fname, $lname, $email, $cpnum, $address, $fb, $ID);
-            $result = mysqli_stmt_execute($stmt);
-                
-            if($result){             
-                if(empty($fileName)){
-                    $existing = "SELECT * FROM `coordinator` WHERE ID = '$ID'";
-                    $result = mysqli_query($mysqli, $existing);
-                    $row = mysqli_fetch_array($result);
-                    $existingPicture = $row['picture'];
+                if(!empty($cpnum) && strlen($cpnum) != 11){
+                    echo "<script>alert('Please input an 11 digit mobile number!')</script>";
+                    echo "<script>window.location='coor-settings.php'</script>";
+                }else{
+                    $stmt = mysqli_prepare($mysqli, "UPDATE coordinator SET username = ?, first_name = ?, last_name = ?, email = ?, cpnum = ?, address = ?, fb_name = ? WHERE ID = ?");
+                    mysqli_stmt_bind_param($stmt, "ssssssss", $username, $fname, $lname, $email, $cpnum, $address, $fb, $ID);
+                    $result = mysqli_stmt_execute($stmt);
+                        
+                    if($result){             
+                        if(empty($fileName)){
+                            $existing = "SELECT * FROM `coordinator` WHERE ID = '$ID'";
+                            $result = mysqli_query($mysqli, $existing);
+                            $row = mysqli_fetch_array($result);
+                            $existingPicture = $row['picture'];
 
-                    $newsequel = "UPDATE `coordinator` SET `picture`='$existingPicture' WHERE ID = '$ID'";
-                    $result = mysqli_query($mysqli, $newsequel);
+                            $newsequel = "UPDATE `coordinator` SET `picture`='$existingPicture' WHERE ID = '$ID'";
+                            $result = mysqli_query($mysqli, $newsequel);
 
-                    echo "<script>alert('Successfully Updated!')</script>";
-                    echo "<script>window.location='coor-settings.php'</script>";   
-                }if(!in_array($fileType, $allowedTypes)) {
-                    echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
-                    die;
-                }if(move_uploaded_file($tempFilename, $targetFilePath)){
-                    $newsequel = "UPDATE `coordinator` SET `picture`='$newFilename' WHERE ID = '$ID'";
-                    $result = mysqli_query($mysqli, $newsequel);
-                    echo "<script>alert('Successfully Updated!')</script>";
-                    echo "<script>window.location='coor-settings.php'</script>";              
+                            echo "<script>alert('Successfully Updated!')</script>";
+                            echo "<script>window.location='coor-settings.php'</script>";   
+                        }if(!in_array($fileType, $allowedTypes)) {
+                            echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
+                            die;
+                        }if(move_uploaded_file($tempFilename, $targetFilePath)){
+                            $newsequel = "UPDATE `coordinator` SET `picture`='$newFilename' WHERE ID = '$ID'";
+                            $result = mysqli_query($mysqli, $newsequel);
+                            echo "<script>alert('Successfully Updated!')</script>";
+                            echo "<script>window.location='coor-settings.php'</script>";              
+                            }
+                        }
                     }
-                }
             }
         }else{
             $query = "SELECT pass FROM coordinator WHERE ID = ?";
@@ -297,33 +290,38 @@ body {
                                     echo "<script>alert('Username already exists!')</script>";
                                     echo "<script>window.location='coor-settings.php'</script>";
                                 }else{
-                                $hash = password_hash($newpass, PASSWORD_DEFAULT);
-                                $sequel = "UPDATE coordinator SET username = ?, first_name = ?, last_name = ?, email = ?, cpnum = ?, `address` = ?, fb_name = ?, `pass` = ? WHERE ID = ?";
-                                $stmt = mysqli_prepare($mysqli, $sequel);
-                                mysqli_stmt_bind_param($stmt, 'sssssssss', $username, $fname, $lname, $email, $cpnum, $address, $fb, $hash, $ID);
-                                $result = mysqli_stmt_execute($stmt);
-                    
-                                if($result){             
-                                    if(empty($fileName)){
-                                        $existing = "SELECT * FROM `coordinator` WHERE ID = '$ID'";
-                                        $result = mysqli_query($mysqli, $existing);
-                                        $row = mysqli_fetch_array($result);
-                                        $existingPicture = $row['picture'];
-                
-                                        $newsequel = "UPDATE `coordinator` SET `picture`='$existingPicture' WHERE ID = '$ID'";
-                                        $result = mysqli_query($mysqli, $newsequel);
-                
-                                        echo "<script>alert('Successfully Updated!')</script>";
-                                        echo "<script>window.location='coor-settings.php'</script>";   
-                                    }if(!in_array($fileType, $allowedTypes)) {
-                                        echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
-                                        die;
-                                    }if(move_uploaded_file($tempFilename, $targetFilePath)){
-                                        $newsequel = "UPDATE `coordinator` SET `picture`='$newFilename' WHERE ID = '$ID'";
-                                        $result = mysqli_query($mysqli, $newsequel);
-                                        echo "<script>alert('Successfully Updated!')</script>";
-                                        echo "<script>window.location='coor-settings.php'</script>";              
-                                    }
+                                    if(!empty($cpnum) && strlen($cpnum) != 11){
+                                        echo "<script>alert('Please input an 11 digit mobile number!')</script>";
+                                        echo "<script>window.location='coor-settings.php'</script>";
+                                    }else{
+                                        $hash = password_hash($newpass, PASSWORD_DEFAULT);
+                                        $sequel = "UPDATE coordinator SET username = ?, first_name = ?, last_name = ?, email = ?, cpnum = ?, `address` = ?, fb_name = ?, `pass` = ? WHERE ID = ?";
+                                        $stmt = mysqli_prepare($mysqli, $sequel);
+                                        mysqli_stmt_bind_param($stmt, 'sssssssss', $username, $fname, $lname, $email, $cpnum, $address, $fb, $hash, $ID);
+                                        $result = mysqli_stmt_execute($stmt);
+                            
+                                        if($result){             
+                                            if(empty($fileName)){
+                                                $existing = "SELECT * FROM `coordinator` WHERE ID = '$ID'";
+                                                $result = mysqli_query($mysqli, $existing);
+                                                $row = mysqli_fetch_array($result);
+                                                $existingPicture = $row['picture'];
+                        
+                                                $newsequel = "UPDATE `coordinator` SET `picture`='$existingPicture' WHERE ID = '$ID'";
+                                                $result = mysqli_query($mysqli, $newsequel);
+                        
+                                                echo "<script>alert('Successfully Updated!')</script>";
+                                                echo "<script>window.location='coor-settings.php'</script>";   
+                                            }if(!in_array($fileType, $allowedTypes)) {
+                                                echo "<script>alert('Only JPG, JPEG and PNG files are allowed.')</script>";
+                                                die;
+                                            }if(move_uploaded_file($tempFilename, $targetFilePath)){
+                                                $newsequel = "UPDATE `coordinator` SET `picture`='$newFilename' WHERE ID = '$ID'";
+                                                $result = mysqli_query($mysqli, $newsequel);
+                                                echo "<script>alert('Successfully Updated!')</script>";
+                                                echo "<script>window.location='coor-settings.php'</script>";              
+                                            }
+                                        }
                                 }
                         }
                     }

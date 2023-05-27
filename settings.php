@@ -147,22 +147,22 @@
                         <div class="row mt-2">
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">First Name</label>
-                                <input type="text" class="form-control" placeholder="first name" value="<?php echo $row['fname'] ?>" name="fname">
+                                <input type="text" class="form-control" placeholder="first name" value="<?php echo $row['fname'] ?>" name="fname" required>
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Middle Name</label>
                                 <input type="text" class="form-control" value="<?php echo $row['mname'] ?>" placeholder="(optional)" name="mname">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Surname</label>
-                                <input type="text" class="form-control" value="<?php echo $row['lname'] ?>" placeholder="surname" name="lname">
+                                <input type="text" class="form-control" value="<?php echo $row['lname'] ?>" placeholder="surname" name="lname" required>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Email Address</label>
-                                <input type="email" class="form-control" value="<?php echo $row['email'] ?>" placeholder="enter email address" name="email" required oninput="this.value = this.value.replace(/\s/g, '');">
+                                <input type="email" class="form-control" value="<?php echo $row['email'] ?>" placeholder="enter email address" name="email" required oninput="this.value = this.value.replace(/\s/g, '');" required>
 
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Mobile Number</label>
-                                <input type="text" class="form-control" placeholder="09XX-XXX-XXXX" value="<?php echo $row['cpnum'] ?>" name="cpnum" pattern="[0-9]*" oninput="javascript: if (this.value.length > 11) this.value = this.value.slice(0, 11);">
+                                <input type="text" class="form-control" placeholder="09XX-XXX-XXXX" value="<?php echo $row['cpnum'] ?>" name="cpnum" pattern="[0-9]*" oninput="javascript: if (this.value.length > 11) this.value = this.value.slice(0, 11);" required>
 <script>
     // Prevent the letter "e" from being entered in the number input field
     const input = document.querySelector('input[name="cpnum"]');
@@ -186,19 +186,19 @@
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Date of Birth</label>
-                                <input type="date" class="form-control" placeholder="enter current address" value="<?php echo $row['bdate'] ?>" name="bdate">
+                                <input type="date" class="form-control" placeholder="enter current address" value="<?php echo $row['bdate'] ?>" name="bdate" required>
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Place of Birth</label>
-                                <input type="text" class="form-control" placeholder="enter place of birth" value="<?php echo $row['placeofbirth'] ?>" name="pob">
+                                <input type="text" class="form-control" placeholder="enter place of birth" value="<?php echo $row['placeofbirth'] ?>" name="pob" required>
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Current Address</label>
-                                <input type="text" class="form-control" placeholder="enter current address" value="<?php echo $row['homeaddress'] ?>" name="address">
+                                <input type="text" class="form-control" placeholder="enter current address" value="<?php echo $row['homeaddress'] ?>" name="address" required>
                             </div>
                             <div class="col-md-12">
                             <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Nationality:</label><br>
-                                <select name="nationality" id="" class="form-control">
+                                <select name="nationality" id="" class="form-control" required>
                                 <?php
                                     $nationality = "SELECT nationality FROM students where lrn = '" . $_SESSION['lrn'] . "'";
                                     $check = mysqli_query($mysqli, $nationality);
@@ -211,7 +211,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Religion</label>
-                                <input type="text" class="form-control" placeholder="enter current address" value="<?php echo stripslashes($row['religion']) ?>" name="religion">
+                                <input type="text" class="form-control" placeholder="enter current address" value="<?php echo stripslashes($row['religion']) ?>" name="religion" required>
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Height (cm)</label>
@@ -222,27 +222,27 @@
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Name:</label>
-                                <input type="text" class="form-control" placeholder="enter name" value="<?php echo $row['cr1name'] ?>" name="cr1name">
+                                <input type="text" class="form-control" placeholder="enter name" value="<?php echo $row['cr1name'] ?>" name="cr1name" required>
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Relation:</label>
-                                <input type="text" class="form-control" placeholder="enter relation" value="<?php echo $row['cr1relation'] ?>" name="cr1relation">
+                                <input type="text" class="form-control" placeholder="enter relation" value="<?php echo $row['cr1relation'] ?>" name="cr1relation" required>
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Contact Information:</label>
-                                <input type="text" class="form-control" placeholder="enter contact information" value="<?php echo $row['cr1info'] ?>" name="cr1info">
+                                <input type="text" class="form-control" placeholder="enter contact information" value="<?php echo $row['cr1info'] ?>" name="cr1info" required>
                             </div><br><br><br><br>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Name:</label>
-                                <input type="text" class="form-control" placeholder="enter name" value="<?php echo $row['cr2name'] ?>" name="cr2name">
+                                <input type="text" class="form-control" placeholder="enter name" value="<?php echo $row['cr2name'] ?>" name="cr2name" required>
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Relation:</label>
-                                <input type="text" class="form-control" placeholder="enter relation" value="<?php echo $row['cr2relation'] ?>" name="cr2relation">
+                                <input type="text" class="form-control" placeholder="enter relation" value="<?php echo $row['cr2relation'] ?>" name="cr2relation" required>
                             </div>
                             <div class="col-md-12">
                                 <label style='margin-top: 10px; margin-bottom: 0px;' class="labels">Contact Information:</label>
-                                <input type="text" class="form-control" placeholder="enter contact information" value="<?php echo $row['cr2info'] ?>" name="cr2info">
+                                <input type="text" class="form-control" placeholder="enter contact information" value="<?php echo $row['cr2info'] ?>" name="cr2info" required>
                             </div>
                         </div>
                     </div>
@@ -309,6 +309,10 @@
         $row = mysqli_fetch_array($result);
 
         if(empty($currentpass) AND empty($newpass) AND empty($confirmpass)){
+            if(!empty($cpnum) && strlen($cpnum) != 11){
+                echo "<script>alert('Please input an 11 digit mobile number!')</script>";
+                echo "<script>window.location='settings.php'</script>";
+            }else{
             $stmt = $mysqli->prepare("UPDATE students SET `fname`=?, `lname`=?, `email`=?, `homeaddress`=?, `cpnum`=?, `bdate`=?, `placeofbirth`=?, `nationality`=?, `religion`=?, `height`=?, `cr1name`=?, `cr1relation`=?, `cr1info`=?, `cr2name`=?, `cr2relation`=?, `cr2info`=?,  `objective`=?, `skills`=?, `qualifications`=? WHERE lrn=?");
             mysqli_stmt_bind_param($stmt, "sssssssssssssssssssi", $fname, $lname, $email, $address, $cpnum, $bdate, $pob, $nationality, $religion, $height, $cr1name, $cr1relation, $cr1info, $cr2name, $cr2relation, $cr2info, $objective, $skills, $qualifications, $lrn);
             $result = mysqli_stmt_execute($stmt);
@@ -335,6 +339,7 @@
                     echo "<script>window.location='settings.php'</script>";              
                     }
                 }
+            }
         }else{
             $query = "SELECT pass FROM students WHERE lrn = ?";
             $stmt = mysqli_prepare($mysqli, $query);
@@ -363,6 +368,10 @@
                                 echo "<script>alert('Your password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.')</script>";
                                 echo "<script>window.location='settings.php'</script>";
                             } else {
+                                if(!empty($cpnum) && strlen($cpnum) != 11){
+                                    echo "<script>alert('Please input an 11 digit mobile number!')</script>";
+                                    echo "<script>window.location='settings.php'</script>";
+                                }else{
                                 $hash = password_hash($newpass, PASSWORD_DEFAULT);
 
                                 $stmt = $mysqli->prepare("UPDATE students SET fname=?, lname=?, email=?, homeaddress=?, cpnum=?, bdate=?, placeofbirth=?, nationality=?, religion=?, height=?, cr1name=?, cr1relation=?, cr1info=?, cr2name=?, cr2relation=?, cr2info=?, pass=?, objective=?, skills=?, qualifications=? WHERE lrn=?");
@@ -397,6 +406,7 @@
                     }
                 }
             }
+        }
 ?>
 </body>
 </html>
