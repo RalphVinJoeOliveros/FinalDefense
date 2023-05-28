@@ -148,13 +148,17 @@ include "managedepartment_modal.php";
                             <input type="text" class="form-control" placeholder="Please type Email Address" id="register_block" name="email" aria-describedby="register_block" >
                             <label for="address">Industry Address</label>
                             <input type="text" class="form-control" placeholder="Please Type Industry's Address" id="register_block" name="address" aria-describedby="register_block" >
-                            <label for="text">Phone Number/Telephone Number</label>
-                            <input type="text" class="form-control" placeholder="Please Type Phone Number/Telephone Number" id="register_block" name="number" aria-describedby="register_block" >
+                            <label for="text">Contact Address</label>
+                            <input type="text" class="form-control" placeholder="Please Type Phone Number/Telephone Number" id="register_block" name="number" aria-describedby="register_block" oninput="validateNumber(this)" pattern="\d*" maxlength="11">
+                            <small class="form-text text-muted">Please include "063" if you are entering a telephone number.</small>
                             <label for="text">Facebook Name/Facebook Page</label>
                             <input type="text" class="form-control" placeholder="Please Type Industry's Facebook Name" id="register_block" name="fb" aria-describedby="register_block">
                             </div>
                         </div>
     <script>
+        function validateNumber(input) {
+            input.value = input.value.replace(/[^\d]/g, '');
+        }
         function loadPreview(event) {
             var output = document.querySelector('.profile-pic img');
             output.src = URL.createObjectURL(event.target.files[0]);
