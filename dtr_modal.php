@@ -330,7 +330,7 @@ if(isset($_POST['punchOut'])){
   $time_in = date('H:i', strtotime($sqlPO['time_in']));
   // $time_out = $_POST['time_out'];
   $time_out = date("H:i", time());
-  $date = $sqlPO['date_'];
+  $date = date('Y-m-d');
 
   $sequel = "SELECT * FROM dtr WHERE id = '$id'";
   $query = mysqli_query($mysqli, $sequel);
@@ -360,7 +360,7 @@ if(isset($_POST['punchOut'])){
 
 
 
-$numofhrs = calculate_work_hours($date, $time_in, $current_date, $time_out);
+$numofhrs = calculate_work_hours($current_date, $time_in, $date, $time_out);
 
 $hours = $numofhrs['hours'];
 $minutes = $numofhrs['minutes'];

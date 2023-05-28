@@ -79,11 +79,20 @@ include 'capstone_database.php';
             </div>
             <div class="col">
                 <?php
-                    $hrs = "SELECT sum(numofhrs) FROM dtr WHERE lrn = '" . $students['lrn'] . "' AND (remarks = 'Approved' OR remarks = '')";
+                    $hrs = "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(numofhrs))) AS total_time FROM dtr WHERE lrn = '" . $students['lrn'] . "' AND (remarks = 'Approved' OR remarks = '')";
                     $query = mysqli_query($mysqli, $hrs);
-                    $hours = mysqli_fetch_array($query);
-
-                    if($hours['sum(numofhrs)'] == ""){ echo "0 Hour/s";} else {echo $hours['sum(numofhrs)'] . " Hour/s";}
+                    $result = mysqli_fetch_array($query);
+                    
+                    $total_time = $result['total_time'];
+                    
+                    if ($total_time === null) {
+                        echo "0 Hour/s";
+                    } else {
+                        $time_parts = explode(':', $total_time);
+                        $total_hours = (int) $time_parts[0];
+                        
+                        echo $total_hours . " Hour/s ";
+                    }
                 ?>
             </div>
         </div>
