@@ -197,6 +197,11 @@ z-index: 1;
             ],
             columnDefs: [
                 {
+                    targets: 0, // First column (column index 0)
+                    type: 'date', // Set the data type to 'date' for sorting
+                    orderable: true // Allow ordering on this column
+                },
+                {
                     targets: '_all',
                     orderable: false
                 }
